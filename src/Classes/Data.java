@@ -7,10 +7,27 @@ public class Data {
     private boolean valida;
     
     public Data(int dia, int mes, int ano) {
-        if(isValida(dia, mes, ano)) {
-            this.dia = dia;
-            this.mes = mes;
-            this.ano = ano;
+        if(isBissexto()) {
+            bissexto = true;
+        } else {
+            bissexto = false;
+        }
+        // data válida se a quantidade de dias faz jus ao mês, em relação ao fevereiro, se faz jus quando é e não bissexto
+        if((dia > 0 && dia <= 31) && ano > 0) {
+            // se o ano é bissexto, fevereiro tem 29 dias, caso contrário, tem 28
+            // os meses 4, 6, 9 e 11 possuem 30 dias, o restante, 31
+            if((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) ||
+                    ((mes == 2 && !bissexto && dia <= 28) || (mes == 2 && bissexto && dia <= 29)) ||
+                        ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia <= 30)) {
+                this.dia = dia;
+                this.mes = mes;
+                this.ano = ano;
+                valida = true;
+            } else {
+                valida = false;
+            }
+        } else {
+            valida = false;
         }
     }
     
@@ -34,26 +51,6 @@ public class Data {
         }
     }
     
-    // data válida se a quantidade de dias faz jus ao mês, em relação ao fevereiro, se faz jus quando é e não bissexto
-    public boolean isValida(int dia, int mes, int ano) {
-        if((dia > 0 && dia <= 31) && ano > 0) {
-            // se o ano é bissexto, fevereiro tem 29 dias, caso contrário, tem 28
-            // os meses 4, 6, 9 e 11 possuem 30 dias, o restante, 31
-            if((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) ||
-                    ((mes == 2 && !bissexto && dia <= 28) || (mes == 2 && bissexto && dia <= 29)) ||
-                        ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia <= 30)) {
-                valida = true;
-                return true;
-            } else {
-                valida = false;
-                return false;
-            }
-        } else {
-            valida = false;
-            return false;
-        }
-    }
-    
     public int getDia() {
         return dia;
     }
@@ -64,5 +61,13 @@ public class Data {
     
     public int getAno() {
         return ano;
+    }
+    
+    public boolean getBissexto() {
+        return bissexto;
+    }
+    
+    public boolean getValida() {
+        return valida;
     }
 }
