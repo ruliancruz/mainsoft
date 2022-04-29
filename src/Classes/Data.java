@@ -7,8 +7,16 @@ public class Data {
     private boolean valida;
     
     public Data(int dia, int mes, int ano) {
-        if(isBissexto()) {
-            bissexto = true;
+        if(ano % 4 == 0) {
+            if(ano % 100 == 0) {
+                if(ano % 400 == 0) {
+                    bissexto = true;
+                } else {
+                    bissexto = false;
+                }
+            } else {
+                bissexto = true;
+            }
         } else {
             bissexto = false;
         }
@@ -28,26 +36,6 @@ public class Data {
             }
         } else {
             valida = false;
-        }
-    }
-    
-    public boolean isBissexto() {
-        if(ano % 4 == 0) {
-            if(ano % 100 == 0) {
-                if(ano % 400 == 0) {
-                    bissexto = true;
-                    return true;
-                } else {
-                    bissexto = false;
-                    return false;
-                }
-            } else {
-                bissexto = true;
-                return true;
-            }
-        } else {
-            bissexto = false;
-            return false;
         }
     }
     
