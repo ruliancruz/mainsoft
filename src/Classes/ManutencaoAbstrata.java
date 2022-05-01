@@ -5,6 +5,9 @@ public abstract class ManutencaoAbstrata {
     private String descricao;
     private Date dataDeInício;
     private Date dataDeConclusao;
+    private Funcionario funcionario; //ArrayList
+    private Equipamento equipamento;
+    private Pecas peca; //ArrayList
 
     public String getDescricao() {
         return descricao;
