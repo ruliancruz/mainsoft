@@ -6,17 +6,10 @@ import java.util.Date;
 class Equipamento {
     private String nome;
     private String modelo;
-    private Date   dataDeAquisicao;
-    private Pecas  peca;
-    private ArrayList < ManutencaoAbstrata > manutencaosRealizadas = new ArrayList <ManutencaoAbstrata> ();
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
+    private String fabricante;
+    private Date dataDeAquisicao;
+    private Peca pecas;
+    private ArrayList <ManutencaoAbstrata> manutencaosRealizadas = new ArrayList<>();
 
     public String getNome() {
         return nome;
@@ -25,7 +18,23 @@ class Equipamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public String getModelo() {
+        return modelo;
+    }
 
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+    
     public Date getDataDeAquisicao() {
         return dataDeAquisicao;
     }
@@ -41,17 +50,12 @@ class Equipamento {
     public void setManutencaosRealizadas(ArrayList<ManutencaoAbstrata> manutencaosRealizadas) {
         this.manutencaosRealizadas = manutencaosRealizadas;
     }
-
-    public Pecas getPeca() {
-        return peca;
+    
+    public Peca getPecas() {
+        return pecas;
     }
 
-    public void setPeca(Pecas peca) {
-        this.peca = peca;
+    public void setPecas(Peca pecas) {
+        this.pecas = pecas;
     }
-    
-    
-    
-            
-    
 }

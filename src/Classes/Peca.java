@@ -1,13 +1,15 @@
 package Classes;
 
-public class Pecas {
+import java.util.ArrayList;
+
+public class Peca {
     private String modelo;
     private String fabricante;
     private String descricao;
-    private Composicao composicao;
-    private Reparo reparo;
+    private ArrayList <Composicao> composicoes = new ArrayList<>();
+    private ArrayList <Reparo> reparos = new ArrayList<>();
     
-    public String getmodelo() {
+    public String getModelo() {
         return modelo;
     }
     
@@ -30,20 +32,20 @@ public class Pecas {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public Composicao getComposicao() {
-        return composicao;
+
+    public ArrayList<Composicao> getComposicoes() {
+        return composicoes;
     }
-    
-    public void setComposicao(Composicao composicao) {
-        this.composicao = composicao;
+
+    public void setComposicoes(ArrayList<Composicao> composicoes) {
+        this.composicoes = composicoes;
     }
-    
-    public Reparo getReparo() {
-        return reparo;
+
+    public ArrayList<Reparo> getReparos() {
+        return reparos;
     }
-    
-    public void setReparo(Reparo reparo) {
-        this.reparo = reparo;
+
+    public void setReparos(ArrayList<Reparo> reparos) {
+        this.reparos = reparos;
     }
 }
