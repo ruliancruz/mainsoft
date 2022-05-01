@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Classes;
+import java.util.Date;
 
-/**
- *
- * @author Rulian
- */
 public class ManutencaoPreventiva {
-    
+    private Date dataDeAgendamento;
+    private String periodicidade;
+
+    public Date getDataDeAgendamento() {
+        return dataDeAgendamento;
+    }
+
+    public void setDataDeAgendamento(Date dataDeAgendamento) {
+        this.dataDeAgendamento = dataDeAgendamento;
+    }
+
+    public String getPeriodicidade() {
+        return periodicidade;
+    }
+
+    public void setPeriodicidade(String periodicidade) {
+        this.periodicidade = periodicidade;
+    }
 }
