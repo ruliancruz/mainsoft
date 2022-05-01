@@ -1,7 +1,7 @@
 package Classes;
 import java.util.Date;
 
-public class ManutencaoPreventiva extends Manutencao{
+public class ManutencaoPreventiva extends ManutencaoAbstrata{
     private Date dataDeAgendamento;
     private String periodicidade;
 

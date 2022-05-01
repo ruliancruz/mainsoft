@@ -1,6 +1,6 @@
 package Classes;
 
-public class ManutencaoCorretiva extends Manutencao {
+public class ManutencaoCorretiva extends ManutencaoAbstrata {
     private String CausaDaFalha;
 
     public String getCausaDaFalha() {

@@ -1,7 +1,7 @@
 package Classes;
 import java.util.Date;
 
-class Manutencao {
+public abstract class ManutencaoAbstrata {
     private String descricao;
     private Date dataDeInício;
     private Date dataDeConclusao;
