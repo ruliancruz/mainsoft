@@ -1,4 +1,10 @@
 package Classes;
-class Manutencao {
-    ;
+import java.util.Date;
+
+class Manutencao
+{
+    private String descricao;
+    private Date dataDeInício;
+    private Date dataDeConclusao;
+    
 }
