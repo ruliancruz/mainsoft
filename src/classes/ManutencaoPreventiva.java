@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 import java.util.Date;
 
 public class ManutencaoPreventiva extends ManutencaoAbstrata{

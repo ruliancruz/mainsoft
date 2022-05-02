@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package Telas;
-
+package telas;
+import classes.ManutencaoCorretiva;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author gabriel
  */
-public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
+public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ManutencaoCorretiva
      */
-    public ManutencaoCorretiva() {
+    public TelaManutencaoCorretiva() {
         initComponents();
     }
 
@@ -40,7 +41,7 @@ public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
         jFormattedTextField5 = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaCausaFalha = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -95,9 +96,9 @@ public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Causa da Falha:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textAreaCausaFalha.setColumns(20);
+        textAreaCausaFalha.setRows(5);
+        jScrollPane1.setViewportView(textAreaCausaFalha);
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +108,11 @@ public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Máquina 1", "Máquina 2", "Máquina 3", "Máquina 4" }));
 
@@ -219,8 +225,24 @@ public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jFormattedTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      //
+      // salvar
+      ManutencaoCorretiva mc = new ManutencaoCorretiva();
+      mc.setCausaDaFalha(textAreaCausaFalha.getText());
+//      equipamento
+//      resppnsavel
+//      dataInicio
+//      horarioInicio
+//      dataConclusao
+//      horarioConclusao
+      this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // cancelar
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -242,6 +264,6 @@ public class ManutencaoCorretiva extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea textAreaCausaFalha;
     // End of variables declaration//GEN-END:variables
 }

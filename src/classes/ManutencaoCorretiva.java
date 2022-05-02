@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class ManutencaoCorretiva extends ManutencaoAbstrata {
     private String CausaDaFalha;
