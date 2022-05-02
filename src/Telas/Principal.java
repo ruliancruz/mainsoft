@@ -65,10 +65,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/application_edit.png"))); // NOI18N
-        jMenu2.setText("Editar");
+        jMenu2.setText("Manutenção");
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add.png"))); // NOI18N
-        jMenu1.setText("Adicionar");
+        jMenu1.setText("Cadastrar Manutenção");
 
         jMenuItem1.setText("Manutenção Corretiva");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
