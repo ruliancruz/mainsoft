@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 public abstract class ManutencaoAbstrata {
     private String descricao;
-    private String dataDeInício;
+    private String dataDeInicio;
     private String dataDeConclusao;
+    private String horarioDeInicio;
+    private String horarioDeConclusao;
     private ArrayList <Funcionario> funcionarios = new ArrayList<>();
     private Equipamento equipamento;
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
@@ -20,12 +22,12 @@ public abstract class ManutencaoAbstrata {
         this.descricao = descricao;
     }
 
-    public String getDataDeInício() {
-        return dataDeInício;
+    public String getDataDeInicio() {
+        return dataDeInicio;
     }
 
-    public void setDataDeInício(String dataDeInício) {
-        this.dataDeInício = dataDeInício;
+    public void setDataDeInicio(String dataDeInicio) {
+        this.dataDeInicio = dataDeInicio;
     }
 
     public String getDataDeConclusao() {
@@ -36,6 +38,22 @@ public abstract class ManutencaoAbstrata {
         this.dataDeConclusao = dataDeConclusao;
     }
 
+    public String getHorarioDeInicio() {
+        return horarioDeInicio;
+    }
+
+    public void setHorarioDeInicio(String horarioDeInicio) {
+        this.horarioDeInicio = horarioDeInicio;
+    }
+
+    public String getHorarioDeConclusao() {
+        return horarioDeConclusao;
+    }
+
+    public void setHorarioDeConclusao(String horarioDeConclusao) {
+        this.horarioDeConclusao = horarioDeConclusao;
+    }
+    
     public ArrayList<Funcionario> getFuncionarios() {
         return funcionarios;
     }
