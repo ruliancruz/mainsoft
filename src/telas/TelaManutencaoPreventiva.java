@@ -29,7 +29,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         campoDeHorarioDeAgendamento = new javax.swing.JFormattedTextField();
         campoDeDataDeInicio = new javax.swing.JFormattedTextField();
         campoDeHorarioDeInicio = new javax.swing.JFormattedTextField();
-        campoDeHorarioDeDataDeConclusao = new javax.swing.JFormattedTextField();
+        campoDeDataDeConclusao = new javax.swing.JFormattedTextField();
         campoDeHorarioDeConclusao = new javax.swing.JFormattedTextField();
         campoDePeriodicidade = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
@@ -71,7 +71,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
 
         campoDeHorarioDeInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
-        campoDeHorarioDeDataDeConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        campoDeDataDeConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         campoDeHorarioDeConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
@@ -128,7 +128,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(campoDeHorarioDeConclusao, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(campoDeHorarioDeDataDeConclusao, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(campoDeDataDeConclusao, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(campoDeHorarioDeInicio, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(campoDeDataDeInicio, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(campoDeHorarioDeAgendamento)
@@ -170,7 +170,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(campoDeHorarioDeDataDeConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoDeDataDeConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -192,9 +192,22 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         // objeto instanciado acima para evitar problemas de escopo
         ordemDeManutencaoPreventiva.setDataDeAgendamento(campoDeDataDeAgendamento.getText());
+        ordemDeManutencaoPreventiva.setHorarioDeAgendamento(campoDeHorarioDeAgendamento.getText());
         ordemDeManutencaoPreventiva.setDataDeInicio(campoDeDataDeInicio.getText());
+        ordemDeManutencaoPreventiva.setDataDeConclusao(campoDeDataDeConclusao.getText());
         ordemDeManutencaoPreventiva.setHorarioDeInicio(campoDeHorarioDeInicio.getText());
         ordemDeManutencaoPreventiva.setHorarioDeConclusao(campoDeHorarioDeConclusao.getText());
+        ordemDeManutencaoPreventiva.setPeriodicidade(campoDePeriodicidade.getText());
+        // teste
+        System.out.println(ordemDeManutencaoPreventiva.getDataDeAgendamento());
+        System.out.println(ordemDeManutencaoPreventiva.getHorarioDeAgendamento());
+        System.out.println(ordemDeManutencaoPreventiva.getDataDeInicio());
+        System.out.println(ordemDeManutencaoPreventiva.getDataDeConclusao());
+        System.out.println(ordemDeManutencaoPreventiva.getHorarioDeInicio());
+        System.out.println(ordemDeManutencaoPreventiva.getHorarioDeConclusao());
+        System.out.println(ordemDeManutencaoPreventiva.getPeriodicidade());
+        // System.out.println(ordemDeManutencaoPreventiva.getEquipamento.getNome());
+        // System.out.println(ordemDeManutencaoPreventiva.getResponsavel.getNome());
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
@@ -206,12 +219,12 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JFormattedTextField campoDeDataDeAgendamento;
+    private javax.swing.JFormattedTextField campoDeDataDeConclusao;
     private javax.swing.JFormattedTextField campoDeDataDeInicio;
     private javax.swing.JComboBox<String> campoDeEquipamento;
     private javax.swing.JComboBox<String> campoDeFuncionario;
     private javax.swing.JFormattedTextField campoDeHorarioDeAgendamento;
     private javax.swing.JFormattedTextField campoDeHorarioDeConclusao;
-    private javax.swing.JFormattedTextField campoDeHorarioDeDataDeConclusao;
     private javax.swing.JFormattedTextField campoDeHorarioDeInicio;
     private javax.swing.JTextField campoDePeriodicidade;
     private javax.swing.JLabel jLabel1;

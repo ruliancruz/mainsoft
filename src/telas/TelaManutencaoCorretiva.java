@@ -199,6 +199,15 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
       ordemDeManutencaoCorretiva.setHorarioDeConclusao(campoDeHorarioDeConclusao.getText());
       ordemDeManutencaoCorretiva.setHorarioDeInicio(campoDeHorarioDeInicio.getText());
       ordemDeManutencaoCorretiva.setDescricao(campoDeDescricao.getText());
+      // teste
+      System.out.println(ordemDeManutencaoCorretiva.getCausaDaFalha());
+      System.out.println(ordemDeManutencaoCorretiva.getDataDeConclusao());
+      System.out.println(ordemDeManutencaoCorretiva.getDataDeInicio());
+      System.out.println(ordemDeManutencaoCorretiva.getHorarioDeConclusao());
+      System.out.println(ordemDeManutencaoCorretiva.getHorarioDeInicio());
+      System.out.println(ordemDeManutencaoCorretiva.getDescricao());
+      //System.out.println(ordemDeManutencaoCorretiva.getEquipamento().getNome());
+      //System.out.println(ordemDeManutencaoCorretiva.getResponsavel().getNome());
       this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

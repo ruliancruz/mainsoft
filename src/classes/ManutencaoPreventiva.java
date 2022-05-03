@@ -1,8 +1,8 @@
 package classes;
-import java.util.Date;
 
-public class ManutencaoPreventiva extends ManutencaoAbstrata{
+public class ManutencaoPreventiva extends ManutencaoAbstrata {
     private String dataDeAgendamento;
+    private String horarioDeAgendamento;
     private String periodicidade;
 
     public String getDataDeAgendamento() {
@@ -11,6 +11,14 @@ public class ManutencaoPreventiva extends ManutencaoAbstrata{
 
     public void setDataDeAgendamento(String dataDeAgendamento) {
         this.dataDeAgendamento = dataDeAgendamento;
+    }
+
+    public String getHorarioDeAgendamento() {
+        return horarioDeAgendamento;
+    }
+
+    public void setHorarioDeAgendamento(String horarioDeAgendamento) {
+        this.horarioDeAgendamento = horarioDeAgendamento;
     }
 
     public String getPeriodicidade() {

@@ -1,6 +1,5 @@
 package classes;
 
-import java.util.Date;
 import java.util.ArrayList;
 
 public abstract class ManutencaoAbstrata {
@@ -10,7 +9,7 @@ public abstract class ManutencaoAbstrata {
     private String horarioDeInicio;
     private String horarioDeConclusao;
     private ArrayList <Funcionario> funcionarios = new ArrayList<>();
-    private Equipamento equipamento;
+    private Equipamento equipamento = new Equipamento();
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
     private ArrayList <Peca> pecasReparadas = new ArrayList<>();
 
@@ -61,7 +60,7 @@ public abstract class ManutencaoAbstrata {
     public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
-
+    
     public Equipamento getEquipamento() {
         return equipamento;
     }

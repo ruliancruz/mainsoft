@@ -1,12 +1,10 @@
 package classes;
 
-import java.util.Date;
-
 public class Composicao {
     private Peca peca;
     private Equipamento equipamento;
-    private Date dataDeAdicao;
-    private Date dataDeRemocao;
+    private String dataDeAdicao;
+    private String dataDeRemocao;
 
     public Peca getPeca() {
         return peca;
@@ -24,19 +22,19 @@ public class Composicao {
         this.equipamento = equipamento;
     }
 
-    public Date getDataDeAdicao() {
+    public String getDataDeAdicao() {
         return dataDeAdicao;
     }
 
-    public void setDataDeAdicao(Date dataDeAdicao) {
+    public void setDataDeAdicao(String dataDeAdicao) {
         this.dataDeAdicao = dataDeAdicao;
     }
 
-    public Date getDataDeRemocao() {
+    public String getDataDeRemocao() {
         return dataDeRemocao;
     }
 
-    public void setDataDeRemocao(Date dataDeRemocao) {
+    public void setDataDeRemocao(String dataDeRemocao) {
         this.dataDeRemocao = dataDeRemocao;
     }
 }

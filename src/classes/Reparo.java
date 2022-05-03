@@ -1,10 +1,8 @@
 package classes;
 
-import java.util.Date;
-
 public class Reparo {
     private String descricao;
-    private Date DataDeReparo;
+    private String DataDeReparo;
 
     public String getDescricao() {
         return descricao;
@@ -14,11 +12,11 @@ public class Reparo {
         this.descricao = descricao;
     }
 
-    public Date getDataDeReparo() {
+    public String getDataDeReparo() {
         return DataDeReparo;
     }
 
-    public void setDataDeReparo(Date DataDeReparo) {
+    public void setDataDeReparo(String DataDeReparo) {
         this.DataDeReparo = DataDeReparo;
     }
 }

@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 
-class Funcionario {
+public class Funcionario {
     private String nome;
     private ArrayList <ManutencaoAbstrata> manutencoes = new ArrayList<>();
     

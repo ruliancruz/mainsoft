@@ -1,13 +1,12 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-class Equipamento {
+public class Equipamento {
     private String nome;
     private String modelo;
     private String fabricante;
-    private Date dataDeAquisicao;
+    private String dataDeAquisicao;
     private Peca pecas;
     private ArrayList <ManutencaoAbstrata> manutencaosRealizadas = new ArrayList<>();
 
@@ -35,11 +34,11 @@ class Equipamento {
         this.fabricante = fabricante;
     }
     
-    public Date getDataDeAquisicao() {
+    public String getDataDeAquisicao() {
         return dataDeAquisicao;
     }
 
-    public void setDataDeAquisicao(Date dataDeAquisicao) {
+    public void setDataDeAquisicao(String dataDeAquisicao) {
         this.dataDeAquisicao = dataDeAquisicao;
     }
 
