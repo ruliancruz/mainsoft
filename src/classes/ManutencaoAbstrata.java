@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public abstract class ManutencaoAbstrata {
     private String descricao;
-    private Date dataDeInício;
-    private Date dataDeConclusao;
+    private String dataDeInício;
+    private String dataDeConclusao;
     private ArrayList <Funcionario> funcionarios = new ArrayList<>();
     private Equipamento equipamento;
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
@@ -20,19 +20,19 @@ public abstract class ManutencaoAbstrata {
         this.descricao = descricao;
     }
 
-    public Date getDataDeInício() {
+    public String getDataDeInício() {
         return dataDeInício;
     }
 
-    public void setDataDeInício(Date dataDeInício) {
+    public void setDataDeInício(String dataDeInício) {
         this.dataDeInício = dataDeInício;
     }
 
-    public Date getDataDeConclusao() {
+    public String getDataDeConclusao() {
         return dataDeConclusao;
     }
 
-    public void setDataDeConclusao(Date dataDeConclusao) {
+    public void setDataDeConclusao(String dataDeConclusao) {
         this.dataDeConclusao = dataDeConclusao;
     }
 

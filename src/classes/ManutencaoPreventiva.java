@@ -2,14 +2,14 @@ package classes;
 import java.util.Date;
 
 public class ManutencaoPreventiva extends ManutencaoAbstrata{
-    private Date dataDeAgendamento;
+    private String dataDeAgendamento;
     private String periodicidade;
 
-    public Date getDataDeAgendamento() {
+    public String getDataDeAgendamento() {
         return dataDeAgendamento;
     }
 
-    public void setDataDeAgendamento(Date dataDeAgendamento) {
+    public void setDataDeAgendamento(String dataDeAgendamento) {
         this.dataDeAgendamento = dataDeAgendamento;
     }
 
