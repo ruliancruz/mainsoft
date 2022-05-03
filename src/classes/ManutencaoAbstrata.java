@@ -8,8 +8,8 @@ public abstract class ManutencaoAbstrata {
     private String dataDeConclusao;
     private String horarioDeInicio;
     private String horarioDeConclusao;
-    private ArrayList <Funcionario> funcionarios = new ArrayList<>();
-    private Equipamento equipamento = new Equipamento();
+    private String responsavel;
+    private String equipamento;
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
     private ArrayList <Peca> pecasReparadas = new ArrayList<>();
 
@@ -52,20 +52,20 @@ public abstract class ManutencaoAbstrata {
     public void setHorarioDeConclusao(String horarioDeConclusao) {
         this.horarioDeConclusao = horarioDeConclusao;
     }
-    
-    public ArrayList<Funcionario> getFuncionarios() {
-        return funcionarios;
+
+    public String getResponsavel() {
+        return responsavel;
     }
 
-    public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
-    
-    public Equipamento getEquipamento() {
+
+    public String getEquipamento() {
         return equipamento;
     }
 
-    public void setEquipamento(Equipamento equipamento) {
+    public void setEquipamento(String equipamento) {
         this.equipamento = equipamento;
     }
 
