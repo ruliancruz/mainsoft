@@ -3,11 +3,13 @@ package telas;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    TelaManutencaoCorretiva mc = new TelaManutencaoCorretiva();
-    TelaManutencaoPreventiva mp = new TelaManutencaoPreventiva();
+    TelaManutencaoCorretiva telaManutencaoCorretiva;
+    TelaManutencaoPreventiva telaManutencaoPreventiva;
     
     public TelaPrincipal() {
         initComponents();
+        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva((DefaultTableModel)jTable1.getModel());
+        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva();
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Equipamento", "Responsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
+                "Equipamento", "Responsável", "Data e Horário de Início", "Data de Horário Conclusão", "Data e Horário de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -58,11 +60,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1249, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         painel.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -164,14 +172,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(mc);
-        mc.setVisible(true);
+        painel.add(telaManutencaoCorretiva);
+        telaManutencaoCorretiva.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(mp);
-        mp.setVisible(true);
+        painel.add(telaManutencaoPreventiva);
+        telaManutencaoPreventiva.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

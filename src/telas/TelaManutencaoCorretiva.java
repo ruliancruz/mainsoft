@@ -1,14 +1,18 @@
 package telas;
 import classes.ManutencaoCorretiva;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
-    ManutencaoCorretiva ordemManutencaoCorretiva = new ManutencaoCorretiva();
+    private DefaultTableModel tabela;
+    private ArrayList<ManutencaoCorretiva> manutencoesCorretivas;
     
-    public TelaManutencaoCorretiva() {
+    public TelaManutencaoCorretiva(DefaultTableModel defaultTableModel) {
         initComponents();
+        manutencoesCorretivas = new ArrayList<ManutencaoCorretiva>();
+        tabela = defaultTableModel;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -193,14 +197,16 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
       // objeto instanciado acima para evitar problemas de escopo
-        ordemManutencaoCorretiva.setEquipamento(campoEquipamento.getSelectedItem().toString());
-        ordemManutencaoCorretiva.setResponsavel(campoResponsavel.getSelectedItem().toString());
-        ordemManutencaoCorretiva.setDataDeInicio(campoDataInicio.getText());
-        ordemManutencaoCorretiva.setDataDeConclusao(campoDataConclusao.getText());
-        ordemManutencaoCorretiva.setHorarioDeInicio(campoHorarioInicio.getText());
-        ordemManutencaoCorretiva.setHorarioDeConclusao(campoHorarioConclusao.getText());
-        ordemManutencaoCorretiva.setCausaDaFalha(campoCausaFalha.getText());
-        ordemManutencaoCorretiva.setDescricao(campoDescricao.getText());
+        ManutencaoCorretiva manutencaoCorretiva = new ManutencaoCorretiva(campoEquipamento.getSelectedItem().toString(), campoResponsavel.getSelectedItem().toString(), campoDataInicio.getText(), campoHorarioInicio.getText(), campoDataConclusao.getText(), campoHorarioConclusao.getText(), campoCausaFalha.getText(), campoDescricao.getText());
+        
+        manutencoesCorretivas.add(manutencaoCorretiva);
+        
+        tabela.setNumRows(0);
+        
+        for(ManutencaoCorretiva item : manutencoesCorretivas)
+        {
+            tabela.addRow(new Object[]{ item.getEquipamento(), item.getResponsavel(), item.getDataInicio() + "  " + item.getHorarioInicio(), item.getDataConclusao() + "  " + item.getHorarioConclusao(), "--.--.---- --:--", "-", item.getCausaFalha(), "Corretiva"});
+        }
         
         //Erro à Corrigir
         /*

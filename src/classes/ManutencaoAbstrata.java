@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public abstract class ManutencaoAbstrata {
     private String descricao;
-    private String dataDeInicio;
-    private String dataDeConclusao;
-    private String horarioDeInicio;
-    private String horarioDeConclusao;
+    private String dataInicio;
+    private String dataConclusao;
+    private String horarioInicio;
+    private String horarioConclusao;
     private String responsavel;
     private String equipamento;
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
@@ -21,36 +21,36 @@ public abstract class ManutencaoAbstrata {
         this.descricao = descricao;
     }
 
-    public String getDataDeInicio() {
-        return dataDeInicio;
+    public String getDataInicio() {
+        return dataInicio;
     }
 
-    public void setDataDeInicio(String dataDeInicio) {
-        this.dataDeInicio = dataDeInicio;
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public String getDataDeConclusao() {
-        return dataDeConclusao;
+    public String getDataConclusao() {
+        return dataConclusao;
     }
 
-    public void setDataDeConclusao(String dataDeConclusao) {
-        this.dataDeConclusao = dataDeConclusao;
+    public void setDataConclusao(String dataConclusao) {
+        this.dataConclusao = dataConclusao;
     }
 
-    public String getHorarioDeInicio() {
-        return horarioDeInicio;
+    public String getHorarioInicio() {
+        return horarioInicio;
     }
 
-    public void setHorarioDeInicio(String horarioDeInicio) {
-        this.horarioDeInicio = horarioDeInicio;
+    public void setHorarioInicio(String horarioInicio) {
+        this.horarioInicio = horarioInicio;
     }
 
-    public String getHorarioDeConclusao() {
-        return horarioDeConclusao;
+    public String getHorarioConclusao() {
+        return horarioConclusao;
     }
 
-    public void setHorarioDeConclusao(String horarioDeConclusao) {
-        this.horarioDeConclusao = horarioDeConclusao;
+    public void setHorarioConclusao(String horarioConclusao) {
+        this.horarioConclusao = horarioConclusao;
     }
 
     public String getResponsavel() {

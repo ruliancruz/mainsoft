@@ -191,6 +191,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         // objeto instanciado acima para evitar problemas de escopo
+        /*
         ordemDeManutencaoPreventiva.setDataDeAgendamento(campoDeDataDeAgendamento.getText());
         ordemDeManutencaoPreventiva.setHorarioDeAgendamento(campoDeHorarioDeAgendamento.getText());
         ordemDeManutencaoPreventiva.setDataDeInicio(campoDeDataDeInicio.getText());
@@ -208,6 +209,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         System.out.println(ordemDeManutencaoPreventiva.getPeriodicidade());
         // System.out.println(ordemDeManutencaoPreventiva.getEquipamento.getNome());
         // System.out.println(ordemDeManutencaoPreventiva.getResponsavel.getNome());
+        */
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
