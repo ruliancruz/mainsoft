@@ -5,7 +5,7 @@ public class ManutencaoCorretiva extends ManutencaoAbstrata {
     
     public ManutencaoCorretiva()
     {
-        
+        // código do construtor
     }
     
     public ManutencaoCorretiva(String equipamento, String responsavel, String dataInicio, String horarioInicio, String dataConclusao, String horarioConclusao, String causaFalha, String descricao)

@@ -199,33 +199,20 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
         }
         
         //Erro à Corrigir
-        /*
-        DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel(); //Erro nesta linha
-        Object[] dados = {
-            ordemManutencaoCorretiva.getEquipamento(), //Equipamento
-            ordemManutencaoCorretiva.getResponsavel(), //Responsável
-            ordemManutencaoCorretiva.getDataDeInicio(), //Data de Início
-            ordemManutencaoCorretiva.getDataDeConclusao(), //Data de Conclusão
-            "-", //
-            "-",
-            ordemManutencaoCorretiva.getCausaDaFalha(),
-            "-",
-            "Corretiva"
-        };
-        tabela.addRow(dados);
-        */
-        
-        // teste
-        /*
-        System.out.println(ordemDeManutencaoCorretiva.getCausaDaFalha());
-        System.out.println(ordemDeManutencaoCorretiva.getDataDeConclusao());
-        System.out.println(ordemDeManutencaoCorretiva.getDataDeInicio());
-        System.out.println(ordemDeManutencaoCorretiva.getHorarioDeConclusao());
-        System.out.println(ordemDeManutencaoCorretiva.getHorarioDeInicio());
-        System.out.println(ordemDeManutencaoCorretiva.getDescricao());
-        System.out.println(ordemDeManutencaoCorretiva.getEquipamento());
-        System.out.println(ordemDeManutencaoCorretiva.getResponsavel());
-        */
+        // seleciona e pressiona ctrl + shift + c para descomentar
+//        DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel(); //Erro nesta linha
+//        Object[] dados = {
+//            ordemManutencaoCorretiva.getEquipamento(), //Equipamento
+//            ordemManutencaoCorretiva.getResponsavel(), //Responsável
+//            ordemManutencaoCorretiva.getDataDeInicio(), //Data de Início
+//            ordemManutencaoCorretiva.getDataDeConclusao(), //Data de Conclusão
+//            "-", //
+//            "-",
+//            ordemManutencaoCorretiva.getCausaDaFalha(),
+//            "-",
+//            "Corretiva"
+//        };
+//        tabela.addRow(dados);
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
