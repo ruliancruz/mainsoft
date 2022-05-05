@@ -17,14 +17,13 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        campoId = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         campoDataInicio = new javax.swing.JFormattedTextField();
         campoHorarioInicio = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         campoDataConclusao = new javax.swing.JFormattedTextField();
@@ -43,7 +42,7 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Manutenção Corretiva");
 
-        jLabel1.setText("Ordem de Serviço: ");
+        campoId.setText("Ordem de Serviço: ");
 
         jLabel2.setText("Equipamento: ");
 
@@ -56,8 +55,6 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
         campoDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         campoHorarioInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-
-        jLabel4.setText("Identificador");
 
         jLabel7.setText("Data de Conclusão:");
 
@@ -127,32 +124,25 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel3)
-                                        .addComponent(jLabel1)
+                                        .addComponent(campoId)
                                         .addComponent(jLabel2)
                                         .addComponent(jLabel5)
                                         .addComponent(jLabel6)
                                         .addComponent(jLabel7))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel4))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(34, 34, 34)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(campoDataInicio)
-                                                .addComponent(campoHorarioInicio)
-                                                .addComponent(campoDataConclusao)
-                                                .addComponent(campoResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(campoEquipamento, 0, 120, Short.MAX_VALUE)))))))
+                                    .addGap(34, 34, 34)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(campoDataInicio)
+                                        .addComponent(campoHorarioInicio)
+                                        .addComponent(campoDataConclusao)
+                                        .addComponent(campoResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(campoEquipamento, 0, 120, Short.MAX_VALUE)))))
                         .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                .addComponent(campoId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -253,12 +243,11 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> campoEquipamento;
     private javax.swing.JFormattedTextField campoHorarioConclusao;
     private javax.swing.JFormattedTextField campoHorarioInicio;
+    private javax.swing.JLabel campoId;
     private javax.swing.JComboBox<String> campoResponsavel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

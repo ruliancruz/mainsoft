@@ -3,6 +3,7 @@ package classes;
 import java.util.ArrayList;
 
 public abstract class ManutencaoAbstrata {
+    private long id;
     private String descricao;
     private String dataInicio;
     private String dataConclusao;
@@ -12,6 +13,14 @@ public abstract class ManutencaoAbstrata {
     private String equipamento;
     private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
     private ArrayList <Peca> pecasReparadas = new ArrayList<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getDescricao() {
         return descricao;

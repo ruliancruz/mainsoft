@@ -25,7 +25,6 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         campoDeEquipamento = new javax.swing.JComboBox<>();
         campoDeFuncionario = new javax.swing.JComboBox<>();
         campoDeDataDeAgendamento = new javax.swing.JFormattedTextField();
-        jLabel11 = new javax.swing.JLabel();
         campoDeHorarioDeAgendamento = new javax.swing.JFormattedTextField();
         campoDeDataDeInicio = new javax.swing.JFormattedTextField();
         campoDeHorarioDeInicio = new javax.swing.JFormattedTextField();
@@ -36,6 +35,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         botaoSalvar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Manutenção Preventiva");
 
         jLabel1.setText("Ordem de Serviço:");
 
@@ -62,8 +62,6 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         campoDeFuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diego", "Gabriel", "Gessé", "Rulian" }));
 
         campoDeDataDeAgendamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-
-        jLabel11.setText("Identificador");
 
         campoDeHorarioDeAgendamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
@@ -108,10 +106,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
                             .addComponent(campoDeDataDeAgendamento)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11))
+                            .addComponent(jLabel1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(botaoCancelar)
@@ -140,9 +135,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel11))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoDeEquipamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +224,6 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
     private javax.swing.JTextField campoDePeriodicidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

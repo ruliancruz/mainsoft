@@ -3,6 +3,7 @@ package classes;
 import java.util.ArrayList;
 
 public class Equipamento {
+    private long id;
     private String nome;
     private String modelo;
     private String fabricante;
@@ -10,6 +11,14 @@ public class Equipamento {
     private Peca pecas;
     private ArrayList <ManutencaoAbstrata> manutencaosRealizadas = new ArrayList<>();
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }

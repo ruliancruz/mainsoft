@@ -3,8 +3,17 @@ package classes;
 import java.util.ArrayList;
 
 public class Funcionario {
+    private long id;
     private String nome;
     private ArrayList <ManutencaoAbstrata> manutencoes = new ArrayList<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     
     public void setNome(String nome) {
         this.nome = nome;
