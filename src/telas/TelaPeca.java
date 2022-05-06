@@ -1,7 +1,8 @@
 package telas;
 import classes.Peca;
+import classes.Utils;
 
-public class TelaPeca extends javax.swing.JInternalFrame {
+public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
     Peca peca = new Peca();
     
     public TelaPeca() {
@@ -113,7 +114,16 @@ public class TelaPeca extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void limparCampos() {
+        campoNome.setText("");
+        campoModelo.setText("");
+        campoFabricante.setText("");
+        campoNotas.setText("");
+    }
+    
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
@@ -123,6 +133,7 @@ public class TelaPeca extends javax.swing.JInternalFrame {
         peca.setModelo(campoModelo.getText());
         peca.setFabricante(campoFabricante.getText());
         peca.setNotas(campoNotas.getText());
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

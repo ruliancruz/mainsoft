@@ -1,7 +1,8 @@
 package telas;
 import classes.Equipamento;
+import classes.Utils;
 
-public class TelaEquipamento extends javax.swing.JInternalFrame {
+public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils {
     Equipamento equipamento = new Equipamento();
     
     public TelaEquipamento() {
@@ -108,7 +109,16 @@ public class TelaEquipamento extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void limparCampos() {
+        campoNome.setText("");
+        campoModelo.setText("");
+        campoFabricante.setText("");
+        campoDataAquisicao.setText("");
+    }
+    
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
@@ -118,6 +128,7 @@ public class TelaEquipamento extends javax.swing.JInternalFrame {
         equipamento.setModelo(campoModelo.getText());
         equipamento.setFabricante(campoFabricante.getText());
         equipamento.setDataDeAquisicao(campoDataAquisicao.getText());
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

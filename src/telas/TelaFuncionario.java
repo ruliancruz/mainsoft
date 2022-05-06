@@ -1,7 +1,8 @@
 package telas;
 import classes.Funcionario;
+import classes.Utils;
 
-public class TelaFuncionario extends javax.swing.JInternalFrame {
+public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils {
     Funcionario funcionario = new Funcionario();
     
     public TelaFuncionario() {
@@ -76,13 +77,20 @@ public class TelaFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void limparCampos() {
+        campoNome.setText("");
+    }
+    
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         // objeto instanciado acima para evitar problemas de escopo
         funcionario.setNome(campoNome.getText());
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

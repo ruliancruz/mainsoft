@@ -78,7 +78,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -95,8 +95,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(jInternalFrame1)
         );
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/folder.png"))); // NOI18N
         jMenu4.setText("Arquivo");
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/disk.png"))); // NOI18N
         jMenuItem3.setText("Salvar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/database_go.png"))); // NOI18N
         jMenu5.setText("Consulta");
 
         jMenuItem8.setText("Ordens de Serviço");
@@ -146,8 +149,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/application_edit.png"))); // NOI18N
         jMenu2.setText("Cadastro");
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jMenu1.setText("Cadastrar Manutenção");
 
         jMenuItem1.setText("Manutenção Corretiva");
@@ -168,6 +173,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.add(jMenu1);
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jMenuItem7.setText("Cadastrar Equipamento");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,8 +184,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/help.png"))); // NOI18N
         jMenu3.setText("Ajuda");
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/information.png"))); // NOI18N
         jMenuItem5.setText("Sobre");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,8 +242,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(telaPeca);
-        telaPeca.setVisible(true);
+        if(telaPeca.isVisible()) {
+            telaPeca.setVisible(false);
+            painel.remove(telaPeca);
+        } else {
+            painel.add(telaPeca);
+            telaPeca.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -244,14 +257,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(telaFuncionario);
-        telaFuncionario.setVisible(true);
+        if(telaFuncionario.isVisible()) {
+            telaFuncionario.setVisible(false);
+            painel.remove(telaFuncionario);
+        } else {
+            painel.add(telaFuncionario);
+            telaFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(telaEquipamento);
-        telaEquipamento.setVisible(true);
+        if(telaEquipamento.isVisible()) {
+            telaEquipamento.setVisible(false);
+            painel.remove(telaEquipamento);
+        } else {
+            painel.add(telaEquipamento);
+            telaEquipamento.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public static void main(String args[]) {
