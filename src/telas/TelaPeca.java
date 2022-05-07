@@ -3,10 +3,11 @@ import classes.Peca;
 import classes.Utils;
 
 public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
-    Peca peca = new Peca();
+    Peca peca;
     
     public TelaPeca() {
         initComponents();
+        peca = new Peca();
     }
     
     @SuppressWarnings("unchecked")
@@ -123,17 +124,22 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
+        if(peca.getNome() != null || peca.getModelo() != null ||
+           peca.getFabricante() != null || peca.getNotas() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // objeto instanciado acima para evitar problemas de escopo
         peca.setNome(campoNome.getText());
         peca.setModelo(campoModelo.getText());
         peca.setFabricante(campoFabricante.getText());
         peca.setNotas(campoNotas.getText());
-        limparCampos();
+        if(peca.getNome() != null || peca.getModelo() != null ||
+           peca.getFabricante() != null || peca.getNotas() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

@@ -5,15 +5,17 @@ import javax.swing.table.DefaultTableModel;
 public class TelaPrincipal extends javax.swing.JFrame {
     TelaManutencaoCorretiva telaManutencaoCorretiva;
     TelaManutencaoPreventiva telaManutencaoPreventiva;
-    // aparentemente só funciona como objetos e não como atributo composto, vê isso
-    TelaEquipamento telaEquipamento = new TelaEquipamento();
-    TelaFuncionario telaFuncionario = new TelaFuncionario();
-    TelaPeca telaPeca = new TelaPeca();
+    TelaEquipamento telaEquipamento;
+    TelaFuncionario telaFuncionario;
+    TelaPeca telaPeca;
     
     public TelaPrincipal() {
         initComponents();
         this.telaManutencaoCorretiva = new TelaManutencaoCorretiva((DefaultTableModel)jTable1.getModel());
         this.telaManutencaoPreventiva = new TelaManutencaoPreventiva();
+        this.telaEquipamento = new TelaEquipamento();
+        this.telaFuncionario = new TelaFuncionario();
+        this.telaPeca = new TelaPeca();
     }
 
     @SuppressWarnings("unchecked")
@@ -221,14 +223,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(telaManutencaoCorretiva);
-        telaManutencaoCorretiva.setVisible(true);
+        if(telaManutencaoCorretiva.isVisible()) {
+            telaManutencaoCorretiva.setVisible(false);
+            painel.remove(telaManutencaoCorretiva);
+        } else {
+            painel.add(telaManutencaoCorretiva);
+            telaManutencaoCorretiva.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
-        painel.add(telaManutencaoPreventiva);
-        telaManutencaoPreventiva.setVisible(true);
+        if(telaManutencaoPreventiva.isVisible()) {
+            telaManutencaoPreventiva.setVisible(false);
+            painel.remove(telaManutencaoPreventiva);
+        } else {
+            painel.add(telaManutencaoPreventiva);
+            telaManutencaoPreventiva.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

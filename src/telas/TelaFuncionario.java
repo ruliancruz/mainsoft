@@ -3,10 +3,11 @@ import classes.Funcionario;
 import classes.Utils;
 
 public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils {
-    Funcionario funcionario = new Funcionario();
+    Funcionario funcionario;
     
     public TelaFuncionario() {
         initComponents();
+        funcionario = new Funcionario();
     }
 
     @SuppressWarnings("unchecked")
@@ -83,14 +84,17 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
+        if(funcionario.getNome() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // objeto instanciado acima para evitar problemas de escopo
         funcionario.setNome(campoNome.getText());
-        limparCampos();
+        if(funcionario.getNome() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

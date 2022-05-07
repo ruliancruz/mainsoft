@@ -3,10 +3,11 @@ import classes.Equipamento;
 import classes.Utils;
 
 public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils {
-    Equipamento equipamento = new Equipamento();
+    Equipamento equipamento;
     
     public TelaEquipamento() {
         initComponents();
+        equipamento = new Equipamento();
     }
     
     @SuppressWarnings("unchecked")
@@ -118,17 +119,26 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
+        if(equipamento.getNome() != null ||
+           equipamento.getModelo() != null ||
+           equipamento.getFabricante() != null ||
+           equipamento.getDataDeAquisicao() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // objeto instanciado acima para evitar problemas de escopo
         equipamento.setNome(campoNome.getText());
         equipamento.setModelo(campoModelo.getText());
         equipamento.setFabricante(campoFabricante.getText());
         equipamento.setDataDeAquisicao(campoDataAquisicao.getText());
-        limparCampos();
+        if(equipamento.getNome() != null ||
+           equipamento.getModelo() != null ||
+           equipamento.getFabricante() != null ||
+           equipamento.getDataDeAquisicao() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

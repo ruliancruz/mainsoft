@@ -1,11 +1,26 @@
 package telas;
 import classes.ManutencaoPreventiva;
+import classes.Utils;
 
-public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
-    ManutencaoPreventiva ordemDeManutencaoPreventiva = new ManutencaoPreventiva();
+public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils {
+    ManutencaoPreventiva ordemDeManutencaoPreventiva;
    
     public TelaManutencaoPreventiva() {
         initComponents();
+        ordemDeManutencaoPreventiva = new ManutencaoPreventiva();
+    }
+    
+    @Override
+    public void limparCampos() {
+        campoDeEquipamento.setText("");
+        campoDeResponsavel.setText("");
+        campoDeDataDeAgendamento.setText("");
+        campoDeHorarioDeAgendamento.setText("");
+        campoDeDataDeInicio.setText("");
+        campoDeHorarioDeInicio.setText("");
+        campoDeDataDeConclusao.setText("");
+        campoDeHorarioDeConclusao.setText("");
+        campoDePeriodicidade.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -182,7 +197,6 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // objeto instanciado acima para evitar problemas de escopo
         ordemDeManutencaoPreventiva.setEquipamento(campoDeEquipamento.getText());
         ordemDeManutencaoPreventiva.setResponsavel(campoDeResponsavel.getText());
         ordemDeManutencaoPreventiva.setDataAgendamento(campoDeDataDeAgendamento.getText());
@@ -192,10 +206,32 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame {
         ordemDeManutencaoPreventiva.setDataConclusao(campoDeDataDeConclusao.getText());
         ordemDeManutencaoPreventiva.setHorarioConclusao(campoDeHorarioDeConclusao.getText());
         ordemDeManutencaoPreventiva.setPeriodicidade(campoDePeriodicidade.getText());
+        if(ordemDeManutencaoPreventiva.getEquipamento() != null ||
+           ordemDeManutencaoPreventiva.getResponsavel() != null ||
+           ordemDeManutencaoPreventiva.getDataAgendamento() != null ||
+           ordemDeManutencaoPreventiva.getHorarioAgendamento() != null ||
+           ordemDeManutencaoPreventiva.getDataInicio() != null ||
+           ordemDeManutencaoPreventiva.getHorarioInicio() != null ||
+           ordemDeManutencaoPreventiva.getDataConclusao() != null ||
+           ordemDeManutencaoPreventiva.getHorarioConclusao() != null ||
+           ordemDeManutencaoPreventiva.getPeriodicidade() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        if(ordemDeManutencaoPreventiva.getEquipamento() != null ||
+           ordemDeManutencaoPreventiva.getResponsavel() != null ||
+           ordemDeManutencaoPreventiva.getDataAgendamento() != null ||
+           ordemDeManutencaoPreventiva.getHorarioAgendamento() != null ||
+           ordemDeManutencaoPreventiva.getDataInicio() != null ||
+           ordemDeManutencaoPreventiva.getHorarioInicio() != null ||
+           ordemDeManutencaoPreventiva.getDataConclusao() != null ||
+           ordemDeManutencaoPreventiva.getHorarioConclusao() != null ||
+           ordemDeManutencaoPreventiva.getPeriodicidade() != null) {
+            limparCampos();
+        }
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
