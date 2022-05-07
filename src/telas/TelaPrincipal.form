@@ -33,7 +33,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagens/database_go.png"/>
+              <Image iconType="3" name="/imagens/magnifier.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Consulta"/>
           </Properties>
@@ -48,6 +48,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagens/user_suit.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
               </Properties>
               <Events>
@@ -90,6 +93,9 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagens/wrench.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Manuten&#xe7;&#xe3;o Corretiva"/>
                   </Properties>
                   <Events>
@@ -98,6 +104,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagens/wrench.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Manuten&#xe7;&#xe3;o Preventiva"/>
                   </Properties>
                   <Events>
