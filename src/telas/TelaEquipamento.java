@@ -67,7 +67,7 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Respónsável", "Início", "Conclusão", "Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
+                "ID", "Respónsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

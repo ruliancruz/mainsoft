@@ -2,10 +2,10 @@ package classes;
 
 public class RegistroPeca {
     private long id;
-    private String dataInsercao;
-    private String horarioInsercao;
-    private String dataRemocao;
-    private String horarioRemocao;
+    private String nome;
+    private String tipoAlteracao;
+    private long idPeca;
+    private long idPecaSubstituida;
 
     public long getId() {
         return id;
@@ -15,38 +15,35 @@ public class RegistroPeca {
         this.id = id;
     }
 
-    public String getDataInsercao() {
-        return dataInsercao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDataInsercao(String dataInsercao) {
-        this.dataInsercao = dataInsercao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getHorarioInsercao() {
-        return horarioInsercao;
+    public String getTipoAlteracao() {
+        return tipoAlteracao;
     }
 
-    public void setHorarioInsercao(String horarioInsercao) {
-        this.horarioInsercao = horarioInsercao;
+    public void setTipoAlteracao(String tipoAlteracao) {
+        this.tipoAlteracao = tipoAlteracao;
     }
 
-    public String getDataRemocao() {
-        return dataRemocao;
+    public long getIdPeca() {
+        return idPeca;
     }
 
-    public void setDataRemocao(String dataRemocao) {
-        this.dataRemocao = dataRemocao;
+    public void setIdPeca(long idPeca) {
+        this.idPeca = idPeca;
     }
 
-    public String getHorarioRemocao() {
-        return horarioRemocao;
+    public long getIdPecaSubstituida() {
+        return idPecaSubstituida;
     }
 
-    public void setHorarioRemocao(String horarioRemocao) {
-        this.horarioRemocao = horarioRemocao;
+    public void setIdPecaSubstituida(long idPecaSubstituida) {
+        this.idPecaSubstituida = idPecaSubstituida;
     }
-    
-    
-    
 }

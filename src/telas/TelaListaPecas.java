@@ -20,13 +20,13 @@ public class TelaListaPecas extends javax.swing.JInternalFrame {
 
         tabelaPeca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Modelo", "Fabricante", "Notas"
+                "ID", "Nome", "Modelo", "Fabricante"
             }
         ));
         jScrollPane1.setViewportView(tabelaPeca);

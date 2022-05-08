@@ -70,7 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Equipamento", "Responsável", "Data e Horário de Início", "Data de Horário Conclusão", "Data e Horário de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
+                "Equipamento", "Responsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

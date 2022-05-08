@@ -11,8 +11,7 @@ public abstract class ManutencaoAbstrata {
     private String horarioConclusao;
     private String responsavel;
     private String equipamento;
-    private ArrayList <Peca> pecasSubstituidas = new ArrayList<>();
-    private ArrayList <Peca> pecasReparadas = new ArrayList<>();
+    private ArrayList <RegistroPeca> registroPeca = new ArrayList<RegistroPeca>();
 
     public long getId() {
         return id;
@@ -78,19 +77,11 @@ public abstract class ManutencaoAbstrata {
         this.equipamento = equipamento;
     }
 
-    public ArrayList<Peca> getPecasSubstituidas() {
-        return pecasSubstituidas;
-    }
-    
-    public void setPecasSubstituidas(ArrayList<Peca> pecasSubstituidas) {
-        this.pecasSubstituidas = pecasSubstituidas;
+    public ArrayList<RegistroPeca> getRegistroPeca() {
+        return registroPeca;
     }
 
-    public ArrayList<Peca> getPecasReparadas() {
-        return pecasReparadas;
-    }
-
-    public void setPecasReparadas(ArrayList<Peca> pecasReparadas) {
-        this.pecasReparadas = pecasReparadas;
+    public void setRegistroPeca(ArrayList<RegistroPeca> registroPeca) {
+        this.registroPeca = registroPeca;
     }
 }

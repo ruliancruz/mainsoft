@@ -51,7 +51,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Equipamento", "Início", "Conclusão", "Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
+                "ID", "Equipamento", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(tabelaManutencao);
