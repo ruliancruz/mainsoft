@@ -7,9 +7,6 @@ public class Peca {
     private String nome;
     private String modelo;
     private String fabricante;
-    private String notas;
-    private ArrayList <Composicao> composicoes = new ArrayList<>();
-    private ArrayList <Reparo> reparos = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -41,29 +38,5 @@ public class Peca {
     
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
-    }
-
-    public String getNotas() {
-        return notas;
-    }
-
-    public void setNotas(String notas) {
-        this.notas = notas;
-    }
-
-    public ArrayList<Composicao> getComposicoes() {
-        return composicoes;
-    }
-
-    public void setComposicoes(ArrayList<Composicao> composicoes) {
-        this.composicoes = composicoes;
-    }
-
-    public ArrayList<Reparo> getReparos() {
-        return reparos;
-    }
-
-    public void setReparos(ArrayList<Reparo> reparos) {
-        this.reparos = reparos;
     }
 }

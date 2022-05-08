@@ -28,20 +28,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        salvar = new javax.swing.JMenuItem();
+        carregar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        consultarOrdensServico = new javax.swing.JMenuItem();
+        consultarFuncionarios = new javax.swing.JMenuItem();
+        consultarEquipamentos = new javax.swing.JMenuItem();
+        consultarPecas = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        cadastrarManutencaoCorretiva = new javax.swing.JMenuItem();
+        cadastrarManutencaoPreventiva = new javax.swing.JMenuItem();
+        cadastrarFuncionario = new javax.swing.JMenuItem();
+        cadastrarEquipamento = new javax.swing.JMenuItem();
+        cadastrarPeca = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        sobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mainsoft - Sistema de Controle de Manutenção em Fabricas");
@@ -49,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setMaximizable(true);
         jInternalFrame1.setResizable(true);
-        jInternalFrame1.setTitle("Ordens de Serviço");
+        jInternalFrame1.setTitle("Lista de Ordens de Serviço");
         jInternalFrame1.setToolTipText("");
         jInternalFrame1.setAutoscrolls(true);
         jInternalFrame1.setVisible(true);
@@ -100,55 +102,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/folder.png"))); // NOI18N
         jMenu4.setText("Arquivo");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/disk.png"))); // NOI18N
-        jMenuItem3.setText("Salvar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/disk.png"))); // NOI18N
+        salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                salvarActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(salvar);
 
-        jMenuItem6.setText("Carregar");
-        jMenu4.add(jMenuItem6);
+        carregar.setText("Carregar");
+        jMenu4.add(carregar);
 
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/magnifier.png"))); // NOI18N
         jMenu5.setText("Consulta");
 
-        jMenuItem8.setText("Ordens de Serviço");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        consultarOrdensServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
+        consultarOrdensServico.setText("Ordens de Serviço");
+        consultarOrdensServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                consultarOrdensServicoActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem8);
+        jMenu5.add(consultarOrdensServico);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user_suit.png"))); // NOI18N
-        jMenuItem10.setText("Funcionários");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem10);
+        consultarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
+        consultarFuncionarios.setText("Funcionários");
+        jMenu5.add(consultarFuncionarios);
 
-        jMenuItem9.setText("Equipamentos");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        consultarEquipamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
+        consultarEquipamentos.setText("Equipamentos");
+        consultarEquipamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                consultarEquipamentosActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem9);
+        jMenu5.add(consultarEquipamentos);
 
-        jMenuItem11.setText("Peças");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem11);
+        consultarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
+        consultarPecas.setText("Peças");
+        jMenu5.add(consultarPecas);
 
         jMenuBar1.add(jMenu5);
 
@@ -158,48 +153,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jMenu1.setText("Cadastrar Manutenção");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/wrench.png"))); // NOI18N
-        jMenuItem1.setText("Manutenção Corretiva");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarManutencaoCorretiva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/wrench.png"))); // NOI18N
+        cadastrarManutencaoCorretiva.setText("Manutenção Corretiva");
+        cadastrarManutencaoCorretiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                cadastrarManutencaoCorretivaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(cadastrarManutencaoCorretiva);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/wrench.png"))); // NOI18N
-        jMenuItem2.setText("Manutenção Preventiva");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarManutencaoPreventiva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/wrench.png"))); // NOI18N
+        cadastrarManutencaoPreventiva.setText("Manutenção Preventiva");
+        cadastrarManutencaoPreventiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                cadastrarManutencaoPreventivaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(cadastrarManutencaoPreventiva);
 
         jMenu2.add(jMenu1);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
-        jMenuItem7.setText("Cadastrar Equipamento");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
+        cadastrarFuncionario.setText("Cadastrar Funcionário");
+        cadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                cadastrarFuncionarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(cadastrarFuncionario);
+
+        cadastrarEquipamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
+        cadastrarEquipamento.setText("Cadastrar Equipamento");
+        cadastrarEquipamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarEquipamentoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cadastrarEquipamento);
+
+        cadastrarPeca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
+        cadastrarPeca.setText("Cadastrar Peça");
+        cadastrarPeca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarPecaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cadastrarPeca);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/help.png"))); // NOI18N
         jMenu3.setText("Ajuda");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/information.png"))); // NOI18N
-        jMenuItem5.setText("Sobre");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        sobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/information.png"))); // NOI18N
+        sobre.setText("Sobre");
+        sobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                sobreActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(sobre);
 
         jMenuBar1.add(jMenu3);
 
@@ -220,11 +233,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_sobreActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void cadastrarManutencaoCorretivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoCorretivaActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
         if(telaManutencaoCorretiva.isVisible()) {
             telaManutencaoCorretiva.setVisible(false);
@@ -233,9 +246,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painel.add(telaManutencaoCorretiva);
             telaManutencaoCorretiva.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void cadastrarManutencaoPreventivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoPreventivaActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
         if(telaManutencaoPreventiva.isVisible()) {
             telaManutencaoPreventiva.setVisible(false);
@@ -244,18 +257,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painel.add(telaManutencaoPreventiva);
             telaManutencaoPreventiva.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_cadastrarManutencaoPreventivaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_salvarActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void consultarEquipamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEquipamentosActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_consultarEquipamentosActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void cadastrarPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPecaActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
         if(telaPeca.isVisible()) {
             telaPeca.setVisible(false);
@@ -264,13 +277,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painel.add(telaPeca);
             telaPeca.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_cadastrarPecaActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void consultarOrdensServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarOrdensServicoActionPerformed
         // ordem de serviço
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_consultarOrdensServicoActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void cadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFuncionarioActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
         if(telaFuncionario.isVisible()) {
             telaFuncionario.setVisible(false);
@@ -279,9 +292,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painel.add(telaFuncionario);
             telaFuncionario.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_cadastrarFuncionarioActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void cadastrarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEquipamentoActionPerformed
         // objeto instanciado acima para evitar probelemas de escopo
         if(telaEquipamento.isVisible()) {
             telaEquipamento.setVisible(false);
@@ -290,7 +303,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painel.add(telaEquipamento);
             telaEquipamento.setVisible(true);
         }
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_cadastrarEquipamentoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -328,6 +341,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cadastrarEquipamento;
+    private javax.swing.JMenuItem cadastrarFuncionario;
+    private javax.swing.JMenuItem cadastrarManutencaoCorretiva;
+    private javax.swing.JMenuItem cadastrarManutencaoPreventiva;
+    private javax.swing.JMenuItem cadastrarPeca;
+    private javax.swing.JMenuItem carregar;
+    private javax.swing.JMenuItem consultarEquipamentos;
+    private javax.swing.JMenuItem consultarFuncionarios;
+    private javax.swing.JMenuItem consultarOrdensServico;
+    private javax.swing.JMenuItem consultarPecas;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -335,18 +358,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JDesktopPane painel;
+    private javax.swing.JMenuItem salvar;
+    private javax.swing.JMenuItem sobre;
     // End of variables declaration//GEN-END:variables
 }
