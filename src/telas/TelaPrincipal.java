@@ -249,7 +249,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
     private void cadastrarManutencaoPreventivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoPreventivaActionPerformed
-        // objeto instanciado acima para evitar probelemas de escopo
         if(telaManutencaoPreventiva.isVisible()) {
             telaManutencaoPreventiva.setVisible(false);
             painel.remove(telaManutencaoPreventiva);
@@ -269,7 +268,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarEquipamentosActionPerformed
 
     private void cadastrarPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPecaActionPerformed
-        // objeto instanciado acima para evitar probelemas de escopo
         if(telaPeca.isVisible()) {
             telaPeca.setVisible(false);
             painel.remove(telaPeca);
@@ -284,7 +282,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarOrdensServicoActionPerformed
 
     private void cadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFuncionarioActionPerformed
-        // objeto instanciado acima para evitar probelemas de escopo
         if(telaFuncionario.isVisible()) {
             telaFuncionario.setVisible(false);
             painel.remove(telaFuncionario);
@@ -295,7 +292,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarFuncionarioActionPerformed
 
     private void cadastrarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEquipamentoActionPerformed
-        // objeto instanciado acima para evitar probelemas de escopo
         if(telaEquipamento.isVisible()) {
             telaEquipamento.setVisible(false);
             painel.remove(telaEquipamento);

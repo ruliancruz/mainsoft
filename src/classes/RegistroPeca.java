@@ -1,9 +1,5 @@
 package classes;
 
-/**
- *
- * @author Rulian
- */
 public class RegistroPeca {
     private long id;
     private String dataInsercao;

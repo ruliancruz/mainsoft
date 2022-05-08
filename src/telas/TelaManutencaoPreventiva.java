@@ -21,6 +21,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
         campoDeDataDeConclusao.setText("");
         campoDeHorarioDeConclusao.setText("");
         campoDePeriodicidade.setText("");
+        campoDescricao.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -54,7 +55,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
         jTable1 = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoDescricao = new javax.swing.JTextArea();
 
         setClosable(true);
         setTitle("Manutenção Preventiva");
@@ -130,9 +131,9 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
 
         jLabel12.setText("Descrição:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        campoDescricao.setColumns(20);
+        campoDescricao.setRows(5);
+        jScrollPane2.setViewportView(campoDescricao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,7 +149,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -169,19 +170,14 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
                                         .addComponent(jLabel8)
                                         .addComponent(jLabel9)
                                         .addComponent(jLabel10))
+                                    .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoDeHorarioDeInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                                                .addComponent(campoDeDataDeInicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(campoDeHorarioDeAgendamento)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoDePeriodicidade, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(campoDeHorarioDeConclusao)
-                                                .addComponent(campoDeDataDeConclusao)))))))
+                                        .addComponent(campoDeHorarioDeInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                        .addComponent(campoDeDataDeInicio, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(campoDeHorarioDeAgendamento)
+                                        .addComponent(campoDePeriodicidade, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(campoDeHorarioDeConclusao)
+                                        .addComponent(campoDeDataDeConclusao)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -277,7 +273,8 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
            ordemDeManutencaoPreventiva.getHorarioInicio() != null ||
            ordemDeManutencaoPreventiva.getDataConclusao() != null ||
            ordemDeManutencaoPreventiva.getHorarioConclusao() != null ||
-           ordemDeManutencaoPreventiva.getPeriodicidade() != null) {
+           ordemDeManutencaoPreventiva.getPeriodicidade() != null ||
+           ordemDeManutencaoPreventiva.getDescricao() != null) {
             limparCampos();
         }
         this.dispose();
@@ -292,7 +289,8 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
            ordemDeManutencaoPreventiva.getHorarioInicio() != null ||
            ordemDeManutencaoPreventiva.getDataConclusao() != null ||
            ordemDeManutencaoPreventiva.getHorarioConclusao() != null ||
-           ordemDeManutencaoPreventiva.getPeriodicidade() != null) {
+           ordemDeManutencaoPreventiva.getPeriodicidade() != null ||
+           ordemDeManutencaoPreventiva.getDescricao() != null) {
             limparCampos();
         }
         this.dispose();
@@ -315,6 +313,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     private javax.swing.JFormattedTextField campoDeHorarioDeInicio;
     private javax.swing.JTextField campoDePeriodicidade;
     private javax.swing.JTextField campoDeResponsavel;
+    private javax.swing.JTextArea campoDescricao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -330,6 +329,5 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
