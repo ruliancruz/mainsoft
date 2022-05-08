@@ -8,6 +8,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaEquipamento telaEquipamento;
     TelaFuncionario telaFuncionario;
     TelaPeca telaPeca;
+    TelaListaPecas telaListaPecas;
+    TelaListaFuncionarios telaListaFuncionarios;
+    TelaListaEquipamentos telaListaEquipamentos;
     
     public TelaPrincipal() {
         initComponents();
@@ -16,6 +19,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.telaEquipamento = new TelaEquipamento();
         this.telaFuncionario = new TelaFuncionario();
         this.telaPeca = new TelaPeca();
+        this.telaListaPecas = new TelaListaPecas();
+        this.telaListaFuncionarios = new TelaListaFuncionarios();
+        this.telaListaEquipamentos = new TelaListaEquipamentos();
     }
 
     @SuppressWarnings("unchecked")
@@ -130,6 +136,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         consultarFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
         consultarFuncionarios.setText("Funcionários");
+        consultarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarFuncionariosActionPerformed(evt);
+            }
+        });
         jMenu5.add(consultarFuncionarios);
 
         consultarEquipamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
@@ -143,6 +154,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         consultarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/page.png"))); // NOI18N
         consultarPecas.setText("Peças");
+        consultarPecas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarPecasActionPerformed(evt);
+            }
+        });
         jMenu5.add(consultarPecas);
 
         jMenuBar1.add(jMenu5);
@@ -238,7 +254,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sobreActionPerformed
 
     private void cadastrarManutencaoCorretivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoCorretivaActionPerformed
-        // objeto instanciado acima para evitar probelemas de escopo
         if(telaManutencaoCorretiva.isVisible()) {
             telaManutencaoCorretiva.setVisible(false);
             painel.remove(telaManutencaoCorretiva);
@@ -263,8 +278,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarActionPerformed
 
     private void consultarEquipamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEquipamentosActionPerformed
-        // TODO add your handling code here:
-        
+        if(telaListaEquipamentos.isVisible()) {
+            telaListaEquipamentos.setVisible(false);
+            painel.remove(telaListaEquipamentos);
+        } else {
+            painel.add(telaListaEquipamentos);
+            telaListaEquipamentos.setVisible(true);
+        }
     }//GEN-LAST:event_consultarEquipamentosActionPerformed
 
     private void cadastrarPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPecaActionPerformed
@@ -300,6 +320,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
             telaEquipamento.setVisible(true);
         }
     }//GEN-LAST:event_cadastrarEquipamentoActionPerformed
+
+    private void consultarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarPecasActionPerformed
+        if(telaListaPecas.isVisible()) {
+            telaListaPecas.setVisible(false);
+            painel.remove(telaListaPecas);
+        } else {
+            painel.add(telaListaPecas);
+            telaListaPecas.setVisible(true);
+        }
+    }//GEN-LAST:event_consultarPecasActionPerformed
+
+    private void consultarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFuncionariosActionPerformed
+        if(telaListaFuncionarios.isVisible()) {
+            telaListaFuncionarios.setVisible(false);
+            painel.remove(telaListaFuncionarios);
+        } else {
+            painel.add(telaListaFuncionarios);
+            telaListaFuncionarios.setVisible(true);
+        }
+    }//GEN-LAST:event_consultarFuncionariosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
