@@ -14,7 +14,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     
     public TelaManutencaoPreventiva(DefaultTableModel defaultTableModel, JDesktopPane painelDesktop, TelaPrincipal tela) {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca();
+        telaAlterarPeca = new TelaAlterarPeca(painelDesktop);
         tabela = defaultTableModel;
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;

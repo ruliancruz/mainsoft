@@ -1,15 +1,20 @@
 package telas;
-import classes.Utils;
+import javax.swing.JDesktopPane;
 
-public class TelaAlterarPeca extends javax.swing.JInternalFrame implements Utils {
-
-    public TelaAlterarPeca() {
+public class TelaAlterarPeca extends javax.swing.JInternalFrame {
+    private JDesktopPane painelPrincipal;
+    private TelaPecaSubstituicao telaPecaSubstituicao;
+    private TelaPecaReparo telaPecaReparo;
+    private TelaPecaRemocao telaPecaRemocao;
+    private TelaPecaAdicao telaPecaAdicao;
+    
+    public TelaAlterarPeca(JDesktopPane painelDesktop) {
         initComponents();
-    }
-
-    @Override
-    public void limparCampos() {
-        ;
+        painelPrincipal = painelDesktop;
+        telaPecaSubstituicao = new TelaPecaSubstituicao();
+        telaPecaReparo = new TelaPecaReparo();
+        telaPecaRemocao = new TelaPecaRemocao();
+        telaPecaAdicao = new TelaPecaAdicao();
     }
     
     @SuppressWarnings("unchecked")
@@ -93,32 +98,47 @@ public class TelaAlterarPeca extends javax.swing.JInternalFrame implements Utils
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoReparoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReparoActionPerformed
-        // TODO add your handling code here:
-        limparCampos();
-        this.dispose();
+        if(telaPecaReparo.isVisible()) {
+            telaPecaReparo.setVisible(false);
+            painelPrincipal.remove(telaPecaReparo);
+        } else {
+            painelPrincipal.add(telaPecaReparo);
+            telaPecaReparo.setVisible(true);
+        }
     }//GEN-LAST:event_botaoReparoActionPerformed
 
     private void botaoSubstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSubstituicaoActionPerformed
-        // TODO add your handling code here:
-        limparCampos();
-        this.dispose();
+        if(telaPecaSubstituicao.isVisible()) {
+            telaPecaSubstituicao.setVisible(false);
+            painelPrincipal.remove(telaPecaSubstituicao);
+        } else {
+            painelPrincipal.add(telaPecaSubstituicao);
+            telaPecaSubstituicao.setVisible(true);
+        }
     }//GEN-LAST:event_botaoSubstituicaoActionPerformed
 
     private void botaoAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicaoActionPerformed
-        // TODO add your handling code here:
-        limparCampos();
-        this.dispose();
+        if(telaPecaAdicao.isVisible()) {
+            telaPecaAdicao.setVisible(false);
+            painelPrincipal.remove(telaPecaAdicao);
+        } else {
+            painelPrincipal.add(telaPecaAdicao);
+            telaPecaAdicao.setVisible(true);
+        }
     }//GEN-LAST:event_botaoAdicaoActionPerformed
 
     private void botaoRemocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemocaoActionPerformed
-        // TODO add your handling code here:
-        limparCampos();
-        this.dispose();
+        if(telaPecaRemocao.isVisible()) {
+            telaPecaRemocao.setVisible(false);
+            painelPrincipal.remove(telaPecaRemocao);
+        } else {
+            painelPrincipal.add(telaPecaRemocao);
+            telaPecaRemocao.setVisible(true);
+        }
     }//GEN-LAST:event_botaoRemocaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,7 +15,7 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implemen
     
     public TelaManutencaoCorretiva(DefaultTableModel defaultTableModel, JDesktopPane painelDesktop, TelaPrincipal tela) {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca();
+        telaAlterarPeca = new TelaAlterarPeca(painelDesktop);
         tabela = defaultTableModel;
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;
