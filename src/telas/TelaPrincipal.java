@@ -1,27 +1,35 @@
 package telas;
-
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import classes.Manutencao;
+import classes.Equipamento;
+import classes.Funcionario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    TelaManutencaoCorretiva telaManutencaoCorretiva;
-    TelaManutencaoPreventiva telaManutencaoPreventiva;
-    TelaEquipamento telaEquipamento;
-    TelaFuncionario telaFuncionario;
-    TelaPeca telaPeca;
-    TelaListaPecas telaListaPecas;
-    TelaListaFuncionarios telaListaFuncionarios;
-    TelaListaEquipamentos telaListaEquipamentos;
+    private TelaManutencaoCorretiva telaManutencaoCorretiva;
+    private TelaManutencaoPreventiva telaManutencaoPreventiva;
+    private TelaEquipamento telaEquipamento;
+    private TelaFuncionario telaFuncionario;
+    private TelaPeca telaPeca;
+    private TelaListaPecas telaListaPecas;
+    private TelaListaFuncionarios telaListaFuncionarios;
+    private TelaListaEquipamentos telaListaEquipamentos;
+    private ArrayList<Manutencao> manutencoes;
+    private long ultimoIdManutencao = 0;
     
     public TelaPrincipal() {
         initComponents();
-        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva((DefaultTableModel)jTable1.getModel());
-        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva();
-        this.telaEquipamento = new TelaEquipamento();
-        this.telaFuncionario = new TelaFuncionario();
-        this.telaPeca = new TelaPeca();
+
         this.telaListaPecas = new TelaListaPecas();
         this.telaListaFuncionarios = new TelaListaFuncionarios();
+        this.telaFuncionario = new TelaFuncionario((DefaultTableModel)telaListaFuncionarios.getTabelaFuncionario().getModel(), telaListaFuncionarios);
         this.telaListaEquipamentos = new TelaListaEquipamentos();
+        this.telaEquipamento = new TelaEquipamento((DefaultTableModel)telaListaEquipamentos.getTabelaEquipamento().getModel(), telaListaEquipamentos);
+        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva((DefaultTableModel)jTable1.getModel(), this.painel, this);
+        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva((DefaultTableModel)jTable1.getModel(), this.painel, this);
+        this.telaPeca = new TelaPeca((DefaultTableModel)telaListaPecas.getTabelaPeca().getModel(), telaListaPecas);
+        this.manutencoes = new ArrayList<Manutencao>();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -54,7 +62,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mainsoft - Sistema de Controle de Manutenção em Fabricas");
 
-        jInternalFrame1.setClosable(true);
         jInternalFrame1.setMaximizable(true);
         jInternalFrame1.setResizable(true);
         jInternalFrame1.setTitle("Lista de Ordens de Serviço");
@@ -64,13 +71,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Equipamento", "Responsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
+                "ID", "Equipamento", "Responsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -248,7 +252,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void adicionarManutencao(Manutencao manutencao)
+    {
+        manutencao.setId(ultimoIdManutencao);
+        ultimoIdManutencao++;
+        manutencoes.add(manutencao);
+    }
+    
+    public ArrayList<Manutencao> getManutencoes() {
+        return manutencoes;
+    }
 
+    public TelaListaEquipamentos getTelaListaEquipamentos() {
+        return telaListaEquipamentos;
+    }
+
+    public TelaListaFuncionarios getTelaListaFuncionarios() {
+        return telaListaFuncionarios;
+    }
+    
     private void sobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sobreActionPerformed
@@ -260,6 +283,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } else {
             painel.add(telaManutencaoCorretiva);
             telaManutencaoCorretiva.setVisible(true);
+            
+            telaManutencaoCorretiva.getCampoEquipamento().removeAllItems();
+            
+            for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
+            {
+                telaManutencaoCorretiva.getCampoEquipamento().addItem(item.getNome());
+            }
+            
+            telaManutencaoCorretiva.getCampoResponsavel().removeAllItems();
+            
+            for(Funcionario item : telaListaFuncionarios.getListaFuncionarios())
+            {
+                telaManutencaoCorretiva.getCampoResponsavel().addItem(item.getNome());
+            }
         }
     }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
@@ -270,6 +307,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } else {
             painel.add(telaManutencaoPreventiva);
             telaManutencaoPreventiva.setVisible(true);
+            
+            telaManutencaoPreventiva.getCampoEquipamento().removeAllItems();
+            
+            for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
+            {
+                telaManutencaoPreventiva.getCampoEquipamento().addItem(item.getNome());
+            }
+            
+            telaManutencaoPreventiva.getCampoResponsavel().removeAllItems();
+            
+            for(Funcionario item : telaListaFuncionarios.getListaFuncionarios())
+            {
+                telaManutencaoPreventiva.getCampoResponsavel().addItem(item.getNome());
+            }
         }
     }//GEN-LAST:event_cadastrarManutencaoPreventivaActionPerformed
 
@@ -294,6 +345,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } else {
             painel.add(telaPeca);
             telaPeca.setVisible(true);
+            telaPeca.getCampoEquipamento().removeAllItems();
+            
+            for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
+            {
+                telaPeca.getCampoEquipamento().addItem(item.getNome());
+            }
         }
     }//GEN-LAST:event_cadastrarPecaActionPerformed
 

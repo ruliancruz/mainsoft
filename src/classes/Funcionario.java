@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public class Funcionario {
     private long id;
     private String nome;
-    private ArrayList <ManutencaoAbstrata> manutencoes = new ArrayList<>();
-
+    private ArrayList <Manutencao> manutencoes = new ArrayList<>();
+       
+    public Funcionario(String Nome)
+    {
+        this.setNome(Nome);
+    }
+    
     public long getId() {
         return id;
     }
@@ -23,11 +28,11 @@ public class Funcionario {
         return nome;
     }
 
-    public ArrayList<ManutencaoAbstrata> getManutencoes() {
+    public ArrayList<Manutencao> getManutencoes() {
         return manutencoes;
     }
 
-    public void setManutencoes(ArrayList<ManutencaoAbstrata> manutencoes) {
+    public void setManutencoes(ArrayList<Manutencao> manutencoes) {
         this.manutencoes = manutencoes;
     }
 }

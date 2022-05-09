@@ -1,11 +1,17 @@
 package telas;
+import java.util.ArrayList;
+import classes.Peca;
+import javax.swing.JTable;
 
 public class TelaListaPecas extends javax.swing.JInternalFrame {
+    private ArrayList<Peca> listaPecas;
+    private long ultimoIdPeca = 0;
 
     public TelaListaPecas() {
         initComponents();
+        listaPecas = new ArrayList<Peca>();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -20,10 +26,7 @@ public class TelaListaPecas extends javax.swing.JInternalFrame {
 
         tabelaPeca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Modelo", "Fabricante"
@@ -45,6 +48,21 @@ public class TelaListaPecas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void adicionarPeca(Peca peca)
+    {
+        peca.setId(ultimoIdPeca);
+        ultimoIdPeca++;
+        listaPecas.add(peca);
+    }
+
+    public ArrayList<Peca> getListaPecas() {
+        return listaPecas;
+    }
+
+    public JTable getTabelaPeca() {
+        return tabelaPeca;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaPeca;

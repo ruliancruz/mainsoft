@@ -1,6 +1,7 @@
+/*
 package classes;
 
-public class ManutencaoPreventiva extends ManutencaoAbstrata {
+public class ManutencaoPreventiva extends Manutencao {
     private String dataAgendamento;
     private String horarioAgendamento;
     private String periodicidade;
@@ -48,3 +49,4 @@ public class ManutencaoPreventiva extends ManutencaoAbstrata {
         this.periodicidade = periodicidade;
     }
 }
+*/

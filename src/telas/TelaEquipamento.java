@@ -1,13 +1,19 @@
 package telas;
 import classes.Equipamento;
 import classes.Utils;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import telas.TelaListaEquipamentos;
 
 public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils {
-    Equipamento equipamento;
+    private Equipamento equipamento;
+    private DefaultTableModel tabela;
+    private TelaListaEquipamentos telaListaEquipamentos;
     
-    public TelaEquipamento() {
+    public TelaEquipamento(DefaultTableModel defaultTableModel, TelaListaEquipamentos tela) {
         initComponents();
-        equipamento = new Equipamento();
+        tabela = defaultTableModel;
+        telaListaEquipamentos = tela;
     }
     
     @SuppressWarnings("unchecked")
@@ -26,9 +32,9 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaManutencoes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaPecas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -59,31 +65,25 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaManutencoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Respónsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaManutencoes);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Fabricante"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaPecas);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Peças");
@@ -179,29 +179,32 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        if(equipamento.getNome() != null ||
-           equipamento.getModelo() != null ||
-           equipamento.getFabricante() != null ||
-           equipamento.getDataDeAquisicao() != null) {
-            limparCampos();
-        }
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        equipamento.setNome(campoNome.getText());
-        equipamento.setModelo(campoModelo.getText());
-        equipamento.setFabricante(campoFabricante.getText());
-        equipamento.setDataDeAquisicao(campoDataAquisicao.getText());
-        if(equipamento.getNome() != null ||
-           equipamento.getModelo() != null ||
-           equipamento.getFabricante() != null ||
-           equipamento.getDataDeAquisicao() != null) {
+        equipamento = new Equipamento(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), campoDataAquisicao.getText());
+        telaListaEquipamentos.adicionarEquipamento(equipamento);
+        tabela.setNumRows(0);
+        
+        for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
+            tabela.addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante(), item.getDataAquisicao() });
+        
+        if(equipamento.getNome() != null || equipamento.getModelo() != null || equipamento.getFabricante() != null || equipamento.getDataAquisicao() != null)
             limparCampos();
-        }
+            
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+    public JTable getTabelaPecas() {
+        return tabelaPecas;
+    }
+
+    public JTable getTabelaManutencoes() {
+        return tabelaManutencoes;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
@@ -218,7 +221,7 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabelaManutencoes;
+    private javax.swing.JTable tabelaPecas;
     // End of variables declaration//GEN-END:variables
 }

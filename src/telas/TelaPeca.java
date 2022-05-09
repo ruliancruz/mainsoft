@@ -1,13 +1,19 @@
 package telas;
 import classes.Peca;
 import classes.Utils;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import telas.TelaListaPecas;
 
 public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
-    Peca peca;
+    private Peca peca;
+    private DefaultTableModel tabela;
+    private TelaListaPecas telaListaPecas;
     
-    public TelaPeca() {
+    public TelaPeca(DefaultTableModel defaultTableModel, TelaListaPecas tela) {
         initComponents();
-        peca = new Peca();
+        tabela = defaultTableModel;
+        telaListaPecas = tela;
     }
     
     @SuppressWarnings("unchecked")
@@ -26,6 +32,8 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        campoEquipamento = new javax.swing.JComboBox<>();
 
         setTitle("Peça");
 
@@ -53,10 +61,7 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Data da Alteração", "Alteração", "Equipamento"
@@ -67,28 +72,39 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Histórico");
 
+        jLabel5.setText("Equipamento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botaoCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(botaoSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoId)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(campoNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(campoModelo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoFabricante, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoId)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
+                                        .addComponent(campoFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -118,7 +134,11 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(campoFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(campoEquipamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -138,27 +158,32 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        if(peca.getNome() != null || peca.getModelo() != null ||
-           peca.getFabricante() != null) {
-            limparCampos();
-        }
+        limparCampos();
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        peca.setNome(campoNome.getText());
-        peca.setModelo(campoModelo.getText());
-        peca.setFabricante(campoFabricante.getText());
-        if(peca.getNome() != null || peca.getModelo() != null ||
-           peca.getFabricante() != null) {
+        peca = new Peca(campoNome.getText(), campoModelo.getText(), campoFabricante.getText());
+        telaListaPecas.adicionarPeca(peca);
+        tabela.setNumRows(0);
+        
+        for(Peca item : telaListaPecas.getListaPecas())
+            tabela.addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante() });
+        
+        if(peca.getNome() != null || peca.getModelo() != null || peca.getFabricante() != null)
             limparCampos();
-        }
+        
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+    public JComboBox<String> getCampoEquipamento() {
+        return campoEquipamento;
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.JComboBox<String> campoEquipamento;
     private javax.swing.JTextField campoFabricante;
     private javax.swing.JLabel campoId;
     private javax.swing.JTextField campoModelo;
@@ -167,6 +192,7 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

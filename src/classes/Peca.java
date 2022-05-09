@@ -1,12 +1,17 @@
 package classes;
 
-import java.util.ArrayList;
-
 public class Peca {
     private long id;
     private String nome;
     private String modelo;
     private String fabricante;
+    
+    public Peca(String nome, String modelo, String fabricante)
+    {
+        this.setNome(nome);
+        this.setModelo(modelo);
+        this.setFabricante(fabricante);
+    }
 
     public long getId() {
         return id;

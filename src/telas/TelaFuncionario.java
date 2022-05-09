@@ -1,13 +1,18 @@
 package telas;
 import classes.Funcionario;
 import classes.Utils;
+import javax.swing.table.DefaultTableModel;
+import telas.TelaListaFuncionarios;
 
 public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils {
-    Funcionario funcionario;
+    private Funcionario funcionario;
+    private DefaultTableModel tabela;
+    private TelaListaFuncionarios telaListaFuncionarios;
     
-    public TelaFuncionario() {
+    public TelaFuncionario(DefaultTableModel defaultTableModel, TelaListaFuncionarios tela) {
         initComponents();
-        funcionario = new Funcionario();
+        tabela = defaultTableModel;
+        telaListaFuncionarios = tela;
     }
 
     @SuppressWarnings("unchecked")
@@ -45,10 +50,7 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
 
         tabelaManutencao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Equipamento", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
@@ -123,10 +125,17 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        funcionario.setNome(campoNome.getText());
-        if(funcionario.getNome() != null) {
+        funcionario = new Funcionario(campoNome.getText());
+        
+        telaListaFuncionarios.adicionarFuncionario(funcionario);
+        tabela.setNumRows(0);
+        
+        for(Funcionario item : telaListaFuncionarios.getListaFuncionarios())
+            tabela.addRow(new Object[]{ item.getId(), item.getNome() });
+        
+        if(funcionario.getNome() != null)
             limparCampos();
-        }
+        
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

@@ -1,11 +1,17 @@
 package telas;
+import java.util.ArrayList;
+import classes.Equipamento;
+import javax.swing.JTable;
 
 public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
-
+    private ArrayList<Equipamento> listaEquipamentos;
+    private long ultimoIdEquipamento = 0;
+    
     public TelaListaEquipamentos() {
         initComponents();
+        listaEquipamentos = new ArrayList<Equipamento>();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -20,10 +26,7 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
 
         tabelaEquipamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Modelo", "Fabricante", "Data de Aquisição"
@@ -44,7 +47,22 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void adicionarEquipamento(Equipamento equipamento)
+    {
+        equipamento.setId(ultimoIdEquipamento);
+        ultimoIdEquipamento++;
+        listaEquipamentos.add(equipamento);
+    }
 
+    public ArrayList<Equipamento> getListaEquipamentos() {
+        return listaEquipamentos;
+    }
+
+    public JTable getTabelaEquipamento() {
+        return tabelaEquipamento;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaEquipamento;

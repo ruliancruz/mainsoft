@@ -1,6 +1,7 @@
+/*
 package classes;
 
-public class ManutencaoCorretiva extends ManutencaoAbstrata {
+public class ManutencaoCorretiva extends Manutencao {
     private String causaFalha;
     
     public ManutencaoCorretiva()
@@ -28,3 +29,4 @@ public class ManutencaoCorretiva extends ManutencaoAbstrata {
         this.causaFalha = causaFalha;
     }
 }
+*/

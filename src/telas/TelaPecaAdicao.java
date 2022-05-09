@@ -20,8 +20,6 @@ public class TelaPecaAdicao extends javax.swing.JInternalFrame implements Utils 
         setTitle("Adicionar Peça");
         setToolTipText("");
 
-        campoRemover.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Remover:");
 
         botaoSalvar.setText("Salvar");

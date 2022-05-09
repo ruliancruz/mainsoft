@@ -22,8 +22,6 @@ public class TelaPecaReparo extends javax.swing.JInternalFrame implements Utils 
         setClosable(true);
         setTitle("Reparar Peça");
 
-        campoPeca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         campoNotas.setColumns(20);
         campoNotas.setRows(5);
         jScrollPane1.setViewportView(campoNotas);

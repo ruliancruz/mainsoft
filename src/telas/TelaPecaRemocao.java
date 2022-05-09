@@ -19,8 +19,6 @@ public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils
         setTitle("Remover Peca");
         setToolTipText("");
 
-        campoPeca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Peça:");
 
         botaoSalvar.setText("Salvar");

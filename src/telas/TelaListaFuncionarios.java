@@ -1,9 +1,15 @@
 package telas;
+import java.util.ArrayList;
+import classes.Funcionario;
+import javax.swing.JTable;
 
 public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
-
+    private ArrayList<Funcionario> listaFuncionarios;
+    private long ultimoIdFuncionario = 0;    
+    
     public TelaListaFuncionarios() {
         initComponents();
+        listaFuncionarios = new ArrayList<Funcionario>();
     }
 
     @SuppressWarnings("unchecked")
@@ -21,10 +27,7 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
 
         tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID", "Nome"
@@ -46,6 +49,21 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void adicionarFuncionario(Funcionario funcionario)
+    {
+        funcionario.setId(ultimoIdFuncionario);
+        ultimoIdFuncionario++;
+        listaFuncionarios.add(funcionario);
+    }
+
+    public ArrayList<Funcionario> getListaFuncionarios() {
+        return listaFuncionarios;
+    }
+
+    public JTable getTabelaFuncionario() {
+        return tabelaFuncionario;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaFuncionario;

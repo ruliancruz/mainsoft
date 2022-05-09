@@ -7,10 +7,18 @@ public class Equipamento {
     private String nome;
     private String modelo;
     private String fabricante;
-    private String dataDeAquisicao;
+    private String dataAquisicao;
     private Peca pecas;
-    private ArrayList <ManutencaoAbstrata> manutencaosRealizadas = new ArrayList<>();
-
+    private ArrayList <Manutencao> manutencaosRealizadas = new ArrayList<>();
+    
+    public Equipamento(String nome, String modelo, String fabricante, String dataAquisicao)
+    {
+        this.setNome(nome);
+        this.setModelo(modelo);
+        this.setFabricante(fabricante);
+        this.setDataAquisicao(dataAquisicao);
+    }
+    
     public long getId() {
         return id;
     }
@@ -42,20 +50,20 @@ public class Equipamento {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
-    
-    public String getDataDeAquisicao() {
-        return dataDeAquisicao;
+
+    public String getDataAquisicao() {
+        return dataAquisicao;
     }
 
-    public void setDataDeAquisicao(String dataDeAquisicao) {
-        this.dataDeAquisicao = dataDeAquisicao;
+    public void setDataAquisicao(String dataAquisicao) {
+        this.dataAquisicao = dataAquisicao;
     }
 
-    public ArrayList<ManutencaoAbstrata> getManutencaosRealizadas() {
+    public ArrayList<Manutencao> getManutencaosRealizadas() {
         return manutencaosRealizadas;
     }
 
-    public void setManutencaosRealizadas(ArrayList<ManutencaoAbstrata> manutencaosRealizadas) {
+    public void setManutencaosRealizadas(ArrayList<Manutencao> manutencaosRealizadas) {
         this.manutencaosRealizadas = manutencaosRealizadas;
     }
     
