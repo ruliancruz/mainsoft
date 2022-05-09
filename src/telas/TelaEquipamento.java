@@ -196,14 +196,6 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
             
         this.dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
-
-    public JTable getTabelaPecas() {
-        return tabelaPecas;
-    }
-
-    public JTable getTabelaManutencoes() {
-        return tabelaManutencoes;
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
