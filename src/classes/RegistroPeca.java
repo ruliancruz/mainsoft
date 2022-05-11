@@ -4,8 +4,8 @@ public class RegistroPeca {
     private long id;
     private String nome;
     private String tipoAlteracao;
-    private long idPeca;
-    private long idPecaSubstituida;
+    private long idPeca; //private Peca peca;
+    private long idPecaSubstituida; //private Peca peca;
 
     public long getId() {
         return id;
@@ -34,16 +34,32 @@ public class RegistroPeca {
     public long getIdPeca() {
         return idPeca;
     }
+    
+//    public long getIdPeca() {
+//        return peca.getId();
+//    }
 
     public void setIdPeca(long idPeca) {
         this.idPeca = idPeca;
     }
+    
+//    public void setIdPeca(long idPeca) {
+//        peca.setId(idPeca);
+//    }
 
     public long getIdPecaSubstituida() {
         return idPecaSubstituida;
     }
+    
+//    public long getIdPecaSubstituida() {
+//        return peca.getId();
+//    }
 
     public void setIdPecaSubstituida(long idPecaSubstituida) {
         this.idPecaSubstituida = idPecaSubstituida;
     }
+    
+//    public void setIdPecaSubstituida(long idPecaSubstituida) {
+//        peca.setId(idPecaSubstituida);
+//    }
 }

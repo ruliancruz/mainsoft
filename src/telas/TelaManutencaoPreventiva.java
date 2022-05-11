@@ -261,14 +261,29 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        Manutencao manutencao = new Manutencao(campoEquipamento.getSelectedItem().toString(), campoResponsavel.getSelectedItem().toString(), campoDataInicio.getText(), campoHorarioInicio.getText(), campoDataConclusao.getText(), campoHorarioConclusao.getText(), campoDataAgendamento.getText(), campoHorarioAgendamento.getText(), campoPeriodicidade.getText(), "", campoDescricao.getText(), "Preventiva");
+        Manutencao manutencao = new Manutencao(campoEquipamento.getSelectedItem().toString(),
+                campoResponsavel.getSelectedItem().toString(),
+                campoDataInicio.getText(),
+                campoHorarioInicio.getText(),
+                campoDataConclusao.getText(),
+                campoHorarioConclusao.getText(),
+                campoDataAgendamento.getText(),
+                campoHorarioAgendamento.getText(),
+                campoPeriodicidade.getText(), "",
+                campoDescricao.getText(), "Preventiva");
 
         telaPrincipal.adicionarManutencao(manutencao);
         tabela.setNumRows(0);
 
-        for(Manutencao item : telaPrincipal.getManutencoes())
-        {
-            tabela.addRow(new Object[]{ item.getEquipamento(), item.getResponsavel(), item.getDataInicio() + "  " + item.getHorarioInicio(), item.getDataConclusao() + "  " + item.getHorarioConclusao(), item.getDataAgendamento() + " " + item.getHorarioAgendamento(), item.getPeriodicidade(), item.getCausaFalha(), item.getTipoManutencao()});
+        for(Manutencao item : telaPrincipal.getManutencoes()) {
+            tabela.addRow(new Object[]{ item.getEquipamento(),
+                item.getResponsavel(),
+                item.getDataInicio() + "  " + item.getHorarioInicio(),
+                item.getDataConclusao() + "  " + item.getHorarioConclusao(),
+                item.getDataAgendamento() + " " + item.getHorarioAgendamento(),
+                item.getPeriodicidade(),
+                item.getCausaFalha(),
+                item.getTipoManutencao()});
         }
         
         limparCampos();

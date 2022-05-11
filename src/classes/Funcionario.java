@@ -7,9 +7,8 @@ public class Funcionario {
     private String nome;
     private ArrayList <Manutencao> manutencoes = new ArrayList<>();
        
-    public Funcionario(String Nome)
-    {
-        this.setNome(Nome);
+    public Funcionario(String Nome) {
+        this.nome = nome;
     }
     
     public long getId() {
