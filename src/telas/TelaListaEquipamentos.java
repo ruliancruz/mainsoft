@@ -2,14 +2,18 @@ package telas;
 import java.util.ArrayList;
 import classes.Equipamento;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
-    private ArrayList<Equipamento> listaEquipamentos;
-    private long ultimoIdEquipamento = 0;
+public class TelaListaEquipamentos extends javax.swing.JInternalFrame
+{
+    private final ArrayList<Equipamento> listaEquipamentos;
+    private long ultimoIdEquipamento;
     
-    public TelaListaEquipamentos() {
+    public TelaListaEquipamentos()
+    {
         initComponents();
-        listaEquipamentos = new ArrayList<Equipamento>();
+        this.ultimoIdEquipamento = 0;
+        listaEquipamentos = new ArrayList<>();
     }
     
     @SuppressWarnings("unchecked")
@@ -31,7 +35,15 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "Nome", "Modelo", "Fabricante", "Data de Aquisição"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelaEquipamento);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -53,8 +65,17 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame {
         equipamento.setId(ultimoIdEquipamento);
         ultimoIdEquipamento++;
         listaEquipamentos.add(equipamento);
+        atualizarListaEquipamentos();
     }
-
+    
+    public void atualizarListaEquipamentos()
+    {
+        ((DefaultTableModel) tabelaEquipamento.getModel()).setNumRows(0);
+        
+        for(Equipamento item : listaEquipamentos)
+            ((DefaultTableModel) tabelaEquipamento.getModel()).addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante(), item.getDataAquisicao() });
+    }
+    
     public ArrayList<Equipamento> getListaEquipamentos() {
         return listaEquipamentos;
     }

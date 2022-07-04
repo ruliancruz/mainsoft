@@ -1,22 +1,20 @@
 package telas;
 import classes.Manutencao;
+import classes.ManutencaoCorretiva;
 import classes.Utils;
 import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JDesktopPane;
-import telas.TelaPrincipal;
 
-public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implements Utils {
-    private DefaultTableModel tabela;
-    private JDesktopPane painelPrincipal;
-    private TelaAlterarPeca telaAlterarPeca;
-    private TelaPrincipal telaPrincipal;
-    private long ultimoIdManutencao;
+public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implements Utils
+{
+    private final JDesktopPane painelPrincipal;
+    private final TelaAlterarPeca telaAlterarPeca;
+    private final TelaPrincipal telaPrincipal;
     
-    public TelaManutencaoCorretiva(DefaultTableModel defaultTableModel, JDesktopPane painelDesktop, TelaPrincipal tela) {
+    public TelaManutencaoCorretiva(JDesktopPane painelDesktop, TelaPrincipal tela)
+    {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca(painelDesktop);
-        tabela = defaultTableModel;
+        telaAlterarPeca = new TelaAlterarPeca(painelDesktop, tela);
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;
     }
@@ -174,9 +172,9 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implemen
                                                     .addComponent(campoHorarioConclusao, javax.swing.GroupLayout.Alignment.LEADING))
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(campoHorarioInicio)
-                                                    .addComponent(campoDataInicio)
                                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))))
+                                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(campoDataInicio, javax.swing.GroupLayout.Alignment.LEADING))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
@@ -240,50 +238,24 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implemen
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        Manutencao manutencao = new Manutencao(campoEquipamento.getSelectedItem().toString(),
-                campoResponsavel.getSelectedItem().toString(),
-                campoDataInicio.getText(),
-                campoHorarioInicio.getText(),
-                campoDataConclusao.getText(),
-                campoHorarioConclusao.getText(), "", "", "",
-                campoCausaFalha.getText(),
-                campoDescricao.getText(), "Corretiva");
+        Manutencao manutencao = new ManutencaoCorretiva(
+            telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()),
+            telaPrincipal.getTelaListaFuncionarios().getListaFuncionarios().get(campoResponsavel.getSelectedIndex()),
+            campoDataInicio.getText() + " " + campoHorarioInicio.getText(),
+            campoDataConclusao.getText() + " " + campoHorarioConclusao.getText(),
+            campoCausaFalha.getText(),
+            campoDescricao.getText());
         
-        manutencao.setId(ultimoIdManutencao);
-        ultimoIdManutencao++;
         telaPrincipal.adicionarManutencao(manutencao);
-        tabela.setNumRows(0);
-        
-        for(Manutencao item : telaPrincipal.getManutencoes())
-        {
-            tabela.addRow(new Object[]{ item.getId(),
-                item.getEquipamento(),
-                item.getResponsavel(),
-                item.getDataInicio() + "  " + item.getHorarioInicio(),
-                item.getDataConclusao() + "  " + item.getHorarioConclusao(),
-                item.getDataAgendamento() + " " + item.getHorarioAgendamento(),
-                item.getPeriodicidade(),
-                item.getCausaFalha(),
-                item.getTipoManutencao()});
-        }
-
-        limparCampos();
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
-        if(telaAlterarPeca.isVisible()) {
-            telaAlterarPeca.setVisible(false);
-            painelPrincipal.remove(telaAlterarPeca);
-        } else {
-            painelPrincipal.add(telaAlterarPeca);
-            telaAlterarPeca.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaAlterarPeca);
     }//GEN-LAST:event_botaoAlterarActionPerformed
 
     public JComboBox<String> getCampoEquipamento() {

@@ -1,88 +1,73 @@
-/*
 package classes;
-//import java.util.Calendar;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class ManutencaoPreventiva extends Manutencao {
-    private String dataAgendamento; //private Calendar dataAgendamento;
-    private String horarioAgendamento; //private Calendar horarioAgendamento;
-    private String periodicidade; //private int periodicidade;
-    
-    public ManutencaoPreventiva() {
-        // código do construtor
-    }
-    
-    public ManutencaoPreventiva(String descricao, String dataInicio, String dataConclusao, String horarioInicio, String horarioConclusao, String responsavel, String equipamento, String dataAgendamento, String horarioAgendamento, String periodicidade) {
-        this.descricao = descricao;
-        this.dataInicio = dataInicio;
-        this.horarioInicio = horarioInicio;
-        this.dataConclusao = dataConclusao;
-        this.horarioConclusao = horarioConclusao;
-        this.responsavel = responsavel;
-        this.equipamento = equipamento;
-        this.dataAgendamento = dataAgendamento;
-        this.horarioAgendamento = horarioAgendamento;
+public class ManutencaoPreventiva extends Manutencao
+{
+    private Calendar dataAgendamento = Calendar.getInstance();
+    private String periodicidade;
+
+    public ManutencaoPreventiva(Equipamento equipamento, Funcionario responsavel, String dataInicio,  String dataConclusao, String dataAgendamento, String periodicidade, String descricao)
+    {
+        setEquipamento(equipamento);
+        setResponsavel(responsavel);
+        
+        try
+        {
+            getDataInicio().setTime(getFormatadorDataHora().parse(dataInicio));
+        }
+        catch (ParseException ex)
+        {
+            Logger.getLogger(ManutencaoCorretiva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try
+        {
+            getDataConclusao().setTime(getFormatadorDataHora().parse(dataConclusao));
+        }
+        catch (ParseException ex)
+        {
+            Logger.getLogger(ManutencaoCorretiva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try
+        {
+            getDataAgendamento().setTime(getFormatadorDataHora().parse(dataAgendamento));
+        }
+        catch (ParseException ex)
+        {
+            Logger.getLogger(ManutencaoCorretiva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        setDescricao(descricao);
         this.periodicidade = periodicidade;
+        setTipoManutencao("Preventiva");
     }
 
-//    public ManutencaoPreventiva(String descricao, Calendar dataInicio, Calendar dataConclusao, Calendar horarioInicio, Calendar horarioConclusao, Funcionario responsavel, Equipamento equipamento, Calendar dataAgendamento, Calendar horarioAgendamento, int periodicidade) {
-//        this.descricao = descricao;
-//        this.dataInicio = dataInicio;
-//        this.horarioInicio = horarioInicio;
-//        this.dataConclusao = dataConclusao;
-//        this.horarioConclusao = horarioConclusao;
-//        this.responsavel = responsavel;
-//        this.equipamento = equipamento;
-//        this.dataAgendamento = dataAgendamento;
-//        this.horarioAgendamento = horarioAgendamento;
-//        this.periodicidade = periodicidade;
-//    }
-
-    public String getDataAgendamento() {
+    public Calendar getDataAgendamento()
+    {
         return dataAgendamento;
     }
-
-//    public Calendar getDataAgendamento() {
-//        return dataAgendamento;
-//    }
-
-    public void setDataAgendamento(String dataAgendamento) {
+    
+    public void setDataAgendamento(Calendar dataAgendamento)
+    {
         this.dataAgendamento = dataAgendamento;
     }
-
-//    public void setDataAgendamento(Calendar dataAgendamento) {
-//        this.dataAgendamento = dataAgendamento;
-//    }
-
-    public String getHorarioAgendamento() {
-        return horarioAgendamento;
-    }
-
-//    public Calendar getHorarioAgendamento() {
-//        return horarioAgendamento;
-//    }
-
-    public void setHorarioAgendamento(String horarioAgendamento) {
-        this.horarioAgendamento = horarioAgendamento;
-    }
-
-//    public void setHorarioAgendamento(Calendar horarioAgendamento) {
-//        this.horarioAgendamento = horarioAgendamento;
-//    }
     
-    public String getPeriodicidade() {
+    public String getDataAgendamentoString()
+    {
+        return String.format("%02d/%02d/%d %02d:%02d", dataAgendamento.get(Calendar.DAY_OF_MONTH), dataAgendamento.get(Calendar.MONTH) + 1, dataAgendamento.get(Calendar.YEAR), dataAgendamento.get(Calendar.HOUR_OF_DAY), dataAgendamento.get(Calendar.MINUTE));
+    }
+    
+    public String getPeriodicidade()
+    {
         return periodicidade;
     }
 
-//    public int getPeriodicidade() {
-//        return periodicidade;
-//    }
-
-    public void setPeriodicidade(String periodicidade) {
-        this.periodicidade = periodicidade;
-    }
-
-    public void setPeriodicidade(int periodicidade) {
+    public void setPeriodicidade(String periodicidade)
+    {
         this.periodicidade = periodicidade;
     }
 }
-*/

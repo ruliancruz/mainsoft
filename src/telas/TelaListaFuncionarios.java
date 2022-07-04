@@ -2,14 +2,18 @@ package telas;
 import java.util.ArrayList;
 import classes.Funcionario;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
-    private ArrayList<Funcionario> listaFuncionarios;
-    private long ultimoIdFuncionario = 0;    
+public class TelaListaFuncionarios extends javax.swing.JInternalFrame
+{
+    private final ArrayList<Funcionario> listaFuncionarios;
+    private long ultimoIdFuncionario;    
     
-    public TelaListaFuncionarios() {
+    public TelaListaFuncionarios()
+    {
         initComponents();
-        listaFuncionarios = new ArrayList<Funcionario>();
+        this.ultimoIdFuncionario = 0;
+        listaFuncionarios = new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +36,15 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "Nome"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelaFuncionario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -48,14 +60,23 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     public void adicionarFuncionario(Funcionario funcionario)
     {
         funcionario.setId(ultimoIdFuncionario);
         ultimoIdFuncionario++;
         listaFuncionarios.add(funcionario);
+        atualizarListaFuncionarios();
     }
-
+    
+    public void atualizarListaFuncionarios()
+    {
+        ((DefaultTableModel) tabelaFuncionario.getModel()).setNumRows(0);
+        
+         for(Funcionario item : listaFuncionarios)
+            ((DefaultTableModel) tabelaFuncionario.getModel()).addRow(new Object[]{ item.getId(), item.getNome() });
+    }
+    
     public ArrayList<Funcionario> getListaFuncionarios() {
         return listaFuncionarios;
     }

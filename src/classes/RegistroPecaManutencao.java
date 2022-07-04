@@ -1,6 +1,7 @@
 package classes;
 
-public class RegistroPecaManutencao {
+public class RegistroPecaManutencao
+{
     private long id;
     private String nome;
     private String alteracao;

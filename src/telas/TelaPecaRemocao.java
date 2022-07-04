@@ -1,10 +1,14 @@
 package telas;
 import classes.Utils;
 
-public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils {
-
-    public TelaPecaRemocao() {
+public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils
+{
+    private final TelaPrincipal telaPrincipal;
+    
+    public TelaPecaRemocao(TelaPrincipal tela)
+    {
         initComponents();
+        telaPrincipal = tela;
     }
 
     @SuppressWarnings("unchecked")
@@ -16,6 +20,7 @@ public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Remover Peca");
         setToolTipText("");
 
@@ -70,22 +75,17 @@ public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
-    public void limparCampos() {
-        campoPeca.setSelectedIndex(0);
+    public void limparCampos()
+    {
+        
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        if(false) {
-            limparCampos();
-        }
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if(false) {
-            limparCampos();
-        }
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

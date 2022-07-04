@@ -1,21 +1,18 @@
 package telas;
 import classes.Manutencao;
+import classes.ManutencaoPreventiva;
 import classes.Utils;
 import javax.swing.JComboBox;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JDesktopPane;
-import telas.TelaPrincipal;
 
 public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils {
-    private DefaultTableModel tabela;
-    private JDesktopPane painelPrincipal;
-    private TelaAlterarPeca telaAlterarPeca;
-    private TelaPrincipal telaPrincipal;
+    private final JDesktopPane painelPrincipal;
+    private final TelaAlterarPeca telaAlterarPeca;
+    private final TelaPrincipal telaPrincipal;
     
-    public TelaManutencaoPreventiva(DefaultTableModel defaultTableModel, JDesktopPane painelDesktop, TelaPrincipal tela) {
+    public TelaManutencaoPreventiva(JDesktopPane painelDesktop, TelaPrincipal tela) {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca(painelDesktop);
-        tabela = defaultTableModel;
+        telaAlterarPeca = new TelaAlterarPeca(painelDesktop, tela);
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;
     }
@@ -261,48 +258,25 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        Manutencao manutencao = new Manutencao(campoEquipamento.getSelectedItem().toString(),
-                campoResponsavel.getSelectedItem().toString(),
-                campoDataInicio.getText(),
-                campoHorarioInicio.getText(),
-                campoDataConclusao.getText(),
-                campoHorarioConclusao.getText(),
-                campoDataAgendamento.getText(),
-                campoHorarioAgendamento.getText(),
-                campoPeriodicidade.getText(), "",
-                campoDescricao.getText(), "Preventiva");
+        Manutencao manutencao = new ManutencaoPreventiva(
+            telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()),
+            telaPrincipal.getTelaListaFuncionarios().getListaFuncionarios().get(campoResponsavel.getSelectedIndex()),
+            campoDataInicio.getText() + " " + campoHorarioInicio.getText(),
+            campoDataConclusao.getText() + " " + campoHorarioConclusao.getText(),
+            campoDataAgendamento.getText() + " " + campoHorarioAgendamento.getText(),
+            campoPeriodicidade.getText(),
+            campoDescricao.getText());
 
         telaPrincipal.adicionarManutencao(manutencao);
-        tabela.setNumRows(0);
-
-        for(Manutencao item : telaPrincipal.getManutencoes()) {
-            tabela.addRow(new Object[]{ item.getEquipamento(),
-                item.getResponsavel(),
-                item.getDataInicio() + "  " + item.getHorarioInicio(),
-                item.getDataConclusao() + "  " + item.getHorarioConclusao(),
-                item.getDataAgendamento() + " " + item.getHorarioAgendamento(),
-                item.getPeriodicidade(),
-                item.getCausaFalha(),
-                item.getTipoManutencao()});
-        }
-        
-        limparCampos();
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        limparCampos();
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarActionPerformed
-        if(telaAlterarPeca.isVisible()) {
-            telaAlterarPeca.setVisible(false);
-            painelPrincipal.remove(telaAlterarPeca);
-        } else {
-            painelPrincipal.add(telaAlterarPeca);
-            telaAlterarPeca.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaAlterarPeca);
     }//GEN-LAST:event_botaoAlterarActionPerformed
 
     public JComboBox<String> getCampoEquipamento() {

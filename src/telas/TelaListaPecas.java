@@ -2,14 +2,18 @@ package telas;
 import java.util.ArrayList;
 import classes.Peca;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class TelaListaPecas extends javax.swing.JInternalFrame {
-    private ArrayList<Peca> listaPecas;
-    private long ultimoIdPeca = 0;
+public class TelaListaPecas extends javax.swing.JInternalFrame
+{
+    private final ArrayList<Peca> listaPecas;
+    private long ultimoIdPeca;
 
-    public TelaListaPecas() {
+    public TelaListaPecas()
+    {
         initComponents();
-        listaPecas = new ArrayList<Peca>();
+        this.ultimoIdPeca = 0;
+        listaPecas = new ArrayList<>();
     }
     
     @SuppressWarnings("unchecked")
@@ -29,9 +33,17 @@ public class TelaListaPecas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Modelo", "Fabricante"
+                "ID", "Nome", "Modelo", "Fabricante", "Equipamento"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelaPeca);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -53,8 +65,17 @@ public class TelaListaPecas extends javax.swing.JInternalFrame {
         peca.setId(ultimoIdPeca);
         ultimoIdPeca++;
         listaPecas.add(peca);
+        atualizarListaPecas();
     }
-
+    
+    public void atualizarListaPecas()
+    {
+        ((DefaultTableModel) tabelaPeca.getModel()).setNumRows(0);
+        
+        for(Peca item : listaPecas)
+            ((DefaultTableModel) tabelaPeca.getModel()).addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante(), item.getEquipamento().getNome() });
+    }
+    
     public ArrayList<Peca> getListaPecas() {
         return listaPecas;
     }

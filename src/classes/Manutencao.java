@@ -1,235 +1,112 @@
 package classes;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-//import java.util.Calendar;
+import java.util.Calendar;
 
-public class Manutencao {
+public abstract class Manutencao
+{
     private long id;
-    private String equipamento; //private Equipamento equipamento;
-    private String responsavel; //private Responsavel responsavel;
-    private String dataInicio; //private Calendar dataInicio;
-    private String horarioInicio; //private Calendar horarioInicio;
-    private String dataConclusao; //private Calendar dataConclusao;
-    private String horarioConclusao; //private Calendar horarioConclusao;
-    private String dataAgendamento; //private Calendar dataAgendamento;
-    private String horarioAgendamento; //private Calendar horarioAgendamento;
-    private String periodicidade; //private int periodicidade;
-    private String causaFalha; 
+    private Equipamento equipamento;
+    private Funcionario responsavel;
+    private final SimpleDateFormat formatadorDataHora = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private Calendar dataInicio = Calendar.getInstance();
+    private Calendar dataConclusao = Calendar.getInstance();
     private String descricao;
     private String tipoManutencao;
-    private ArrayList <RegistroPeca> registroPeca = new ArrayList<RegistroPeca>();
-    
-    public Manutencao(String equipamento, String responsavel, String dataInicio, String horarioInicio, String dataConclusao, String horarioConclusao, String dataAgendamento, String horarioAgendamento, String periodicidade, String causaFalha, String descricao, String tipoManutencao) {
-        this.equipamento = equipamento;
-        this.responsavel = responsavel;
-        this.dataInicio = dataInicio;
-        this.horarioInicio = horarioInicio;
-        this.dataConclusao = dataConclusao;
-        this.horarioConclusao = horarioConclusao;
-        this.dataAgendamento = dataAgendamento;
-        this.horarioAgendamento = horarioAgendamento;
-        this.periodicidade = periodicidade;
-        this.causaFalha = causaFalha;
-        this.descricao = descricao;
-        this.tipoManutencao = tipoManutencao;
-    }
-    
-//    public Manutencao(Equipamento equipamento, Responsavel responsavel, Calendar dataInicio, Calendar horarioInicio, Calendar dataConclusao, Calendar horarioConclusao, Calendar dataAgendamento, Calendar horarioAgendamento, int periodicidade, String causaFalha, String descricao, String tipoManutencao) {
-//        this.equipamento = equipamento;
-//        this.responsavel = responsavel;
-//        this.dataInicio = dataInicio;
-//        this.horarioInicio = horarioInicio;
-//        this.dataConclusao = dataConclusao;
-//        this.horarioConclusao = horarioConclusao;
-//        this.dataAgendamento = dataAgendamento;
-//        this.horarioAgendamento = horarioAgendamento;
-//        this.periodicidade = periodicidade;
-//        this.causaFalha = causaFalha;
-//        this.descricao = descricao;
-//        this.tipoManutencao = tipoManutencao;
-//    }
-    
-    public long getId() {
+    private ArrayList <RegistroPeca> registroPeca = new ArrayList<>();
+
+    public long getId()
+    {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         this.id = id;
     }
 
-    public String getResponsavel() {
+    public Funcionario getResponsavel()
+    {
         return responsavel;
     }
-    
-//    public Funcionario getResponsavel() {
-//        return responsavel;
-//    }
 
-    public void setResponsavel(String responsavel) {
+    public void setResponsavel(Funcionario responsavel)
+    {
         this.responsavel = responsavel;
     }
-    
-//    public void setResponsavel(Funcionario responsavel) {
-//        this.responsavel = responsavel;
-//    }
 
-    public String getEquipamento() {
+    public Equipamento getEquipamento()
+    {
         return equipamento;
     }
-    
-//    public Equipamento getEquipamento() {
-//        return equipamento;
-//    }
 
-    public void setEquipamento(String equipamento) {
+    public void setEquipamento(Equipamento equipamento)
+    {
         this.equipamento = equipamento;
     }
-    
-//    public void setEquipamento(Equipamento equipamento) {
-//        this.equipamento = equipamento;
-//    }
 
-    public String getDescricao() {
+    public String getDescricao()
+    {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(String descricao)
+    {
         this.descricao = descricao;
     }
 
-    public String getDataInicio() {
-        return dataInicio;
+    public SimpleDateFormat getFormatadorDataHora() {
+        return formatadorDataHora;
     }
     
-//    public Calendar getDataInicio() {
-//        return dataInicio;
-//    }
+    public Calendar getDataInicio()
+    {
+        return dataInicio;
+    }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Calendar dataInicio)
+    {
         this.dataInicio = dataInicio;
     }
     
-//    public void setDataInicio(Calendar dataInicio) {
-//        this.dataInicio = dataInicio;
-//    }
+    public String getDataInicioString()
+    {
+        return String.format("%02d/%02d/%d %02d:%02d", dataInicio.get(Calendar.DAY_OF_MONTH), dataInicio.get(Calendar.MONTH) + 1, dataInicio.get(Calendar.YEAR), dataInicio.get(Calendar.HOUR_OF_DAY), dataInicio.get(Calendar.MINUTE));
+    }
 
-    public String getDataConclusao() {
+    public Calendar getDataConclusao()
+    {
         return dataConclusao;
     }
     
-//    public Calendar getDataConclusao() {
-//        return dataConclusao;
-//    }
-
-    public void setDataConclusao(String dataConclusao) {
+    public void setDataConclusao(Calendar dataConclusao)
+    {
         this.dataConclusao = dataConclusao;
     }
     
-//    public void setDataConclusao(Calendar dataConclusao) {
-//        this.dataConclusao = dataConclusao;
-//    }
-
-    public String getHorarioInicio() {
-        return horarioInicio;
-    }
-    
-//    public Calendar getHorarioInicio() {
-//        return horarioInicio;
-//    }
-
-    public void setHorarioInicio(String horarioInicio) {
-        this.horarioInicio = horarioInicio;
-    }
-    
-//    public void setHorarioInicio(Calendar horarioInicio) {
-//        this.horarioInicio = horarioInicio;
-//    }
-
-    public String getHorarioConclusao() {
-        return horarioConclusao;
-    }
-    
-//    public Calendar getHorarioConclusao() {
-//        return horarioConclusao;
-//    }
-
-    public void setHorarioConclusao(String horarioConclusao) {
-        this.horarioConclusao = horarioConclusao;
-    }
-    
-//    public void setHorarioConclusao(Calendar horarioConclusao) {
-//        this.horarioConclusao = horarioConclusao;
-//    }
-
-    public String getDataAgendamento() {
-        return dataAgendamento;
-    }
-    
-//    public Calendar getDataAgendamento() {
-//        return dataAgendamento;
-//    }
-
-    public void setDataAgendamento(String dataAgendamento) {
-        this.dataAgendamento = dataAgendamento;
-    }
-    
-//    public void setDataAgendamento(Calendar dataAgendamento) {
-//        this.dataAgendamento = dataAgendamento;
-//    }
-
-    public String getHorarioAgendamento() {
-        return horarioAgendamento;
-    }
-    
-//    public Calendar getHorarioAgendamento() {
-//        return horarioAgendamento;
-//    }
-
-    public void setHorarioAgendamento(String horarioAgendamento) {
-        this.horarioAgendamento = horarioAgendamento;
-    }
-    
-//    public void setHorarioAgendamento(Calendar horarioAgendamento) {
-//        this.horarioAgendamento = horarioAgendamento;
-//    }
-
-    public String getPeriodicidade() {
-        return periodicidade;
-    }
-    
-//    public int getPeriodicidade() {
-//        return periodicidade;
-//    }
-
-    public void setPeriodicidade(String periodicidade) {
-        this.periodicidade = periodicidade;
-    }
-    
-//    public void setPeriodicidade(int periodicidade) {
-//        this.periodicidade = periodicidade;
-//    }
-
-    public String getCausaFalha() {
-        return causaFalha;
+    public String getDataConclusaoString()
+    {
+        return String.format("%02d/%02d/%d %02d:%02d", dataConclusao.get(Calendar.DAY_OF_MONTH), dataConclusao.get(Calendar.MONTH) + 1, dataConclusao.get(Calendar.YEAR), dataConclusao.get(Calendar.HOUR_OF_DAY), dataConclusao.get(Calendar.MINUTE));
     }
 
-    public void setCausaFalha(String causaFalha) {
-        this.causaFalha = causaFalha;
-    }
-
-    public String getTipoManutencao() {
+    public String getTipoManutencao()
+    {
         return tipoManutencao;
     }
 
-    public void setTipoManutencao(String tipoManutencao) {
+    public void setTipoManutencao(String tipoManutencao)
+    {
         this.tipoManutencao = tipoManutencao;
     }
     
-    public ArrayList<RegistroPeca> getRegistroPeca() {
+    public ArrayList<RegistroPeca> getRegistroPeca()
+    {
         return registroPeca;
     }
 
-    public void setRegistroPeca(ArrayList<RegistroPeca> registroPeca) {
+    public void setRegistroPeca(ArrayList<RegistroPeca> registroPeca)
+    {
         this.registroPeca = registroPeca;
     }
 }

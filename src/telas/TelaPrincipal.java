@@ -4,32 +4,37 @@ import java.util.ArrayList;
 import classes.Manutencao;
 import classes.Equipamento;
 import classes.Funcionario;
+import classes.ManutencaoPreventiva;
+import classes.ManutencaoCorretiva;
+import classes.Utils;
+import javax.swing.JInternalFrame;
 
-public class TelaPrincipal extends javax.swing.JFrame {
-    private TelaManutencaoCorretiva telaManutencaoCorretiva;
-    private TelaManutencaoPreventiva telaManutencaoPreventiva;
-    private TelaEquipamento telaEquipamento;
-    private TelaFuncionario telaFuncionario;
-    private TelaPeca telaPeca;
-    private TelaListaPecas telaListaPecas;
-    private TelaListaFuncionarios telaListaFuncionarios;
-    private TelaListaEquipamentos telaListaEquipamentos;
-    private ArrayList<Manutencao> manutencoes;
-    private long ultimoIdManutencao = 0;
+public class TelaPrincipal extends javax.swing.JFrame
+{
+    private final TelaManutencaoCorretiva telaManutencaoCorretiva;
+    private final TelaManutencaoPreventiva telaManutencaoPreventiva;
+    private final TelaEquipamento telaEquipamento;
+    private final TelaFuncionario telaFuncionario;
+    private final TelaPeca telaPeca;
+    private final TelaListaPecas telaListaPecas;
+    private final TelaListaFuncionarios telaListaFuncionarios;
+    private final TelaListaEquipamentos telaListaEquipamentos;
+    private final ArrayList<Manutencao> manutencoes;
+    private long ultimoIdManutencao;
     
-    public TelaPrincipal() {
+    public TelaPrincipal()
+    {
         initComponents();
-
+        this.ultimoIdManutencao = 0;
         this.telaListaPecas = new TelaListaPecas();
         this.telaListaFuncionarios = new TelaListaFuncionarios();
-        this.telaFuncionario = new TelaFuncionario((DefaultTableModel)telaListaFuncionarios.getTabelaFuncionario().getModel(), telaListaFuncionarios);
+        this.telaFuncionario = new TelaFuncionario(telaListaFuncionarios, this);
         this.telaListaEquipamentos = new TelaListaEquipamentos();
-        this.telaEquipamento = new TelaEquipamento((DefaultTableModel)telaListaEquipamentos.getTabelaEquipamento().getModel(), telaListaEquipamentos);
-        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva((DefaultTableModel)jTable1.getModel(), this.painel, this);
-        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva((DefaultTableModel)jTable1.getModel(), this.painel, this);
-        this.telaPeca = new TelaPeca((DefaultTableModel)telaListaPecas.getTabelaPeca().getModel(), telaListaPecas);
-        this.manutencoes = new ArrayList<Manutencao>();
-        
+        this.telaEquipamento = new TelaEquipamento(telaListaEquipamentos, this);
+        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva(this.painel, this);
+        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva(this.painel, this);
+        this.telaPeca = new TelaPeca(telaListaPecas, telaListaEquipamentos, this);
+        this.manutencoes = new ArrayList<>(); 
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +45,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -74,22 +81,45 @@ public class TelaPrincipal extends javax.swing.JFrame {
             new String [] {
                 "ID", "Equipamento", "Responsável", "Data de Início", "Data de Conclusão", "Data de Agendamento", "Periodicidade", "Causa da Falha", "Tipo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setToolTipText("");
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Editar");
+
+        jButton2.setText("Remover");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1249, Short.MAX_VALUE)
-            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1249, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1249, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
-            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(20, 20, 20))
         );
 
         painel.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -235,6 +265,70 @@ public class TelaPrincipal extends javax.swing.JFrame {
         manutencao.setId(ultimoIdManutencao);
         ultimoIdManutencao++;
         manutencoes.add(manutencao);
+        atualizarListaManutencoes();
+    }
+    
+    public void fecharJanela(JInternalFrame janela)
+    {
+        janela.setVisible(false);
+        painel.remove(janela);
+    }
+    
+    public void fecharLimparJanela(JInternalFrame janela)
+    {
+        ((Utils) janela).limparCampos();
+        janela.setVisible(false);
+        painel.remove(janela);
+    }
+    
+    public void atualizarListaManutencoes()
+    {
+        ((DefaultTableModel) jTable1.getModel()).setNumRows(0);
+        
+        for(Manutencao item : manutencoes)
+        {
+            if("Corretiva".equals(item.getTipoManutencao()))
+            {
+                ((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{
+                item.getId(),
+                item.getEquipamento().getNome(),
+                item.getResponsavel().getNome(),
+                item.getDataInicioString(),
+                item.getDataConclusaoString(),
+                " ",
+                " ",
+                ((ManutencaoCorretiva) item).getCausaFalha(),
+                item.getTipoManutencao()});
+            }
+            else
+            {
+                ((DefaultTableModel) jTable1.getModel()).addRow(new Object[]{
+                item.getId(),
+                item.getEquipamento().getNome(),
+                item.getResponsavel().getNome(),
+                item.getDataInicioString(),
+                item.getDataConclusaoString(),
+                ((ManutencaoPreventiva)item).getDataAgendamentoString(),
+                ((ManutencaoPreventiva)item).getPeriodicidade(),
+                " ",
+                item.getTipoManutencao()});
+            }
+        }
+    }
+    
+    public boolean abrirJanela(JInternalFrame janela)
+    {
+        if(!janela.isVisible())
+        {
+            painel.add(janela);
+            janela.setVisible(true);
+            return true;
+        }
+        else
+        {
+            janela.moveToFront();
+            return false;
+        }
     }
     
     public ArrayList<Manutencao> getManutencoes() {
@@ -244,19 +338,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaListaEquipamentos getTelaListaEquipamentos() {
         return telaListaEquipamentos;
     }
-
+    
     public TelaListaFuncionarios getTelaListaFuncionarios() {
         return telaListaFuncionarios;
     }
+
+    public long getUltimoIdManutencao() {
+        ultimoIdManutencao++;
+        return ultimoIdManutencao;
+    }
+
+    public void setUltimoIdManutencao(long ultimoIdManutencao) {
+        this.ultimoIdManutencao = ultimoIdManutencao;
+    }
     
     private void cadastrarManutencaoCorretivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoCorretivaActionPerformed
-        if(telaManutencaoCorretiva.isVisible()) {
-            telaManutencaoCorretiva.setVisible(false);
-            painel.remove(telaManutencaoCorretiva);
-        } else {
-            painel.add(telaManutencaoCorretiva);
-            telaManutencaoCorretiva.setVisible(true);
-            
+        if(abrirJanela(telaManutencaoCorretiva))
+        {
             telaManutencaoCorretiva.getCampoEquipamento().removeAllItems();
             
             for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
@@ -274,13 +372,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
     private void cadastrarManutencaoPreventivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoPreventivaActionPerformed
-        if(telaManutencaoPreventiva.isVisible()) {
-            telaManutencaoPreventiva.setVisible(false);
-            painel.remove(telaManutencaoPreventiva);
-        } else {
-            painel.add(telaManutencaoPreventiva);
-            telaManutencaoPreventiva.setVisible(true);
-            
+        if(abrirJanela(telaManutencaoPreventiva))
+        {
             telaManutencaoPreventiva.getCampoEquipamento().removeAllItems();
             
             for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
@@ -298,22 +391,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarManutencaoPreventivaActionPerformed
 
     private void consultarEquipamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEquipamentosActionPerformed
-        if(telaListaEquipamentos.isVisible()) {
-            telaListaEquipamentos.setVisible(false);
-            painel.remove(telaListaEquipamentos);
-        } else {
-            painel.add(telaListaEquipamentos);
-            telaListaEquipamentos.setVisible(true);
-        }
+        abrirJanela(telaListaEquipamentos);
     }//GEN-LAST:event_consultarEquipamentosActionPerformed
 
     private void cadastrarPecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPecaActionPerformed
-        if(telaPeca.isVisible()) {
-            telaPeca.setVisible(false);
-            painel.remove(telaPeca);
-        } else {
-            painel.add(telaPeca);
-            telaPeca.setVisible(true);
+        if(abrirJanela(telaPeca))
+        {
             telaPeca.getCampoEquipamento().removeAllItems();
             
             for(Equipamento item : telaListaEquipamentos.getListaEquipamentos())
@@ -328,43 +411,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarOrdensServicoActionPerformed
 
     private void cadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFuncionarioActionPerformed
-        if(telaFuncionario.isVisible()) {
-            telaFuncionario.setVisible(false);
-            painel.remove(telaFuncionario);
-        } else {
-            painel.add(telaFuncionario);
-            telaFuncionario.setVisible(true);
-        }
+        abrirJanela(telaFuncionario);
     }//GEN-LAST:event_cadastrarFuncionarioActionPerformed
 
     private void cadastrarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEquipamentoActionPerformed
-        if(telaEquipamento.isVisible()) {
-            telaEquipamento.setVisible(false);
-            painel.remove(telaEquipamento);
-        } else {
-            painel.add(telaEquipamento);
-            telaEquipamento.setVisible(true);
-        }
+        abrirJanela(telaEquipamento);
     }//GEN-LAST:event_cadastrarEquipamentoActionPerformed
 
     private void consultarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarPecasActionPerformed
-        if(telaListaPecas.isVisible()) {
-            telaListaPecas.setVisible(false);
-            painel.remove(telaListaPecas);
-        } else {
-            painel.add(telaListaPecas);
-            telaListaPecas.setVisible(true);
-        }
+        abrirJanela(telaListaPecas);
     }//GEN-LAST:event_consultarPecasActionPerformed
 
     private void consultarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFuncionariosActionPerformed
-        if(telaListaFuncionarios.isVisible()) {
-            telaListaFuncionarios.setVisible(false);
-            painel.remove(telaListaFuncionarios);
-        } else {
-            painel.add(telaListaFuncionarios);
-            telaListaFuncionarios.setVisible(true);
-        }
+        abrirJanela(telaListaFuncionarios);
     }//GEN-LAST:event_consultarFuncionariosActionPerformed
 
     public static void main(String args[]) {
@@ -412,6 +471,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem consultarFuncionarios;
     private javax.swing.JMenuItem consultarOrdensServico;
     private javax.swing.JMenuItem consultarPecas;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

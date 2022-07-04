@@ -1,22 +1,38 @@
 package classes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-//import java.util.Calendar;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Equipamento {
+public class Equipamento
+{
     private long id;
     private String nome;
     private String modelo;
     private String fabricante; //private Fabricante fabricante;
-    private String dataAquisicao; //private Calendar dataAquisicao;
+    private final SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+    private Calendar dataAquisicao = Calendar.getInstance();
     private Peca pecas;
     private ArrayList <Manutencao> manutencaosRealizadas = new ArrayList<>();
     
-    public Equipamento(String nome, String modelo, String fabricante, String dataAquisicao) {
+    public Equipamento(String nome, String modelo, String fabricante, String dataAquisicaoString)
+    {
         this.nome = nome;
         this.modelo = modelo;
         this.fabricante = fabricante;
-        this.dataAquisicao = dataAquisicao;
+        
+        try
+        {
+            getDataAquisicao().setTime(getFormatadorData().parse(dataAquisicaoString));
+        }
+        catch (ParseException ex)
+        {
+            Logger.getLogger(Equipamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
 //    public Equipamento(String nome, String modelo, Fabricante fabricante, Calendar dataAquisicao) {
@@ -66,7 +82,11 @@ public class Equipamento {
 //        this.fabricante = fabricante;
 //    }
 
-    public String getDataAquisicao() {
+    public SimpleDateFormat getFormatadorData() {
+        return formatadorData;
+    }
+    
+    public Calendar getDataAquisicao() {
         return dataAquisicao;
     }
     
@@ -74,7 +94,7 @@ public class Equipamento {
 //        return dataAquisicao;
 //    }
 
-    public void setDataAquisicao(String dataAquisicao) {
+    public void setDataAquisicao(Calendar dataAquisicao) {
         this.dataAquisicao = dataAquisicao;
     }
     

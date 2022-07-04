@@ -7,31 +7,38 @@ public class RegistroPeca {
     private long idPeca; //private Peca peca;
     private long idPecaSubstituida; //private Peca peca;
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public String getTipoAlteracao() {
+    public String getTipoAlteracao()
+    {
         return tipoAlteracao;
     }
 
-    public void setTipoAlteracao(String tipoAlteracao) {
+    public void setTipoAlteracao(String tipoAlteracao)
+    {
         this.tipoAlteracao = tipoAlteracao;
     }
 
-    public long getIdPeca() {
+    public long getIdPeca()
+    {
         return idPeca;
     }
     
@@ -39,7 +46,8 @@ public class RegistroPeca {
 //        return peca.getId();
 //    }
 
-    public void setIdPeca(long idPeca) {
+    public void setIdPeca(long idPeca)
+    {
         this.idPeca = idPeca;
     }
     
@@ -47,7 +55,8 @@ public class RegistroPeca {
 //        peca.setId(idPeca);
 //    }
 
-    public long getIdPecaSubstituida() {
+    public long getIdPecaSubstituida()
+    {
         return idPecaSubstituida;
     }
     
@@ -55,7 +64,8 @@ public class RegistroPeca {
 //        return peca.getId();
 //    }
 
-    public void setIdPecaSubstituida(long idPecaSubstituida) {
+    public void setIdPecaSubstituida(long idPecaSubstituida)
+    {
         this.idPecaSubstituida = idPecaSubstituida;
     }
     

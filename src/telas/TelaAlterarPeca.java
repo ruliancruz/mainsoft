@@ -1,20 +1,24 @@
 package telas;
 import javax.swing.JDesktopPane;
 
-public class TelaAlterarPeca extends javax.swing.JInternalFrame {
-    private JDesktopPane painelPrincipal;
-    private TelaPecaSubstituicao telaPecaSubstituicao;
-    private TelaPecaReparo telaPecaReparo;
-    private TelaPecaRemocao telaPecaRemocao;
-    private TelaPecaAdicao telaPecaAdicao;
+public class TelaAlterarPeca extends javax.swing.JInternalFrame
+{
+    private final JDesktopPane painelPrincipal;
+    private final TelaPecaSubstituicao telaPecaSubstituicao;
+    private final TelaPecaReparo telaPecaReparo;
+    private final TelaPecaRemocao telaPecaRemocao;
+    private final TelaPecaAdicao telaPecaAdicao;
+    private final TelaPrincipal telaPrincipal;
     
-    public TelaAlterarPeca(JDesktopPane painelDesktop) {
+    public TelaAlterarPeca(JDesktopPane painelDesktop, TelaPrincipal tela)
+    {
         initComponents();
         painelPrincipal = painelDesktop;
-        telaPecaSubstituicao = new TelaPecaSubstituicao();
-        telaPecaReparo = new TelaPecaReparo();
-        telaPecaRemocao = new TelaPecaRemocao();
-        telaPecaAdicao = new TelaPecaAdicao();
+        telaPecaSubstituicao = new TelaPecaSubstituicao(tela);
+        telaPecaReparo = new TelaPecaReparo(tela);
+        telaPecaRemocao = new TelaPecaRemocao(tela);
+        telaPecaAdicao = new TelaPecaAdicao(tela);
+        telaPrincipal = tela;
     }
     
     @SuppressWarnings("unchecked")
@@ -79,7 +83,7 @@ public class TelaAlterarPeca extends javax.swing.JInternalFrame {
                 .addComponent(botaoAdicao)
                 .addGap(18, 18, 18)
                 .addComponent(botaoRemocao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,47 +102,23 @@ public class TelaAlterarPeca extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        this.dispose();
+        telaPrincipal.fecharJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoReparoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReparoActionPerformed
-        if(telaPecaReparo.isVisible()) {
-            telaPecaReparo.setVisible(false);
-            painelPrincipal.remove(telaPecaReparo);
-        } else {
-            painelPrincipal.add(telaPecaReparo);
-            telaPecaReparo.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaPecaReparo);
     }//GEN-LAST:event_botaoReparoActionPerformed
 
     private void botaoSubstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSubstituicaoActionPerformed
-        if(telaPecaSubstituicao.isVisible()) {
-            telaPecaSubstituicao.setVisible(false);
-            painelPrincipal.remove(telaPecaSubstituicao);
-        } else {
-            painelPrincipal.add(telaPecaSubstituicao);
-            telaPecaSubstituicao.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaPecaSubstituicao);
     }//GEN-LAST:event_botaoSubstituicaoActionPerformed
 
     private void botaoAdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicaoActionPerformed
-        if(telaPecaAdicao.isVisible()) {
-            telaPecaAdicao.setVisible(false);
-            painelPrincipal.remove(telaPecaAdicao);
-        } else {
-            painelPrincipal.add(telaPecaAdicao);
-            telaPecaAdicao.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaPecaAdicao);
     }//GEN-LAST:event_botaoAdicaoActionPerformed
 
     private void botaoRemocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemocaoActionPerformed
-        if(telaPecaRemocao.isVisible()) {
-            telaPecaRemocao.setVisible(false);
-            painelPrincipal.remove(telaPecaRemocao);
-        } else {
-            painelPrincipal.add(telaPecaRemocao);
-            telaPecaRemocao.setVisible(true);
-        }
+        telaPrincipal.abrirJanela(telaPecaRemocao);
     }//GEN-LAST:event_botaoRemocaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

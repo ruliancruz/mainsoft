@@ -1,9 +1,14 @@
 package telas;
 import classes.Utils;
 
-public class TelaPecaSubstituicao extends javax.swing.JInternalFrame implements Utils {
-    public TelaPecaSubstituicao() {
+public class TelaPecaSubstituicao extends javax.swing.JInternalFrame implements Utils
+{
+    private final TelaPrincipal telaPrincipal;
+    
+    public TelaPecaSubstituicao(TelaPrincipal tela)
+    {
         initComponents();
+        telaPrincipal = tela;
     }
     
     @SuppressWarnings("unchecked")
@@ -81,23 +86,17 @@ public class TelaPecaSubstituicao extends javax.swing.JInternalFrame implements 
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
-    public void limparCampos() {
-        campoPecaOriginal.setSelectedIndex(0);
-        campoPecaSubstituida.setSelectedIndex(0);
+    public void limparCampos()
+    {
+
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        if(false) {
-            limparCampos();
-        }
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if(false) {
-            limparCampos();
-        }
-        this.dispose();
+        telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,36 +2,44 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Funcionario {
+public class Funcionario
+{
     private long id;
     private String nome;
     private ArrayList <Manutencao> manutencoes = new ArrayList<>();
        
-    public Funcionario(String Nome) {
+    public Funcionario(String nome)
+    {
         this.nome = nome;
     }
     
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         this.id = id;
     }
     
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public ArrayList<Manutencao> getManutencoes() {
+    public ArrayList<Manutencao> getManutencoes()
+    {
         return manutencoes;
     }
 
-    public void setManutencoes(ArrayList<Manutencao> manutencoes) {
+    public void setManutencoes(ArrayList<Manutencao> manutencoes)
+    {
         this.manutencoes = manutencoes;
     }
 }
