@@ -2,6 +2,8 @@ package telas;
 import classes.Peca;
 import classes.Utils;
 import javax.swing.JComboBox;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class TelaPeca extends javax.swing.JInternalFrame implements Utils
 {

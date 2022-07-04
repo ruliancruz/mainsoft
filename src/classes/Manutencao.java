@@ -3,8 +3,6 @@ package classes;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public abstract class Manutencao
 {

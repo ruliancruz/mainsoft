@@ -1,5 +1,7 @@
 package telas;
 import classes.Utils;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class TelaPecaRemocao extends javax.swing.JInternalFrame implements Utils
 {
