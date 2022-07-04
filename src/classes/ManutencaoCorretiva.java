@@ -3,6 +3,8 @@ package classes;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ManutencaoCorretiva extends Manutencao
 {
