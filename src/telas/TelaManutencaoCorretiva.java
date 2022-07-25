@@ -4,8 +4,6 @@ import classes.ManutencaoCorretiva;
 import classes.Utils;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implements Utils
 {

@@ -1,6 +1,8 @@
 package classes;
 
-public class Peca
+import java.io.Serializable;
+
+public class Peca implements Serializable
 {
     private long id;
     private String nome;
@@ -61,16 +63,8 @@ public class Peca
         return fabricante;
     }
     
-//    public Fabricante getFabricante() {
-//        return fabricante;
-//    }
-    
     public void setFabricante(String fabricante)
     {
         this.fabricante = fabricante;
     }
-    
-//    public void setFabricante(Fabricante fabricante) {
-//        this.fabricante = fabricante;
-//    }
 }

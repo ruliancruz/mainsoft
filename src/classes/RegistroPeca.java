@@ -1,6 +1,8 @@
 package classes;
 
-public class RegistroPeca {
+import java.io.Serializable;
+
+public class RegistroPeca implements Serializable{
     private long id;
     private String nome;
     private String tipoAlteracao;

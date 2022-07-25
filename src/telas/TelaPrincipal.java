@@ -7,7 +7,16 @@ import classes.Funcionario;
 import classes.ManutencaoPreventiva;
 import classes.ManutencaoCorretiva;
 import classes.Utils;
+import java.io.File;
 import javax.swing.JInternalFrame;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TelaPrincipal extends javax.swing.JFrame
 {
@@ -24,12 +33,14 @@ public class TelaPrincipal extends javax.swing.JFrame
     private final TelaEditarEquipamento telaEditarEquipamento;
     private final TelaEditarFuncionario telaEditarFuncionario;
     private final TelaConfirmacao telaConfirmacao;
-    private final ArrayList<Manutencao> manutencoes;
+    private final String caminhoManutencoes;
+    private ArrayList<Manutencao> manutencoes;
     private long ultimoIdManutencao;
     
     public TelaPrincipal()
     {
         initComponents();
+        this.caminhoManutencoes = "data/manutencoes.dat";
         this.ultimoIdManutencao = 0;
         this.telaListaPecas = new TelaListaPecas();
         this.telaListaFuncionarios = new TelaListaFuncionarios(this);
@@ -44,9 +55,23 @@ public class TelaPrincipal extends javax.swing.JFrame
         this.telaEditarEquipamento = new TelaEditarEquipamento(this);
         this.telaEditarFuncionario = new TelaEditarFuncionario(this);
         this.telaConfirmacao = new TelaConfirmacao();
-        this.manutencoes = new ArrayList<>();
+        
+        try
+        {
+            manutencoes = carregarManutencoes();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizarListaManutencoes();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,6 +124,7 @@ public class TelaPrincipal extends javax.swing.JFrame
         });
         jTable1.setToolTipText("");
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         botaoEditar.setText("Editar");
@@ -259,6 +285,30 @@ public class TelaPrincipal extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
+    public void salvarManutencoes() throws FileNotFoundException, IOException
+    {
+        ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoManutencoes));
+        registrador.writeObject(manutencoes);
+        registrador.close();
+    }
+    
+    public ArrayList<Manutencao> carregarManutencoes() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        ArrayList<Manutencao> lista = new ArrayList<Manutencao>();
+        File arquivo = new File(caminhoManutencoes);
+        
+        if(arquivo.exists())
+        {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoManutencoes));
+            lista = (ArrayList<Manutencao>) carregador.readObject();
+            
+            if(lista != null)
+                ultimoIdManutencao = lista.get(lista.size() - 1).getId() + 1;
+        }
+        
+        return lista;
+    }
+    
     public void adicionarManutencao(Manutencao manutencao)
     {
         manutencao.setId(ultimoIdManutencao);
@@ -325,6 +375,15 @@ public class TelaPrincipal extends javax.swing.JFrame
                 " ",
                 item.getTipoManutencao()});
             }
+        }
+        
+        try
+        {
+            salvarManutencoes();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -457,8 +516,8 @@ public class TelaPrincipal extends javax.swing.JFrame
         if(jTable1.getSelectedRow() != -1)
         {
             manutencaoSelecionada = (manutencoes.get(jTable1.getSelectedRow()));
-
-            if(manutencaoSelecionada.getTipoManutencao() == "Corretiva")
+            
+            if(manutencaoSelecionada.getTipoManutencao().contains("Corretiva"))
             {
                 if(abrirJanela(telaEditarManutencaoCorretiva))
                 {

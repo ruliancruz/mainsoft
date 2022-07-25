@@ -1,15 +1,11 @@
 package classes;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.Serializable;
 
-import java.util.ArrayList;
-
-public class Funcionario
+public class Funcionario implements Serializable
 {
     private long id;
     private String nome;
-    private ArrayList <Manutencao> manutencoes = new ArrayList<>();
        
     public Funcionario(String nome)
     {
@@ -34,15 +30,5 @@ public class Funcionario
     public String getNome()
     {
         return nome;
-    }
-
-    public ArrayList<Manutencao> getManutencoes()
-    {
-        return manutencoes;
-    }
-
-    public void setManutencoes(ArrayList<Manutencao> manutencoes)
-    {
-        this.manutencoes = manutencoes;
     }
 }

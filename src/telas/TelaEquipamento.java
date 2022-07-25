@@ -1,8 +1,6 @@
 package telas;
 import classes.Equipamento;
 import classes.Utils;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
 {

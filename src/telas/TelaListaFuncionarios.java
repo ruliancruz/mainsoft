@@ -1,21 +1,46 @@
 package telas;
 import java.util.ArrayList;
 import classes.Funcionario;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaListaFuncionarios extends javax.swing.JInternalFrame
 {
     private final TelaPrincipal telaPrincipal;
-    private final ArrayList<Funcionario> listaFuncionarios;
+    private final String caminhoFuncionarios;
+    private ArrayList<Funcionario> listaFuncionarios;
     private long ultimoIdFuncionario;    
     
     public TelaListaFuncionarios(TelaPrincipal tela)
     {
         initComponents();
+        this.caminhoFuncionarios = "data/funcionarios.dat";
         this.ultimoIdFuncionario = 0;
         telaPrincipal = tela;
-        listaFuncionarios = new ArrayList<>();
+        
+        try
+        {
+            listaFuncionarios = carregarFuncionarios();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(TelaListaFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizarListaFuncionarios();
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +74,7 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
                 return canEdit [columnIndex];
             }
         });
+        tabelaFuncionario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaFuncionario);
 
         botaoEditar.setText("Editar");
@@ -90,7 +116,31 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void salvarFuncionarios() throws FileNotFoundException, IOException
+    {
+        ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoFuncionarios));
+        registrador.writeObject(listaFuncionarios);
+        registrador.close();
+    }
+    
+    public ArrayList<Funcionario> carregarFuncionarios() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
+        File arquivo = new File(caminhoFuncionarios);
+        
+        if(arquivo.exists())
+        {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoFuncionarios));
+            lista = (ArrayList<Funcionario>) carregador.readObject();
+            
+            if(lista != null)
+                ultimoIdFuncionario = lista.get(lista.size() - 1).getId() + 1;
+        }
+        
+        return lista;
+    }
+    
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         // TODO add your handling code here:
         Funcionario funcionarioSelecionado;
@@ -141,8 +191,17 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
     {
         ((DefaultTableModel) tabelaFuncionario.getModel()).setNumRows(0);
         
-         for(Funcionario item : listaFuncionarios)
+        for(Funcionario item : listaFuncionarios)
             ((DefaultTableModel) tabelaFuncionario.getModel()).addRow(new Object[]{ item.getId(), item.getNome() });
+         
+        try
+        {
+            salvarFuncionarios();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public ArrayList<Funcionario> getListaFuncionarios() {

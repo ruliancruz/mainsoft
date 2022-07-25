@@ -1,6 +1,8 @@
 package classes;
 
-public class Fabricante {
+import java.io.Serializable;
+
+public class Fabricante implements Serializable{
     private String nome;
 
     public String getNome() {

@@ -1,21 +1,46 @@
 package telas;
 import java.util.ArrayList;
 import classes.Equipamento;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaListaEquipamentos extends javax.swing.JInternalFrame
 {
     private final TelaPrincipal telaPrincipal;
-    private final ArrayList<Equipamento> listaEquipamentos;
+    private final String caminhoEquipamentos;
+    private ArrayList<Equipamento> listaEquipamentos;
     private long ultimoIdEquipamento;
     
     public TelaListaEquipamentos(TelaPrincipal tela)
     {
         initComponents();
+        this.caminhoEquipamentos = "data/equipamentos.dat";
         this.ultimoIdEquipamento = 0;
         telaPrincipal = tela;
-        listaEquipamentos = new ArrayList<>();
+        
+        try
+        {
+            listaEquipamentos = carregarEquipamentos();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaEquipamentos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(TelaListaEquipamentos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizarListaEquipamentos();
     }
     
     @SuppressWarnings("unchecked")
@@ -48,6 +73,7 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
                 return canEdit [columnIndex];
             }
         });
+        tabelaEquipamento.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaEquipamento);
 
         botaoEditar.setText("Editar");
@@ -89,7 +115,31 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void salvarEquipamentos() throws FileNotFoundException, IOException
+    {
+        ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoEquipamentos));
+        registrador.writeObject(listaEquipamentos);
+        registrador.close();
+    }
+    
+    public ArrayList<Equipamento> carregarEquipamentos() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        ArrayList<Equipamento> lista = new ArrayList<Equipamento>();
+        File arquivo = new File(caminhoEquipamentos);
+        
+        if(arquivo.exists())
+        {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoEquipamentos));
+            lista = (ArrayList<Equipamento>) carregador.readObject();
+            
+            if(lista != null)
+                ultimoIdEquipamento = lista.get(lista.size() - 1).getId() + 1;
+        }
+        
+        return lista;
+    }
+    
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         // TODO add your handling code here:
         Equipamento equipamentoSelecionado;
@@ -145,6 +195,15 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
         
         for(Equipamento item : listaEquipamentos)
             ((DefaultTableModel) tabelaEquipamento.getModel()).addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante(), item.getDataAquisicaoString() });
+        
+        try
+        {
+            salvarEquipamentos();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaEquipamentos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public ArrayList<Equipamento> getListaEquipamentos() {

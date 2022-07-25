@@ -1,8 +1,6 @@
 package telas;
 import classes.Funcionario;
 import classes.Utils;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
 {

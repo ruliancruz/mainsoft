@@ -1,19 +1,44 @@
 package telas;
 import java.util.ArrayList;
 import classes.Peca;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaListaPecas extends javax.swing.JInternalFrame
 {
-    private final ArrayList<Peca> listaPecas;
+    private final String caminhoPecas;
+    private ArrayList<Peca> listaPecas;
     private long ultimoIdPeca;
-
+    
     public TelaListaPecas()
     {
         initComponents();
+        this.caminhoPecas = "data/pecas.dat";
         this.ultimoIdPeca = 0;
-        listaPecas = new ArrayList<>();
+        
+        try
+        {
+            listaPecas = carregarPecas();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaPecas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(TelaListaPecas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizarListaPecas();
     }
     
     @SuppressWarnings("unchecked")
@@ -44,6 +69,7 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
                 return canEdit [columnIndex];
             }
         });
+        tabelaPeca.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaPeca);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -59,7 +85,31 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void salvarPecas() throws FileNotFoundException, IOException
+    {
+        ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoPecas));
+        registrador.writeObject(listaPecas);
+        registrador.close();
+    }
+    
+    public ArrayList<Peca> carregarPecas() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        ArrayList<Peca> lista = new ArrayList<Peca>();
+        File arquivo = new File(caminhoPecas);
+        
+        if(arquivo.exists())
+        {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoPecas));
+            lista = (ArrayList<Peca>) carregador.readObject();
+            
+            if(lista != null)
+                ultimoIdPeca = lista.get(lista.size() - 1).getId() + 1;
+        }
+        
+        return lista;
+    }
+    
     public void adicionarPeca(Peca peca)
     {
         peca.setId(ultimoIdPeca);
@@ -74,6 +124,15 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         
         for(Peca item : listaPecas)
             ((DefaultTableModel) tabelaPeca.getModel()).addRow(new Object[]{ item.getId(), item.getNome(), item.getModelo(), item.getFabricante(), item.getEquipamento().getNome() });
+        
+        try
+        {
+            salvarPecas();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TelaListaPecas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public ArrayList<Peca> getListaPecas() {

@@ -1,10 +1,10 @@
 package classes;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
-public abstract class Manutencao
+public abstract class Manutencao implements Serializable
 {
     private long id;
     private Equipamento equipamento;
@@ -14,7 +14,6 @@ public abstract class Manutencao
     private Calendar dataConclusao = Calendar.getInstance();
     private String descricao;
     private String tipoManutencao;
-    private ArrayList <RegistroPeca> registroPeca = new ArrayList<>();
 
     public long getId()
     {
@@ -118,15 +117,5 @@ public abstract class Manutencao
     public void setTipoManutencao(String tipoManutencao)
     {
         this.tipoManutencao = tipoManutencao;
-    }
-    
-    public ArrayList<RegistroPeca> getRegistroPeca()
-    {
-        return registroPeca;
-    }
-
-    public void setRegistroPeca(ArrayList<RegistroPeca> registroPeca)
-    {
-        this.registroPeca = registroPeca;
     }
 }
