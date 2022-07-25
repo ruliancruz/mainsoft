@@ -64,7 +64,7 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implemen
         setClosable(true);
         setTitle("Manutenção Corretiva");
 
-        campoId.setText("Ordem de Serviço: ");
+        campoId.setText("Ordem de Serviço ");
 
         jLabel2.setText("Equipamento: ");
 
@@ -247,7 +247,6 @@ public class TelaManutencaoCorretiva extends javax.swing.JInternalFrame implemen
             campoDataConclusao.getText() + " " + campoHorarioConclusao.getText(),
             campoCausaFalha.getText(),
             campoDescricao.getText());
-        
         telaPrincipal.adicionarManutencao(manutencao);
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed

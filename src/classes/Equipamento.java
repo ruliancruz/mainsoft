@@ -16,7 +16,6 @@ public class Equipamento
     private final SimpleDateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
     private Calendar dataAquisicao = Calendar.getInstance();
     private Peca pecas;
-    private ArrayList <Manutencao> manutencaosRealizadas = new ArrayList<>();
     
     public Equipamento(String nome, String modelo, String fabricante, String dataAquisicaoString)
     {
@@ -34,13 +33,6 @@ public class Equipamento
         }
 
     }
-    
-//    public Equipamento(String nome, String modelo, Fabricante fabricante, Calendar dataAquisicao) {
-//        this.nome = nome;
-//        this.modelo = modelo;
-//        this.fabricante = fabricante;
-//        this.dataAquisicao = dataAquisicao;
-//    }
     
     public long getId() {
         return id;
@@ -78,10 +70,6 @@ public class Equipamento
         this.fabricante = fabricante;
     }
     
-//    public void setFabricante(Fabricante fabricante) {
-//        this.fabricante = fabricante;
-//    }
-
     public SimpleDateFormat getFormatadorData() {
         return formatadorData;
     }
@@ -90,24 +78,14 @@ public class Equipamento
         return dataAquisicao;
     }
     
-//    public Calendar getDataAquisicao() {
-//        return dataAquisicao;
-//    }
 
     public void setDataAquisicao(Calendar dataAquisicao) {
         this.dataAquisicao = dataAquisicao;
     }
     
-//    public void setDataAquisicao(Calendar dataAquisicao) {
-//        this.dataAquisicao = dataAquisicao;
-//    }
-
-    public ArrayList<Manutencao> getManutencaosRealizadas() {
-        return manutencaosRealizadas;
-    }
-
-    public void setManutencaosRealizadas(ArrayList<Manutencao> manutencaosRealizadas) {
-        this.manutencaosRealizadas = manutencaosRealizadas;
+    public String getDataAquisicaoString()
+    {
+        return String.format("%02d/%02d/%d", dataAquisicao.get(Calendar.DAY_OF_MONTH), dataAquisicao.get(Calendar.MONTH) + 1, dataAquisicao.get(Calendar.YEAR));
     }
     
     public Peca getPecas() {

@@ -61,6 +61,16 @@ public class ManutencaoPreventiva extends Manutencao
         return String.format("%02d/%02d/%d %02d:%02d", dataAgendamento.get(Calendar.DAY_OF_MONTH), dataAgendamento.get(Calendar.MONTH) + 1, dataAgendamento.get(Calendar.YEAR), dataAgendamento.get(Calendar.HOUR_OF_DAY), dataAgendamento.get(Calendar.MINUTE));
     }
     
+    public String getDataCurtaAgendamentoString()
+    {
+        return String.format("%02d/%02d/%d", dataAgendamento.get(Calendar.DAY_OF_MONTH), dataAgendamento.get(Calendar.MONTH) + 1, dataAgendamento.get(Calendar.YEAR));
+    }
+    
+    public String getHorarioAgendamentoString()
+    {
+        return String.format("%02d:%02d", dataAgendamento.get(Calendar.HOUR_OF_DAY), dataAgendamento.get(Calendar.MINUTE));
+    }
+    
     public String getPeriodicidade()
     {
         return periodicidade;

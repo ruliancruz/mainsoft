@@ -4,12 +4,14 @@ import classes.Utils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils {
+public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
+{
     private Equipamento equipamento;
     private final TelaListaEquipamentos telaListaEquipamentos;
     private final TelaPrincipal telaPrincipal;
     
-    public TelaEquipamento(TelaListaEquipamentos telaListaEquipamentosParametro, TelaPrincipal tela) {
+    public TelaEquipamento(TelaListaEquipamentos telaListaEquipamentosParametro, TelaPrincipal tela)
+    {
         initComponents();
         telaListaEquipamentos = telaListaEquipamentosParametro;
         telaPrincipal = tela;

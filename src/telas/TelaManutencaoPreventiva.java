@@ -7,12 +7,14 @@ import javax.swing.JDesktopPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils {
+public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils{
+    
     private final JDesktopPane painelPrincipal;
     private final TelaAlterarPeca telaAlterarPeca;
     private final TelaPrincipal telaPrincipal;
     
-    public TelaManutencaoPreventiva(JDesktopPane painelDesktop, TelaPrincipal tela) {
+    public TelaManutencaoPreventiva(JDesktopPane painelDesktop, TelaPrincipal tela){
+        
         initComponents();
         telaAlterarPeca = new TelaAlterarPeca(painelDesktop, tela);
         painelPrincipal = painelDesktop;
@@ -20,7 +22,8 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
     }
     
     @Override
-    public void limparCampos() {
+    public void limparCampos(){
+        
         campoDataAgendamento.setText("");
         campoHorarioAgendamento.setText("");
         campoDataInicio.setText("");
@@ -90,7 +93,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
             }
         });
 
-        campoId.setText("Ordem de Serviço:");
+        campoId.setText("Ordem de Serviço");
 
         jLabel2.setText("Equipamento:");
 
@@ -234,15 +237,15 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(campoDataConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(campoHorarioConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(campoPeriodicidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,7 +271,7 @@ public class TelaManutencaoPreventiva extends javax.swing.JInternalFrame impleme
             campoDataAgendamento.getText() + " " + campoHorarioAgendamento.getText(),
             campoPeriodicidade.getText(),
             campoDescricao.getText());
-
+        
         telaPrincipal.adicionarManutencao(manutencao);
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed

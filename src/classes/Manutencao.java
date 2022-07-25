@@ -74,7 +74,17 @@ public abstract class Manutencao
     {
         return String.format("%02d/%02d/%d %02d:%02d", dataInicio.get(Calendar.DAY_OF_MONTH), dataInicio.get(Calendar.MONTH) + 1, dataInicio.get(Calendar.YEAR), dataInicio.get(Calendar.HOUR_OF_DAY), dataInicio.get(Calendar.MINUTE));
     }
-
+    
+    public String getHorarioInicioString()
+    {
+        return String.format("%02d:%02d", dataInicio.get(Calendar.HOUR_OF_DAY), dataInicio.get(Calendar.MINUTE));
+    }
+    
+    public String getDataCurtaInicioString()
+    {
+        return String.format("%02d/%02d/%d", dataInicio.get(Calendar.DAY_OF_MONTH), dataInicio.get(Calendar.MONTH) + 1, dataInicio.get(Calendar.YEAR));
+    }
+    
     public Calendar getDataConclusao()
     {
         return dataConclusao;
@@ -89,7 +99,17 @@ public abstract class Manutencao
     {
         return String.format("%02d/%02d/%d %02d:%02d", dataConclusao.get(Calendar.DAY_OF_MONTH), dataConclusao.get(Calendar.MONTH) + 1, dataConclusao.get(Calendar.YEAR), dataConclusao.get(Calendar.HOUR_OF_DAY), dataConclusao.get(Calendar.MINUTE));
     }
-
+    
+    public String getDataCurtaConclusaoString()
+    {
+        return String.format("%02d/%02d/%d", dataConclusao.get(Calendar.DAY_OF_MONTH), dataConclusao.get(Calendar.MONTH) + 1, dataConclusao.get(Calendar.YEAR));
+    }
+    
+    public String getHorarioConclusaoString()
+    {
+        return String.format("%02d:%02d", dataConclusao.get(Calendar.HOUR_OF_DAY), dataConclusao.get(Calendar.MINUTE));
+    }
+    
     public String getTipoManutencao()
     {
         return tipoManutencao;
