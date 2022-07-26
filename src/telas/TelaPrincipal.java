@@ -53,11 +53,11 @@ public class TelaPrincipal extends javax.swing.JFrame
         this.telaFuncionario = new TelaFuncionario(telaListaFuncionarios, this);
         this.telaListaEquipamentos = new TelaListaEquipamentos(this);
         this.telaEquipamento = new TelaEquipamento(telaListaEquipamentos, this);
-        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva(this.painel, this);
-        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva(this.painel, this);
+        this.telaManutencaoCorretiva = new TelaManutencaoCorretiva(this);
+        this.telaManutencaoPreventiva = new TelaManutencaoPreventiva(this);
         this.telaPeca = new TelaPeca(telaListaPecas, telaListaEquipamentos, this);
-        this.telaEditarManutencaoCorretiva = new TelaEditarManutencaoCorretiva(this.painel, this);
-        this.telaEditarManutencaoPreventiva = new TelaEditarManutencaoPreventiva(this.painel, this);
+        this.telaEditarManutencaoCorretiva = new TelaEditarManutencaoCorretiva(this);
+        this.telaEditarManutencaoPreventiva = new TelaEditarManutencaoPreventiva(this);
         this.telaEditarEquipamento = new TelaEditarEquipamento(this);
         this.telaEditarFuncionario = new TelaEditarFuncionario(this);
         this.telaEditarPeca = new TelaEditarPeca(this);
@@ -100,7 +100,6 @@ public class TelaPrincipal extends javax.swing.JFrame
         consultarFuncionarios = new javax.swing.JMenuItem();
         consultarEquipamentos = new javax.swing.JMenuItem();
         consultarPecas = new javax.swing.JMenuItem();
-        menuSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mainsoft - Sistema de Controle de Manutenção em Fabricas");
@@ -270,10 +269,6 @@ public class TelaPrincipal extends javax.swing.JFrame
 
         jMenuBar1.add(menuConsulta);
 
-        menuSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/information.png"))); // NOI18N
-        menuSobre.setText("Sobre");
-        jMenuBar1.add(menuSobre);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,12 +311,20 @@ public class TelaPrincipal extends javax.swing.JFrame
         
         if(arquivo.exists())
         {
-            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoManutencoes));
-            lista = (ArrayList<Manutencao>) carregador.readObject();
+            try
+            {
+               ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoManutencoes));
+               lista = (ArrayList<Manutencao>) carregador.readObject(); 
+            }
+            catch (Exception e)
+            {
+                return lista;
+            }
             
-            if(lista != null)
+            if(lista != null && lista.size() != 0)
                 ultimoIdManutencao = lista.get(lista.size() - 1).getId() + 1;
         }
+        
         return lista;
     }
     
@@ -484,7 +487,11 @@ public class TelaPrincipal extends javax.swing.JFrame
             agora = Calendar.getInstance();
             telaManutencaoCorretiva.getCampoDataInicio().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
             telaManutencaoCorretiva.getCampoHorarioInicio().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+            telaManutencaoCorretiva.getCampoDataConclusao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            telaManutencaoCorretiva.getCampoHorarioConclusao().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
+        
+        telaManutencaoCorretiva.getLabelId().setText(String.valueOf(ultimoIdManutencao));
     }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
     private void cadastrarManutencaoPreventivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarManutencaoPreventivaActionPerformed
@@ -507,9 +514,13 @@ public class TelaPrincipal extends javax.swing.JFrame
             agora = Calendar.getInstance();
             telaManutencaoPreventiva.getCampoDataAgendamento().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
             telaManutencaoPreventiva.getCampoHorarioAgendamento().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+            telaManutencaoPreventiva.getCampoDataInicio().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            telaManutencaoPreventiva.getCampoHorarioInicio().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+            telaManutencaoPreventiva.getCampoDataConclusao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            telaManutencaoPreventiva.getCampoHorarioConclusao().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
         
-
+        telaManutencaoPreventiva.getLabelId().setText(String.valueOf(ultimoIdManutencao));
     }//GEN-LAST:event_cadastrarManutencaoPreventivaActionPerformed
 
     private void consultarEquipamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEquipamentosActionPerformed
@@ -526,16 +537,20 @@ public class TelaPrincipal extends javax.swing.JFrame
                 telaPeca.getCampoEquipamento().addItem(item.getNome());
             }
         }
+        
+        telaPeca.getLabelId().setText(String.valueOf(telaListaPecas.getUltimoIdPeca()));
     }//GEN-LAST:event_cadastrarPecaActionPerformed
 
     private void cadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFuncionarioActionPerformed
         abrirJanela(telaFuncionario);
+        telaFuncionario.getLabelId().setText(String.valueOf(telaListaFuncionarios.getUltimoIdFuncionario()));
     }//GEN-LAST:event_cadastrarFuncionarioActionPerformed
 
     private void cadastrarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEquipamentoActionPerformed
         abrirJanela(telaEquipamento);
         agora = Calendar.getInstance();
         telaEquipamento.getCampoDataAquisicao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+        telaEquipamento.getLabelId().setText(String.valueOf(telaListaEquipamentos.getUltimoIdEquipamento()));
     }//GEN-LAST:event_cadastrarEquipamentoActionPerformed
 
     private void consultarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarPecasActionPerformed
@@ -547,7 +562,6 @@ public class TelaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_consultarFuncionariosActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
-        // TODO add your handling code here:
         Manutencao manutencaoSelecionada;
         int indiceLista = 0;
         
@@ -589,11 +603,24 @@ public class TelaPrincipal extends javax.swing.JFrame
 
                         indiceLista++;
                     }
-
+                    
                     telaEditarManutencaoCorretiva.getCampoDataInicio().setText(manutencaoSelecionada.getDataCurtaInicioString());
                     telaEditarManutencaoCorretiva.getCampoHorarioInicio().setText(manutencaoSelecionada.getHorarioInicioString());
-                    telaEditarManutencaoCorretiva.getCampoDataConclusao().setText(manutencaoSelecionada.getDataCurtaConclusaoString());
-                    telaEditarManutencaoCorretiva.getCampoHorarioConclusao().setText(manutencaoSelecionada.getHorarioConclusaoString());
+                    telaEditarManutencaoCorretiva.getCampoManutencaoConcluida().setSelected(manutencaoSelecionada.getManutencaoConcluida());
+                    telaEditarManutencaoCorretiva.atualizarManutencaoConcluida();
+                    
+                    if(manutencaoSelecionada.getManutencaoConcluida())
+                    {
+                        telaEditarManutencaoCorretiva.getCampoDataConclusao().setText(manutencaoSelecionada.getDataCurtaConclusaoString());
+                        telaEditarManutencaoCorretiva.getCampoHorarioConclusao().setText(manutencaoSelecionada.getHorarioConclusaoString());
+                    }
+                    else
+                    {
+                        agora = Calendar.getInstance();
+                        telaEditarManutencaoCorretiva.getCampoDataConclusao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+                        telaEditarManutencaoCorretiva.getCampoHorarioConclusao().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+                    }
+                    
                     telaEditarManutencaoCorretiva.getCampoCausaFalha().setText(((ManutencaoCorretiva) manutencaoSelecionada).getCausaFalha());
                     telaEditarManutencaoCorretiva.getCampoDescricao().setText(manutencaoSelecionada.getDescricao());
                 }
@@ -635,10 +662,37 @@ public class TelaPrincipal extends javax.swing.JFrame
 
                     telaEditarManutencaoPreventiva.getCampoDataAgendamento().setText(((ManutencaoPreventiva) manutencaoSelecionada).getDataCurtaAgendamentoString());
                     telaEditarManutencaoPreventiva.getCampoHorarioAgendamento().setText(((ManutencaoPreventiva) manutencaoSelecionada).getHorarioAgendamentoString());
-                    telaEditarManutencaoPreventiva.getCampoDataInicio().setText(manutencaoSelecionada.getDataCurtaInicioString());
-                    telaEditarManutencaoPreventiva.getCampoHorarioInicio().setText(manutencaoSelecionada.getHorarioInicioString());
-                    telaEditarManutencaoPreventiva.getCampoDataConclusao().setText(manutencaoSelecionada.getDataCurtaConclusaoString());
-                    telaEditarManutencaoPreventiva.getCampoHorarioConclusao().setText(manutencaoSelecionada.getHorarioConclusaoString());
+                    telaEditarManutencaoPreventiva.getCampoManutencaoIniciada().setSelected(manutencaoSelecionada.getManutencaoIniciada());
+                    telaEditarManutencaoPreventiva.atualizarManutencaoIniciada();
+                    telaEditarManutencaoPreventiva.getCampoManutencaoConcluida().setSelected(manutencaoSelecionada.getManutencaoConcluida());
+                    telaEditarManutencaoPreventiva.atualizarManutencaoConcluida();
+                    
+                    if(manutencaoSelecionada.getManutencaoIniciada())
+                    {
+                       telaEditarManutencaoPreventiva.getCampoDataInicio().setText(manutencaoSelecionada.getDataCurtaInicioString());
+                       telaEditarManutencaoPreventiva.getCampoHorarioInicio().setText(manutencaoSelecionada.getHorarioInicioString());
+                       
+                       if(manutencaoSelecionada.getManutencaoConcluida())
+                       {
+                           telaEditarManutencaoPreventiva.getCampoDataConclusao().setText(manutencaoSelecionada.getDataCurtaConclusaoString());
+                           telaEditarManutencaoPreventiva.getCampoHorarioConclusao().setText(manutencaoSelecionada.getHorarioConclusaoString());
+                       }
+                       else
+                       {
+                           agora = Calendar.getInstance();
+                           telaEditarManutencaoPreventiva.getCampoDataConclusao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+                           telaEditarManutencaoPreventiva.getCampoHorarioConclusao().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+                       }
+                    }
+                    else
+                    {
+                        agora = Calendar.getInstance();
+                        telaEditarManutencaoPreventiva.getCampoDataInicio().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+                        telaEditarManutencaoPreventiva.getCampoHorarioInicio().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+                        telaEditarManutencaoPreventiva.getCampoDataConclusao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+                        telaEditarManutencaoPreventiva.getCampoHorarioConclusao().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
+                    }
+                    
                     telaEditarManutencaoPreventiva.getCampoPeriodicidade().setText(((ManutencaoPreventiva) manutencaoSelecionada).getPeriodicidade());
                     telaEditarManutencaoPreventiva.getCampoDescricao().setText(manutencaoSelecionada.getDescricao());
                 }
@@ -647,7 +701,6 @@ public class TelaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
-        // TODO add your handling code here:
         if(jTable1.getSelectedRow() != -1)
         {
             removerManutencao((manutencoes.get(jTable1.getSelectedRow())));
@@ -708,7 +761,6 @@ public class TelaPrincipal extends javax.swing.JFrame
     private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuConsulta;
-    private javax.swing.JMenu menuSobre;
     private javax.swing.JDesktopPane painel;
     // End of variables declaration//GEN-END:variables
 }

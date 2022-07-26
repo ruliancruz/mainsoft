@@ -145,10 +145,17 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
-            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoEquipamentos));
-            lista = (ArrayList<Equipamento>) carregador.readObject();
+            try
+            {
+                ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoEquipamentos));
+                lista = (ArrayList<Equipamento>) carregador.readObject();
+            }
+            catch (Exception e)
+            {
+                return lista;
+            }
             
-            if(lista != null)
+            if(lista != null && lista.size() != 0)
                 ultimoIdEquipamento = lista.get(lista.size() - 1).getId() + 1;
         }
         
@@ -221,12 +228,19 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
         }
     }
     
-    public ArrayList<Equipamento> getListaEquipamentos() {
+    public ArrayList<Equipamento> getListaEquipamentos()
+    {
         return listaEquipamentos;
     }
 
-    public JTable getTabelaEquipamento() {
+    public JTable getTabelaEquipamento()
+    {
         return tabelaEquipamento;
+    }
+
+    public long getUltimoIdEquipamento()
+    {
+        return ultimoIdEquipamento;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

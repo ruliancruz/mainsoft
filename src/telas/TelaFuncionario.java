@@ -1,6 +1,7 @@
 package telas;
 import classes.Funcionario;
 import classes.Utils;
+import javax.swing.JLabel;
 
 public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
 {
@@ -24,8 +25,9 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
         campoNome = new javax.swing.JTextField();
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+        labelId = new javax.swing.JLabel();
 
-        setTitle("Funcionário");
+        setTitle("Cadastrar Funcionário");
 
         campoId.setText("Funcionário:");
 
@@ -45,6 +47,8 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
             }
         });
 
+        labelId.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,15 +66,22 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoId)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelId)))
                         .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(campoId)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoId)
+                    .addComponent(labelId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -90,6 +101,11 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
     {
         campoNome.setText("");
     }
+
+    public JLabel getLabelId()
+    {
+        return labelId;
+    }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         telaPrincipal.fecharLimparJanela(this);
@@ -107,5 +123,6 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
     private javax.swing.JLabel campoId;
     private javax.swing.JTextField campoNome;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelId;
     // End of variables declaration//GEN-END:variables
 }

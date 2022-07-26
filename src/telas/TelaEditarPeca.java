@@ -4,6 +4,7 @@ import classes.Peca;
 import classes.Utils;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class TelaEditarPeca extends javax.swing.JInternalFrame implements Utils
@@ -41,6 +42,8 @@ public class TelaEditarPeca extends javax.swing.JInternalFrame implements Utils
         campoEquipamento = new javax.swing.JComboBox<>();
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+
+        setTitle("Editar Peça");
 
         jLabel1.setText("Peça");
 
@@ -171,20 +174,22 @@ public class TelaEditarPeca extends javax.swing.JInternalFrame implements Utils
     }
     
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
-        Peca peca = new Peca(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()));
-        
-        peca.setId(Integer.parseInt(labelId.getText()));
-        telaPrincipal.getTelaListaPecas().editarPeca(peca, posicaoListaPeca);
-        telaPrincipal.fecharLimparJanela(this);
+        if(campoEquipamento.getSelectedIndex() == -1)
+            JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            Peca peca = new Peca(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()));
+
+            peca.setId(Integer.parseInt(labelId.getText()));
+            telaPrincipal.getTelaListaPecas().editarPeca(peca, posicaoListaPeca);
+            telaPrincipal.fecharLimparJanela(this);
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        // TODO add your handling code here:
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
 

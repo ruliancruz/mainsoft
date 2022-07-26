@@ -54,6 +54,10 @@ public class TelaEditarFuncionario extends javax.swing.JInternalFrame implements
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
 
+        setResizable(true);
+        setTitle("Editar Funcionário");
+        setToolTipText("");
+
         jLabel1.setText("Funcionario");
 
         labelId.setText("0");

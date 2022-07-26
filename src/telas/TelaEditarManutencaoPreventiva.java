@@ -3,22 +3,21 @@ package telas;
 import classes.Manutencao;
 import classes.ManutencaoPreventiva;
 import classes.Utils;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils
 {
-    private final JDesktopPane painelPrincipal;
     private final TelaPrincipal telaPrincipal;
     private int posicaoListaManutencao;
     
-    public TelaEditarManutencaoPreventiva(JDesktopPane painelDesktop, TelaPrincipal tela)
+    public TelaEditarManutencaoPreventiva(TelaPrincipal tela)
     {
         initComponents();
-        painelPrincipal = painelDesktop;
         telaPrincipal = tela;
     }
     
@@ -33,7 +32,50 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         campoPeriodicidade.setText("");
         campoDescricao.setText("");
     }
-
+    
+    public void atualizarManutencaoIniciada()
+    {
+        if(campoManutencaoIniciada.isSelected())
+        {
+            campoManutencaoIniciada.setText("Manutenção iniciada");
+            labelDataInicio.setEnabled(true);
+            campoDataInicio.setEnabled(true);
+            labelHorarioInicio.setEnabled(true);
+            campoHorarioInicio.setEnabled(true);
+            campoManutencaoConcluida.setEnabled(true);
+        }
+        else
+        {
+            campoManutencaoIniciada.setText("Manutenção não iniciada");
+            labelDataInicio.setEnabled(false);
+            campoDataInicio.setEnabled(false);
+            labelHorarioInicio.setEnabled(false);
+            campoHorarioInicio.setEnabled(false);
+            campoManutencaoConcluida.setEnabled(false);
+            campoManutencaoConcluida.setSelected(false);
+        }
+    }
+    
+    public void atualizarManutencaoConcluida()
+    {
+        if(campoManutencaoConcluida.isSelected())
+        {
+            campoManutencaoConcluida.setText("Manutenção concluída");
+            labelDataConclusao.setEnabled(true);
+            campoDataConclusao.setEnabled(true);
+            labelHorarioConclusao.setEnabled(true);
+            campoHorarioConclusao.setEnabled(true);
+        }
+        else
+        {
+            campoManutencaoConcluida.setText("Manutenção não concluída");
+            labelDataConclusao.setEnabled(false);
+            campoDataConclusao.setEnabled(false);
+            labelHorarioConclusao.setEnabled(false);
+            campoHorarioConclusao.setEnabled(false);
+        }
+    }
+    
     public JComboBox<String> getCampoEquipamento()
     {
         return campoEquipamento;
@@ -74,6 +116,16 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         return campoHorarioConclusao;
     }
 
+    public JCheckBox getCampoManutencaoIniciada()
+    {
+        return campoManutencaoIniciada;
+    }
+
+    public JCheckBox getCampoManutencaoConcluida()
+    {
+        return campoManutencaoConcluida;
+    }
+
     public JTextField getCampoPeriodicidade()
     {
         return campoPeriodicidade;
@@ -107,10 +159,10 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         labelId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labelDataInicio = new javax.swing.JLabel();
+        labelHorarioInicio = new javax.swing.JLabel();
+        labelDataConclusao = new javax.swing.JLabel();
+        labelHorarioConclusao = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         campoEquipamento = new javax.swing.JComboBox<>();
@@ -128,6 +180,10 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         botaoCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         campoPeriodicidade = new javax.swing.JTextField();
+        campoManutencaoIniciada = new javax.swing.JCheckBox();
+        campoManutencaoConcluida = new javax.swing.JCheckBox();
+
+        setTitle("Editar Manutenção Preventiva");
 
         jLabel1.setText("Ordem de Serviço");
 
@@ -137,13 +193,17 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
 
         jLabel4.setText("Responsável:");
 
-        jLabel5.setText("Data de Início:");
+        labelDataInicio.setText("Data de Início:");
+        labelDataInicio.setEnabled(false);
 
-        jLabel6.setText("Horário de Início:");
+        labelHorarioInicio.setText("Horário de Início:");
+        labelHorarioInicio.setEnabled(false);
 
-        jLabel7.setText("Data de Conclusão:");
+        labelDataConclusao.setText("Data de Conclusão:");
+        labelDataConclusao.setEnabled(false);
 
-        jLabel8.setText("Horário de Conclusão:");
+        labelHorarioConclusao.setText("Horário de Conclusão:");
+        labelHorarioConclusao.setEnabled(false);
 
         jLabel9.setText("Data de Agendamento:");
 
@@ -154,6 +214,14 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
                 campoHorarioAgendamentoActionPerformed(evt);
             }
         });
+
+        campoDataInicio.setEnabled(false);
+
+        campoHorarioInicio.setEnabled(false);
+
+        campoDataConclusao.setEnabled(false);
+
+        campoHorarioConclusao.setEnabled(false);
 
         jLabel11.setText("Descrição:");
 
@@ -177,6 +245,21 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
 
         jLabel2.setText("Periodicidade");
 
+        campoManutencaoIniciada.setText("Manutenção não iniciada");
+        campoManutencaoIniciada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoManutencaoIniciadaActionPerformed(evt);
+            }
+        });
+
+        campoManutencaoConcluida.setText("Manutenção não concluída");
+        campoManutencaoConcluida.setEnabled(false);
+        campoManutencaoConcluida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoManutencaoConcluidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,41 +272,44 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelId))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(34, 34, 34)
-                        .addComponent(campoDataAgendamento))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(campoEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(campoHorarioConclusao)
-                            .addComponent(campoDataConclusao)
-                            .addComponent(campoHorarioInicio)
-                            .addComponent(campoDataInicio)
-                            .addComponent(campoHorarioAgendamento)
-                            .addComponent(campoPeriodicidade))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoManutencaoConcluida)
+                    .addComponent(campoManutencaoIniciada)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelId))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(34, 34, 34)
+                            .addComponent(campoDataAgendamento))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3))
+                            .addGap(82, 82, 82)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(campoEquipamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10)
+                                .addComponent(labelDataInicio)
+                                .addComponent(labelHorarioInicio)
+                                .addComponent(labelDataConclusao)
+                                .addComponent(labelHorarioConclusao)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1)
+                                .addComponent(campoHorarioConclusao)
+                                .addComponent(campoDataConclusao)
+                                .addComponent(campoHorarioInicio)
+                                .addComponent(campoDataInicio)
+                                .addComponent(campoHorarioAgendamento)
+                                .addComponent(campoPeriodicidade)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -250,20 +336,24 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
                     .addComponent(jLabel10)
                     .addComponent(campoHorarioAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoManutencaoIniciada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(labelDataInicio)
                     .addComponent(campoDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(labelHorarioInicio)
                     .addComponent(campoHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(campoManutencaoConcluida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(labelDataConclusao)
                     .addComponent(campoDataConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(labelHorarioConclusao)
                     .addComponent(campoHorarioConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -284,30 +374,54 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoHorarioAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHorarioAgendamentoActionPerformed
-        // TODO add your handling code here:
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_campoHorarioAgendamentoActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
-        Manutencao manutencao = new ManutencaoPreventiva(
-            telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()),
-            telaPrincipal.getTelaListaFuncionarios().getListaFuncionarios().get(campoResponsavel.getSelectedIndex()),
-            campoDataInicio.getText() + " " + campoHorarioInicio.getText(),
-            campoDataConclusao.getText() + " " + campoHorarioConclusao.getText(),
-            campoDataAgendamento.getText() + " " + campoHorarioAgendamento.getText(),
-            campoPeriodicidade.getText(),
-            campoDescricao.getText());
-        
-        manutencao.setId(Integer.parseInt(labelId.getText()));
-        telaPrincipal.editarManutencao(manutencao, posicaoListaManutencao);
-        telaPrincipal.fecharLimparJanela(this);
+        if(campoEquipamento.getSelectedIndex() == -1 && campoResponsavel.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento e funcionário cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(campoEquipamento.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(campoResponsavel.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Erro! Não há nenhum funcionário cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            Manutencao manutencao = new ManutencaoPreventiva
+            (
+                telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos().get(campoEquipamento.getSelectedIndex()),
+                telaPrincipal.getTelaListaFuncionarios().getListaFuncionarios().get(campoResponsavel.getSelectedIndex()),
+                campoDataInicio.getText() + " " + campoHorarioInicio.getText(),
+                campoDataConclusao.getText() + " " + campoHorarioConclusao.getText(),
+                campoDataAgendamento.getText() + " " + campoHorarioAgendamento.getText(),
+                campoPeriodicidade.getText(),
+                campoDescricao.getText(),
+                campoManutencaoIniciada.isSelected(),
+                campoManutencaoConcluida.isSelected()
+            );
+
+            manutencao.setId(Integer.parseInt(labelId.getText()));
+            telaPrincipal.editarManutencao(manutencao, posicaoListaManutencao);
+            telaPrincipal.fecharLimparJanela(this);
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        // TODO add your handling code here:
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void campoManutencaoIniciadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoManutencaoIniciadaActionPerformed
+        atualizarManutencaoIniciada();
+    }//GEN-LAST:event_campoManutencaoIniciadaActionPerformed
+
+    private void campoManutencaoConcluidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoManutencaoConcluidaActionPerformed
+        atualizarManutencaoConcluida();
+    }//GEN-LAST:event_campoManutencaoConcluidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,6 +435,8 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     private javax.swing.JTextField campoHorarioAgendamento;
     private javax.swing.JTextField campoHorarioConclusao;
     private javax.swing.JTextField campoHorarioInicio;
+    private javax.swing.JCheckBox campoManutencaoConcluida;
+    private javax.swing.JCheckBox campoManutencaoIniciada;
     private javax.swing.JTextField campoPeriodicidade;
     private javax.swing.JComboBox<String> campoResponsavel;
     private javax.swing.JLabel jLabel1;
@@ -329,12 +445,12 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDataConclusao;
+    private javax.swing.JLabel labelDataInicio;
+    private javax.swing.JLabel labelHorarioConclusao;
+    private javax.swing.JLabel labelHorarioInicio;
     private javax.swing.JLabel labelId;
     // End of variables declaration//GEN-END:variables
 }

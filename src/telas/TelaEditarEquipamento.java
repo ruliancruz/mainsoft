@@ -74,6 +74,8 @@ public class TelaEditarEquipamento extends javax.swing.JInternalFrame implements
         campoFabricante = new javax.swing.JTextField();
         campoDataAquisicao = new javax.swing.JTextField();
 
+        setTitle("Editar Equipamento");
+
         jLabel1.setText("Equipamento");
 
         jLabel2.setText("Nome:");
@@ -117,27 +119,25 @@ public class TelaEditarEquipamento extends javax.swing.JInternalFrame implements
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelId)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(campoDataAquisicao))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(campoFabricante))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(73, 73, 73)
-                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(65, 65, 65)
-                                        .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(labelId))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(campoDataAquisicao))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(51, 51, 51)
+                                    .addComponent(campoFabricante))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(73, 73, 73)
+                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(65, 65, 65)
+                                    .addComponent(campoModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -174,7 +174,6 @@ public class TelaEditarEquipamento extends javax.swing.JInternalFrame implements
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
         Equipamento equipamento = new Equipamento(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), campoDataAquisicao.getText());
         
         equipamento.setId(Integer.parseInt(labelId.getText()));

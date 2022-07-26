@@ -147,10 +147,18 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
-            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoFuncionarios));
-            lista = (ArrayList<Funcionario>) carregador.readObject();
             
-            if(lista != null)
+            try
+            {
+                ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoFuncionarios));
+                lista = (ArrayList<Funcionario>) carregador.readObject();
+            }
+            catch (Exception e)
+            {
+                return lista;
+            }
+            
+            if(lista != null && lista.size() != 0)
                 ultimoIdFuncionario = lista.get(lista.size() - 1).getId() + 1;
         }
         
@@ -220,12 +228,19 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
         }
     }
     
-    public ArrayList<Funcionario> getListaFuncionarios() {
+    public ArrayList<Funcionario> getListaFuncionarios()
+    {
         return listaFuncionarios;
     }
 
-    public JTable getTabelaFuncionario() {
+    public JTable getTabelaFuncionario()
+    {
         return tabelaFuncionario;
+    }
+
+    public long getUltimoIdFuncionario()
+    {
+        return ultimoIdFuncionario;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

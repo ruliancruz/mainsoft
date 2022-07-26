@@ -189,10 +189,17 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
-            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoPecas));
-            lista = (ArrayList<Peca>) carregador.readObject();
+            try
+            {
+               ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoPecas));
+               lista = (ArrayList<Peca>) carregador.readObject(); 
+            }
+            catch (Exception e)
+            {
+                return lista;
+            }
             
-            if(lista != null)
+            if(lista != null && lista.size() != 0)
                 ultimoIdPeca = lista.get(lista.size() - 1).getId() + 1;
         }
         
@@ -237,12 +244,19 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         }
     }
     
-    public ArrayList<Peca> getListaPecas() {
+    public ArrayList<Peca> getListaPecas()
+    {
         return listaPecas;
     }
 
-    public JTable getTabelaPeca() {
+    public JTable getTabelaPeca()
+    {
         return tabelaPeca;
+    }
+
+    public long getUltimoIdPeca()
+    {
+        return ultimoIdPeca;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

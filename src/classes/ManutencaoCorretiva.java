@@ -8,7 +8,7 @@ public class ManutencaoCorretiva extends Manutencao
 {
     private String causaFalha;
     
-    public ManutencaoCorretiva(Equipamento equipamento, Funcionario responsavel, String dataInicioString, String dataConclusaoString, String causaFalha, String descricao)
+    public ManutencaoCorretiva(Equipamento equipamento, Funcionario responsavel, String dataInicioString, String dataConclusaoString, String causaFalha, String descricao, boolean manutencaoConcluida)
     {
         setEquipamento(equipamento);
         setResponsavel(responsavel);
@@ -34,6 +34,8 @@ public class ManutencaoCorretiva extends Manutencao
         this.causaFalha = causaFalha;
         setDescricao(descricao);
         setTipoManutencao("Corretiva");
+        setManutencaoIniciada(true);
+        setManutencaoConcluida(manutencaoConcluida);
     }
 
     public String getCausaFalha()

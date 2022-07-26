@@ -2,6 +2,7 @@ package telas;
 import classes.Equipamento;
 import classes.Utils;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 
 public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
 {
@@ -31,8 +32,9 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
         campoDataAquisicao = new javax.swing.JFormattedTextField();
+        labelId = new javax.swing.JLabel();
 
-        setTitle("Equipamento");
+        setTitle("Cadastrar Equipamento");
         setToolTipText("");
 
         campoId.setText("Equipamento:");
@@ -61,6 +63,8 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
 
         campoDataAquisicao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
+        labelId.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,21 +81,26 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(campoId))
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(campoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(campoModelo)
                             .addComponent(campoFabricante)
-                            .addComponent(campoDataAquisicao))))
+                            .addComponent(campoDataAquisicao)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(campoId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelId)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(campoId)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoId)
+                    .addComponent(labelId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -131,6 +140,11 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
     {
         return campoDataAquisicao;
     }
+
+    public JLabel getLabelId()
+    {
+        return labelId;
+    }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         telaPrincipal.fecharLimparJanela(this);
@@ -154,5 +168,6 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel labelId;
     // End of variables declaration//GEN-END:variables
 }

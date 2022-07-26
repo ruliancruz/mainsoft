@@ -10,7 +10,7 @@ public class ManutencaoPreventiva extends Manutencao
     private Calendar dataAgendamento = Calendar.getInstance();
     private String periodicidade;
 
-    public ManutencaoPreventiva(Equipamento equipamento, Funcionario responsavel, String dataInicio,  String dataConclusao, String dataAgendamento, String periodicidade, String descricao)
+    public ManutencaoPreventiva(Equipamento equipamento, Funcionario responsavel, String dataInicio,  String dataConclusao, String dataAgendamento, String periodicidade, String descricao, boolean manutencaoIniciada, boolean manutencaoConcluida)
     {
         setEquipamento(equipamento);
         setResponsavel(responsavel);
@@ -45,6 +45,8 @@ public class ManutencaoPreventiva extends Manutencao
         setDescricao(descricao);
         this.periodicidade = periodicidade;
         setTipoManutencao("Preventiva");
+        setManutencaoIniciada(manutencaoIniciada);
+        setManutencaoConcluida(manutencaoConcluida);
     }
 
     public Calendar getDataAgendamento()
