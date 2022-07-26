@@ -1,4 +1,5 @@
 package telas;
+
 import java.util.ArrayList;
 import classes.Funcionario;
 import java.io.File;
@@ -16,14 +17,18 @@ import javax.swing.table.DefaultTableModel;
 public class TelaListaFuncionarios extends javax.swing.JInternalFrame
 {
     private final TelaPrincipal telaPrincipal;
+    private final String caminhoPastaFuncionarios;
+    private final String caminhoArquivoFuncionarios;
     private final String caminhoFuncionarios;
     private ArrayList<Funcionario> listaFuncionarios;
     private long ultimoIdFuncionario;    
-    
+
     public TelaListaFuncionarios(TelaPrincipal tela)
     {
         initComponents();
-        this.caminhoFuncionarios = "data/funcionarios.dat";
+        this.caminhoPastaFuncionarios = "data";
+        this.caminhoArquivoFuncionarios = "funcionarios.dat";
+        this.caminhoFuncionarios = caminhoPastaFuncionarios + "/" + caminhoArquivoFuncionarios;
         this.ultimoIdFuncionario = 0;
         telaPrincipal = tela;
         
@@ -106,7 +111,7 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoRemover)
@@ -119,6 +124,11 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
     
     public void salvarFuncionarios() throws FileNotFoundException, IOException
     {
+        File arquivo = new File("data");
+        
+        if(arquivo.exists() || arquivo.isDirectory())
+            arquivo.mkdir();
+        
         ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoFuncionarios));
         registrador.writeObject(listaFuncionarios);
         registrador.close();
@@ -127,7 +137,13 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
     public ArrayList<Funcionario> carregarFuncionarios() throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Funcionario> lista = new ArrayList<Funcionario>();
-        File arquivo = new File(caminhoFuncionarios);
+        
+        File arquivo = new File("data");
+        
+        if(!arquivo.exists() && !arquivo.isDirectory())
+            arquivo.mkdir();
+        
+        arquivo = new File(caminhoFuncionarios);
         
         if(arquivo.exists())
         {

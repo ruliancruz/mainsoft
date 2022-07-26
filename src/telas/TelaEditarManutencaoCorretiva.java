@@ -12,14 +12,12 @@ import javax.swing.JTextField;
 public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame implements Utils
 {
     private final JDesktopPane painelPrincipal;
-    private final TelaAlterarPeca telaAlterarPeca;
     private final TelaPrincipal telaPrincipal;
     private int posicaoListaManutencao;
     
     public TelaEditarManutencaoCorretiva(JDesktopPane painelDesktop, TelaPrincipal tela)
     {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca(painelDesktop, tela);
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;
     }

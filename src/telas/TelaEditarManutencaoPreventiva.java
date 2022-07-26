@@ -12,14 +12,12 @@ import javax.swing.JTextField;
 public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame implements Utils
 {
     private final JDesktopPane painelPrincipal;
-    private final TelaAlterarPeca telaAlterarPeca;
     private final TelaPrincipal telaPrincipal;
     private int posicaoListaManutencao;
     
     public TelaEditarManutencaoPreventiva(JDesktopPane painelDesktop, TelaPrincipal tela)
     {
         initComponents();
-        telaAlterarPeca = new TelaAlterarPeca(painelDesktop, tela);
         painelPrincipal = painelDesktop;
         telaPrincipal = tela;
     }

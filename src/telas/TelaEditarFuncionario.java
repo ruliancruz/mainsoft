@@ -1,6 +1,7 @@
 package telas;
 
 import classes.Funcionario;
+import classes.Manutencao;
 import classes.Utils;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,15 +23,18 @@ public class TelaEditarFuncionario extends javax.swing.JInternalFrame implements
         campoNome.setText("");
     }
 
-    public JTextField getCampoNome() {
+    public JTextField getCampoNome()
+    {
         return campoNome;
     }
 
-    public JLabel getLabelId() {
+    public JLabel getLabelId()
+    {
         return labelId;
     }
 
-    public void setPosicaoListaFuncionario(int posicaoListaFuncionario) {
+    public void setPosicaoListaFuncionario(int posicaoListaFuncionario)
+    {
         this.posicaoListaFuncionario = posicaoListaFuncionario;
     }
     
@@ -122,6 +126,16 @@ public class TelaEditarFuncionario extends javax.swing.JInternalFrame implements
         
         funcionario.setId(Integer.parseInt(labelId.getText()));
         telaPrincipal.getTelaListaFuncionarios().editarFuncionario(funcionario, posicaoListaFuncionario);
+        
+        for(Manutencao item : telaPrincipal.getManutencoes())
+        {
+            if(item.getResponsavel().getId() == funcionario.getId())
+            {
+                item.setResponsavel(funcionario);
+            }
+        }
+        
+        telaPrincipal.atualizarListaManutencoes();
         telaPrincipal.fecharLimparJanela(this);
     }//GEN-LAST:event_botaoSalvarActionPerformed
 

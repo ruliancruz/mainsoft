@@ -1,4 +1,6 @@
 package telas;
+
+import classes.Equipamento;
 import java.util.ArrayList;
 import classes.Peca;
 import java.io.File;
@@ -15,15 +17,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaListaPecas extends javax.swing.JInternalFrame
 {
+    private final TelaPrincipal telaPrincipal;
+    private final String caminhoPastaPecas;
+    private final String caminhoArquivoPecas;
     private final String caminhoPecas;
     private ArrayList<Peca> listaPecas;
     private long ultimoIdPeca;
     
-    public TelaListaPecas()
+    public TelaListaPecas(TelaPrincipal tela)
     {
         initComponents();
-        this.caminhoPecas = "data/pecas.dat";
+        this.caminhoPastaPecas = "data";
+        this.caminhoArquivoPecas = "pecas.dat";
+        this.caminhoPecas = caminhoPastaPecas + "/" + caminhoArquivoPecas;
         this.ultimoIdPeca = 0;
+        telaPrincipal = tela;
         
         try
         {
@@ -47,6 +55,8 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaPeca = new javax.swing.JTable();
+        botaoEditar = new javax.swing.JButton();
+        botaoRemover = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -72,22 +82,95 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         tabelaPeca.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaPeca);
 
+        botaoEditar.setText("Editar");
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarActionPerformed(evt);
+            }
+        });
+
+        botaoRemover.setText("Remover");
+        botaoRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoRemover)
+                .addGap(18, 18, 18)
+                .addComponent(botaoEditar)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoEditar)
+                    .addComponent(botaoRemover))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
+        // TODO add your handling code here:
+        Peca pecaSelecionada;
+        int indiceLista = 0;
+        
+        if(tabelaPeca.getSelectedRow() != -1)
+        {
+            if(telaPrincipal.abrirJanela(telaPrincipal.getTelaEditarPeca()))
+            {
+                pecaSelecionada = listaPecas.get(tabelaPeca.getSelectedRow());
+                telaPrincipal.getTelaEditarPeca().setPosicaoListaPeca(tabelaPeca.getSelectedRow());
+                telaPrincipal.getTelaEditarPeca().getLabelId().setText(String.valueOf(pecaSelecionada.getId()));
+                telaPrincipal.getTelaEditarPeca().getCampoNome().setText(pecaSelecionada.getNome());
+                telaPrincipal.getTelaEditarPeca().getCampoModelo().setText(pecaSelecionada.getModelo());
+                telaPrincipal.getTelaEditarPeca().getCampoFabricante().setText(pecaSelecionada.getFabricante());
+                
+                telaPrincipal.getTelaEditarPeca().getCampoEquipamento().removeAllItems();
+
+                for(Equipamento item : telaPrincipal.getTelaListaEquipamentos().getListaEquipamentos())
+                {
+                    telaPrincipal.getTelaEditarPeca().getCampoEquipamento().addItem(item.getNome());
+
+                    if(item == pecaSelecionada.getEquipamento())
+                        {
+                            telaPrincipal.getTelaEditarPeca().getCampoEquipamento().setSelectedIndex(indiceLista);
+                        }
+
+                    indiceLista++;
+                }
+            }
+        }
+    }//GEN-LAST:event_botaoEditarActionPerformed
+
+    private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
+        // TODO add your handling code here:
+        if(tabelaPeca.getSelectedRow() != -1)
+        {
+            removerPeca((listaPecas.get(tabelaPeca.getSelectedRow())));
+            atualizarListaPecas();
+        }
+    }//GEN-LAST:event_botaoRemoverActionPerformed
     
     public void salvarPecas() throws FileNotFoundException, IOException
     {
+        File arquivo = new File("data");
+        
+        if(arquivo.exists() || arquivo.isDirectory())
+            arquivo.mkdir();
+        
         ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoPecas));
         registrador.writeObject(listaPecas);
         registrador.close();
@@ -96,7 +179,13 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
     public ArrayList<Peca> carregarPecas() throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Peca> lista = new ArrayList<Peca>();
-        File arquivo = new File(caminhoPecas);
+        
+        File arquivo = new File("data");
+        
+        if(!arquivo.exists() && !arquivo.isDirectory())
+            arquivo.mkdir();
+        
+        arquivo = new File(caminhoPecas);
         
         if(arquivo.exists())
         {
@@ -115,6 +204,19 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         peca.setId(ultimoIdPeca);
         ultimoIdPeca++;
         listaPecas.add(peca);
+        atualizarListaPecas();
+    }
+    
+    public void editarPeca(Peca peca, int posicao)
+    {
+        listaPecas.remove(posicao);
+        listaPecas.add(posicao, peca);
+        atualizarListaPecas();
+    }
+    
+    public void removerPeca(Peca peca)
+    {
+        listaPecas.remove(peca);
         atualizarListaPecas();
     }
     
@@ -144,6 +246,8 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoRemover;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaPeca;
     // End of variables declaration//GEN-END:variables

@@ -8,14 +8,14 @@ public class ManutencaoCorretiva extends Manutencao
 {
     private String causaFalha;
     
-    public ManutencaoCorretiva(Equipamento equipamento, Funcionario responsavel, String dataInicio, String dataConclusao, String causaFalha, String descricao)
+    public ManutencaoCorretiva(Equipamento equipamento, Funcionario responsavel, String dataInicioString, String dataConclusaoString, String causaFalha, String descricao)
     {
         setEquipamento(equipamento);
         setResponsavel(responsavel);
                 
         try
         {
-            getDataInicio().setTime(getFormatadorDataHora().parse(dataInicio));
+            getDataInicio().setTime(getFormatadorDataHora().parse(dataInicioString));
         }
         catch (ParseException ex)
         {
@@ -24,7 +24,7 @@ public class ManutencaoCorretiva extends Manutencao
         
         try
         {
-            getDataConclusao().setTime(getFormatadorDataHora().parse(dataConclusao));
+            getDataConclusao().setTime(getFormatadorDataHora().parse(dataConclusaoString));
         }
         catch (ParseException ex)
         {

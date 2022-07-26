@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 public class TelaListaEquipamentos extends javax.swing.JInternalFrame
 {
     private final TelaPrincipal telaPrincipal;
+    private final String caminhoPastaEquipamentos;
+    private final String caminhoArquivoEquipamentos;
     private final String caminhoEquipamentos;
     private ArrayList<Equipamento> listaEquipamentos;
     private long ultimoIdEquipamento;
@@ -23,7 +25,9 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
     public TelaListaEquipamentos(TelaPrincipal tela)
     {
         initComponents();
-        this.caminhoEquipamentos = "data/equipamentos.dat";
+        this.caminhoPastaEquipamentos = "data";
+        this.caminhoArquivoEquipamentos = "equipamentos.dat";
+        this.caminhoEquipamentos = caminhoPastaEquipamentos + "/" + caminhoArquivoEquipamentos;
         this.ultimoIdEquipamento = 0;
         telaPrincipal = tela;
         
@@ -118,6 +122,11 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
     
     public void salvarEquipamentos() throws FileNotFoundException, IOException
     {
+        File arquivo = new File("data");
+        
+        if(arquivo.exists() || arquivo.isDirectory())
+            arquivo.mkdir();
+        
         ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoEquipamentos));
         registrador.writeObject(listaEquipamentos);
         registrador.close();
@@ -126,7 +135,13 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
     public ArrayList<Equipamento> carregarEquipamentos() throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Equipamento> lista = new ArrayList<Equipamento>();
-        File arquivo = new File(caminhoEquipamentos);
+        
+        File arquivo = new File("data");
+        
+        if(!arquivo.exists() && !arquivo.isDirectory())
+            arquivo.mkdir();
+        
+        arquivo = new File(caminhoEquipamentos);
         
         if(arquivo.exists())
         {

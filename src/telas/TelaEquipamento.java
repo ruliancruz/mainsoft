@@ -1,6 +1,7 @@
 package telas;
 import classes.Equipamento;
 import classes.Utils;
+import javax.swing.JFormattedTextField;
 
 public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
 {
@@ -124,6 +125,11 @@ public class TelaEquipamento extends javax.swing.JInternalFrame implements Utils
         campoModelo.setText("");
         campoFabricante.setText("");
         campoDataAquisicao.setText("");
+    }
+
+    public JFormattedTextField getCampoDataAquisicao()
+    {
+        return campoDataAquisicao;
     }
     
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed

@@ -1,6 +1,7 @@
 package telas;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.Calendar;
 import classes.Manutencao;
 import classes.Equipamento;
 import classes.Funcionario;
@@ -32,17 +33,22 @@ public class TelaPrincipal extends javax.swing.JFrame
     private final TelaEditarManutencaoPreventiva telaEditarManutencaoPreventiva;
     private final TelaEditarEquipamento telaEditarEquipamento;
     private final TelaEditarFuncionario telaEditarFuncionario;
-    private final TelaConfirmacao telaConfirmacao;
+    private final TelaEditarPeca telaEditarPeca;
+    private final String caminhoPastaManutencoes;
+    private final String caminhoArquivoManutencoes;
     private final String caminhoManutencoes;
+    private Calendar agora;
     private ArrayList<Manutencao> manutencoes;
     private long ultimoIdManutencao;
     
     public TelaPrincipal()
     {
         initComponents();
-        this.caminhoManutencoes = "data/manutencoes.dat";
+        this.caminhoPastaManutencoes = "data";
+        this.caminhoArquivoManutencoes = "manutencoes.dat";
+        this.caminhoManutencoes = caminhoPastaManutencoes + "/" + caminhoArquivoManutencoes;
         this.ultimoIdManutencao = 0;
-        this.telaListaPecas = new TelaListaPecas();
+        this.telaListaPecas = new TelaListaPecas(this);
         this.telaListaFuncionarios = new TelaListaFuncionarios(this);
         this.telaFuncionario = new TelaFuncionario(telaListaFuncionarios, this);
         this.telaListaEquipamentos = new TelaListaEquipamentos(this);
@@ -54,7 +60,7 @@ public class TelaPrincipal extends javax.swing.JFrame
         this.telaEditarManutencaoPreventiva = new TelaEditarManutencaoPreventiva(this.painel, this);
         this.telaEditarEquipamento = new TelaEditarEquipamento(this);
         this.telaEditarFuncionario = new TelaEditarFuncionario(this);
-        this.telaConfirmacao = new TelaConfirmacao();
+        this.telaEditarPeca = new TelaEditarPeca(this);
         
         try
         {
@@ -287,6 +293,11 @@ public class TelaPrincipal extends javax.swing.JFrame
     
     public void salvarManutencoes() throws FileNotFoundException, IOException
     {
+        File arquivo = new File("data");
+        
+        if(arquivo.exists() || arquivo.isDirectory())
+            arquivo.mkdir();
+        
         ObjectOutputStream registrador = new ObjectOutputStream(new FileOutputStream(caminhoManutencoes));
         registrador.writeObject(manutencoes);
         registrador.close();
@@ -295,7 +306,13 @@ public class TelaPrincipal extends javax.swing.JFrame
     public ArrayList<Manutencao> carregarManutencoes() throws FileNotFoundException, IOException, ClassNotFoundException
     {
         ArrayList<Manutencao> lista = new ArrayList<Manutencao>();
-        File arquivo = new File(caminhoManutencoes);
+        
+        File arquivo = new File("data");
+        
+        if(!arquivo.exists() && !arquivo.isDirectory())
+            arquivo.mkdir();
+        
+        arquivo = new File(caminhoManutencoes);
         
         if(arquivo.exists())
         {
@@ -305,7 +322,6 @@ public class TelaPrincipal extends javax.swing.JFrame
             if(lista != null)
                 ultimoIdManutencao = lista.get(lista.size() - 1).getId() + 1;
         }
-        
         return lista;
     }
     
@@ -417,6 +433,11 @@ public class TelaPrincipal extends javax.swing.JFrame
         return telaListaFuncionarios;
     }
 
+    public TelaListaPecas getTelaListaPecas()
+    {
+        return telaListaPecas;
+    }
+
     public TelaEditarEquipamento getTelaEditarEquipamento()
     {
         return telaEditarEquipamento;
@@ -425,6 +446,11 @@ public class TelaPrincipal extends javax.swing.JFrame
     public TelaEditarFuncionario getTelaEditarFuncionario()
     {
         return telaEditarFuncionario;
+    }
+
+    public TelaEditarPeca getTelaEditarPeca()
+    {
+        return telaEditarPeca;
     }
     
     public long getUltimoIdManutencao()
@@ -454,6 +480,10 @@ public class TelaPrincipal extends javax.swing.JFrame
             {
                 telaManutencaoCorretiva.getCampoResponsavel().addItem(item.getNome());
             }
+            
+            agora = Calendar.getInstance();
+            telaManutencaoCorretiva.getCampoDataInicio().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            telaManutencaoCorretiva.getCampoHorarioInicio().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
     }//GEN-LAST:event_cadastrarManutencaoCorretivaActionPerformed
 
@@ -473,7 +503,13 @@ public class TelaPrincipal extends javax.swing.JFrame
             {
                 telaManutencaoPreventiva.getCampoResponsavel().addItem(item.getNome());
             }
+            
+            agora = Calendar.getInstance();
+            telaManutencaoPreventiva.getCampoDataAgendamento().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            telaManutencaoPreventiva.getCampoHorarioAgendamento().setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
+        
+
     }//GEN-LAST:event_cadastrarManutencaoPreventivaActionPerformed
 
     private void consultarEquipamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarEquipamentosActionPerformed
@@ -498,6 +534,8 @@ public class TelaPrincipal extends javax.swing.JFrame
 
     private void cadastrarEquipamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarEquipamentoActionPerformed
         abrirJanela(telaEquipamento);
+        agora = Calendar.getInstance();
+        telaEquipamento.getCampoDataAquisicao().setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
     }//GEN-LAST:event_cadastrarEquipamentoActionPerformed
 
     private void consultarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarPecasActionPerformed

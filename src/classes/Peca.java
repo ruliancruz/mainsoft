@@ -7,7 +7,7 @@ public class Peca implements Serializable
     private long id;
     private String nome;
     private String modelo;
-    private String fabricante; //private Fabricante fabricante;
+    private String fabricante;
     private Equipamento equipamento;
     
     public Peca(String nome, String modelo, String fabricante, Equipamento equipamento)
