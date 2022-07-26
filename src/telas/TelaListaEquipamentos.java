@@ -145,13 +145,16 @@ public class TelaListaEquipamentos extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoEquipamentos));
+            
             try
             {
-                ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoEquipamentos));
                 lista = (ArrayList<Equipamento>) carregador.readObject();
+                carregador.close();
             }
             catch (Exception e)
             {
+                carregador.close();
                 return lista;
             }
             

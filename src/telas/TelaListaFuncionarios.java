@@ -147,14 +147,16 @@ public class TelaListaFuncionarios extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoFuncionarios));
             
             try
             {
-                ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoFuncionarios));
                 lista = (ArrayList<Funcionario>) carregador.readObject();
+                carregador.close();
             }
             catch (Exception e)
             {
+                carregador.close();
                 return lista;
             }
             

@@ -311,13 +311,16 @@ public class TelaPrincipal extends javax.swing.JFrame
         
         if(arquivo.exists())
         {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoManutencoes));
+            
             try
             {
-               ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoManutencoes));
-               lista = (ArrayList<Manutencao>) carregador.readObject(); 
+               lista = (ArrayList<Manutencao>) carregador.readObject();
+               carregador.close();
             }
             catch (Exception e)
             {
+                carregador.close();
                 return lista;
             }
             

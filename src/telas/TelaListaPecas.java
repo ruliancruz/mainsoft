@@ -189,13 +189,16 @@ public class TelaListaPecas extends javax.swing.JInternalFrame
         
         if(arquivo.exists())
         {
+            ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoPecas));
+            
             try
             {
-               ObjectInputStream carregador = new ObjectInputStream(new FileInputStream(caminhoPecas));
                lista = (ArrayList<Peca>) carregador.readObject(); 
+               carregador.close();
             }
             catch (Exception e)
             {
+                carregador.close();
                 return lista;
             }
             
