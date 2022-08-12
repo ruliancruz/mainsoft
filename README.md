@@ -2,6 +2,14 @@
 
 Sistema de controle de manutenção em fábricas.
 
-Feito em Java, GUI desenvolvida com Java Swing. Persistência de dados com arquivos.
+Feito em Java, com interface gráfica desenvolvida com Java Swing e com persistência de dados utilizando arquivos binários.
 
-https://www.youtube.com/watch?v=8kKjgfdknwU
+Projeto desenvolvido como requisito parcial de conclusão da disciplina de Linguagem de Programação Orientada a Objetos I do curso de Licenciatura em Computação do IFBA - Campus Jacobina.
+
+Link do video de apresentação do software: https://www.youtube.com/watch?v=8kKjgfdknwU
+
+### Equipe:
+<a href="https://github.com/ruliancruz">Rulian Cruz</a>: Programação e Interface;
+<br><a href="https://github.com/gabrielcavalcante-cs">Gabriel Oliveira</a>: Programação;
+<br><a href="https://github.com/gessecarneiro">Diego Miranda/a>: Imagens;
+<br><a href="https://github.com/gessecarneiro">Gessé Carneiro/a>: Suporte;
