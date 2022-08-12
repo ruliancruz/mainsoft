@@ -11,5 +11,5 @@ Link do video de apresentação do software: https://www.youtube.com/watch?v=8kK
 ### Equipe:
 <a href="https://github.com/ruliancruz">Rulian Cruz</a>: Programação e Interface;
 <br><a href="https://github.com/gabrielcavalcante-cs">Gabriel Oliveira</a>: Programação;
-<br><a href="https://github.com/gessecarneiro">Diego Miranda"</a>: Imagens;
-<br><a href="https://github.com/gessecarneiro">Gessé Carneiro"</a>: Suporte;
+<br><a href="https://github.com/gessecarneiro">Diego Miranda</a>: Imagens;
+<br><a href="https://github.com/Diegoestudos">Gessé Carneiro</a>: Suporte;
