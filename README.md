@@ -7,6 +7,7 @@ Feito em Java, com interface gráfica desenvolvida com Java Swing e com persist�
 Projeto desenvolvido como requisito parcial de conclusão da disciplina de Linguagem de Programação Orientada a Objetos I do curso de Licenciatura em Computação do IFBA - Campus Jacobina.
 
 Link do video de apresentação do software: https://www.youtube.com/watch?v=8kKjgfdknwU
+
 Link do executável em .jar: https://drive.google.com/file/d/1HyG3Rl9b7iEjJ0CtjvhaCeB-b5HFydFH/view?usp=share_link
 
 ### Equipe:
