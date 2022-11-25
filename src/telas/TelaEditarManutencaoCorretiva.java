@@ -128,10 +128,6 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
         labelDescricao = new javax.swing.JLabel();
         campoEquipamento = new javax.swing.JComboBox<>();
         campoResponsavel = new javax.swing.JComboBox<>();
-        campoDataInicio = new javax.swing.JTextField();
-        campoHorarioInicio = new javax.swing.JTextField();
-        campoDataConclusao = new javax.swing.JTextField();
-        campoHorarioConclusao = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoCausaFalha = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -140,6 +136,10 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
         botaoCancelar = new javax.swing.JButton();
         labelId = new javax.swing.JLabel();
         campoManutencaoConcluida = new javax.swing.JCheckBox();
+        campoDataInicio = new javax.swing.JFormattedTextField();
+        campoHorarioInicio = new javax.swing.JFormattedTextField();
+        campoDataConclusao = new javax.swing.JFormattedTextField();
+        campoHorarioConclusao = new javax.swing.JFormattedTextField();
 
         setTitle("Editar Manutenção Corretiva");
 
@@ -162,10 +162,6 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
         labelCausaFalha.setText("Causa da Falha");
 
         labelDescricao.setText("Descrição");
-
-        campoDataConclusao.setEnabled(false);
-
-        campoHorarioConclusao.setEnabled(false);
 
         campoCausaFalha.setColumns(20);
         campoCausaFalha.setRows(5);
@@ -198,6 +194,14 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
             }
         });
 
+        campoDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        campoHorarioInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+
+        campoDataConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        campoHorarioConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,6 +217,21 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelOrdemServico)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelId))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelHorarioConclusao)
+                                    .addComponent(labelCausaFalha)
+                                    .addComponent(labelDescricao))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(campoHorarioConclusao)))
+                            .addComponent(campoManutencaoConcluida)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelEquipamento)
                                     .addComponent(labelResponsavel)
@@ -221,29 +240,11 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
                                     .addComponent(labelDataConclusao))
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoHorarioInicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(campoDataInicio, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(campoResponsavel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoEquipamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelOrdemServico)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelId))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelHorarioConclusao)
-                                            .addComponent(labelCausaFalha)
-                                            .addComponent(labelDescricao))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jScrollPane1)
-                                            .addComponent(jScrollPane2)
-                                            .addComponent(campoHorarioConclusao)
-                                            .addComponent(campoDataConclusao)))
-                                    .addComponent(campoManutencaoConcluida))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(campoEquipamento, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(campoDataInicio)
+                                    .addComponent(campoHorarioInicio)
+                                    .addComponent(campoDataConclusao))))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -266,32 +267,35 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
                     .addComponent(labelDataInicio)
                     .addComponent(campoDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHorarioInicio)
-                    .addComponent(campoHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoManutencaoConcluida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDataConclusao)
-                    .addComponent(campoDataConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHorarioConclusao)
-                    .addComponent(campoHorarioConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCausaFalha)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelDescricao))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoSalvar)
-                    .addComponent(botaoCancelar))
-                .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelHorarioInicio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(campoManutencaoConcluida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDataConclusao)
+                            .addComponent(campoDataConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelHorarioConclusao)
+                            .addComponent(campoHorarioConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCausaFalha)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDescricao))
+                        .addGap(18, 24, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoSalvar)
+                            .addComponent(botaoCancelar))
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(campoHorarioInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -370,12 +374,12 @@ public class TelaEditarManutencaoCorretiva extends javax.swing.JInternalFrame im
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JTextArea campoCausaFalha;
-    private javax.swing.JTextField campoDataConclusao;
-    private javax.swing.JTextField campoDataInicio;
+    private javax.swing.JFormattedTextField campoDataConclusao;
+    private javax.swing.JFormattedTextField campoDataInicio;
     private javax.swing.JTextArea campoDescricao;
     private javax.swing.JComboBox<String> campoEquipamento;
-    private javax.swing.JTextField campoHorarioConclusao;
-    private javax.swing.JTextField campoHorarioInicio;
+    private javax.swing.JFormattedTextField campoHorarioConclusao;
+    private javax.swing.JFormattedTextField campoHorarioInicio;
     private javax.swing.JCheckBox campoManutencaoConcluida;
     private javax.swing.JComboBox<String> campoResponsavel;
     private javax.swing.JScrollPane jScrollPane1;

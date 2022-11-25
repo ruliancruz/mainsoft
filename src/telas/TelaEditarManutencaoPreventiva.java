@@ -178,12 +178,6 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         jLabel10 = new javax.swing.JLabel();
         campoEquipamento = new javax.swing.JComboBox<>();
         campoResponsavel = new javax.swing.JComboBox<>();
-        campoDataAgendamento = new javax.swing.JTextField();
-        campoHorarioAgendamento = new javax.swing.JTextField();
-        campoDataInicio = new javax.swing.JTextField();
-        campoHorarioInicio = new javax.swing.JTextField();
-        campoDataConclusao = new javax.swing.JTextField();
-        campoHorarioConclusao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoDescricao = new javax.swing.JTextArea();
@@ -193,6 +187,12 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         campoPeriodicidade = new javax.swing.JTextField();
         campoManutencaoIniciada = new javax.swing.JCheckBox();
         campoManutencaoConcluida = new javax.swing.JCheckBox();
+        campoDataAgendamento = new javax.swing.JFormattedTextField();
+        campoHorarioAgendamento = new javax.swing.JFormattedTextField();
+        campoDataInicio = new javax.swing.JFormattedTextField();
+        campoHorarioInicio = new javax.swing.JFormattedTextField();
+        campoDataConclusao = new javax.swing.JFormattedTextField();
+        campoHorarioConclusao = new javax.swing.JFormattedTextField();
 
         setTitle("Editar Manutenção Preventiva");
 
@@ -220,20 +220,6 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
 
         jLabel10.setText("Horário de Agendamento:");
 
-        campoHorarioAgendamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoHorarioAgendamentoActionPerformed(evt);
-            }
-        });
-
-        campoDataInicio.setEnabled(false);
-
-        campoHorarioInicio.setEnabled(false);
-
-        campoDataConclusao.setEnabled(false);
-
-        campoHorarioConclusao.setEnabled(false);
-
         jLabel11.setText("Descrição:");
 
         campoDescricao.setColumns(20);
@@ -257,6 +243,11 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
         jLabel2.setText("Periodicidade");
 
         campoManutencaoIniciada.setText("Manutenção não iniciada");
+        campoManutencaoIniciada.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                campoManutencaoIniciadaStateChanged(evt);
+            }
+        });
         campoManutencaoIniciada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoManutencaoIniciadaActionPerformed(evt);
@@ -265,11 +256,28 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
 
         campoManutencaoConcluida.setText("Manutenção não concluída");
         campoManutencaoConcluida.setEnabled(false);
+        campoManutencaoConcluida.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                campoManutencaoConcluidaStateChanged(evt);
+            }
+        });
         campoManutencaoConcluida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoManutencaoConcluidaActionPerformed(evt);
             }
         });
+
+        campoDataAgendamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        campoHorarioAgendamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+
+        campoDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        campoHorarioInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+
+        campoDataConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        campoHorarioConclusao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -292,10 +300,6 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(labelId))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(34, 34, 34)
-                            .addComponent(campoDataAgendamento))
-                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3))
@@ -311,16 +315,18 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
                                 .addComponent(labelDataConclusao)
                                 .addComponent(labelHorarioConclusao)
                                 .addComponent(jLabel11)
-                                .addComponent(jLabel2))
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel9))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1)
-                                .addComponent(campoHorarioConclusao)
-                                .addComponent(campoDataConclusao)
-                                .addComponent(campoHorarioInicio)
-                                .addComponent(campoDataInicio)
+                                .addComponent(campoPeriodicidade)
+                                .addComponent(campoDataAgendamento)
                                 .addComponent(campoHorarioAgendamento)
-                                .addComponent(campoPeriodicidade)))))
+                                .addComponent(campoDataInicio)
+                                .addComponent(campoHorarioInicio)
+                                .addComponent(campoDataConclusao)
+                                .addComponent(campoHorarioConclusao)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -383,10 +389,6 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoHorarioAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHorarioAgendamentoActionPerformed
-        telaPrincipal.fecharLimparJanela(this);
-    }//GEN-LAST:event_campoHorarioAgendamentoActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         boolean formularioValido = true;
@@ -471,25 +473,33 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void campoManutencaoIniciadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoManutencaoIniciadaActionPerformed
-        atualizarManutencaoIniciada();
+        
     }//GEN-LAST:event_campoManutencaoIniciadaActionPerformed
 
     private void campoManutencaoConcluidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoManutencaoConcluidaActionPerformed
-        atualizarManutencaoConcluida();
+        
     }//GEN-LAST:event_campoManutencaoConcluidaActionPerformed
+
+    private void campoManutencaoIniciadaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_campoManutencaoIniciadaStateChanged
+        atualizarManutencaoIniciada();
+    }//GEN-LAST:event_campoManutencaoIniciadaStateChanged
+
+    private void campoManutencaoConcluidaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_campoManutencaoConcluidaStateChanged
+        atualizarManutencaoConcluida();
+    }//GEN-LAST:event_campoManutencaoConcluidaStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
-    private javax.swing.JTextField campoDataAgendamento;
-    private javax.swing.JTextField campoDataConclusao;
-    private javax.swing.JTextField campoDataInicio;
+    private javax.swing.JFormattedTextField campoDataAgendamento;
+    private javax.swing.JFormattedTextField campoDataConclusao;
+    private javax.swing.JFormattedTextField campoDataInicio;
     private javax.swing.JTextArea campoDescricao;
     private javax.swing.JComboBox<String> campoEquipamento;
-    private javax.swing.JTextField campoHorarioAgendamento;
-    private javax.swing.JTextField campoHorarioConclusao;
-    private javax.swing.JTextField campoHorarioInicio;
+    private javax.swing.JFormattedTextField campoHorarioAgendamento;
+    private javax.swing.JFormattedTextField campoHorarioConclusao;
+    private javax.swing.JFormattedTextField campoHorarioInicio;
     private javax.swing.JCheckBox campoManutencaoConcluida;
     private javax.swing.JCheckBox campoManutencaoIniciada;
     private javax.swing.JTextField campoPeriodicidade;
