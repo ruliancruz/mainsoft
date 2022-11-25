@@ -2,6 +2,7 @@ package telas;
 import classes.Funcionario;
 import classes.Utils;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
 {
@@ -112,9 +113,16 @@ public class TelaFuncionario extends javax.swing.JInternalFrame implements Utils
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        funcionario = new Funcionario(campoNome.getText());
-        telaListaFuncionarios.adicionarFuncionario(funcionario);
-        telaPrincipal.fecharLimparJanela(this);
+        if(campoNome.getText() == null || campoNome.getText().isEmpty() || campoNome.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(this, "Erro! O campo Nome precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            funcionario = new Funcionario(campoNome.getText());
+            telaListaFuncionarios.adicionarFuncionario(funcionario);
+            telaPrincipal.fecharLimparJanela(this);
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

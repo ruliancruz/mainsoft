@@ -3,6 +3,7 @@ package telas;
 import classes.Manutencao;
 import classes.ManutencaoPreventiva;
 import classes.Utils;
+import java.util.Calendar;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -35,6 +36,8 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     
     public void atualizarManutencaoIniciada()
     {
+        Calendar agora;
+        
         if(campoManutencaoIniciada.isSelected())
         {
             campoManutencaoIniciada.setText("Manutenção iniciada");
@@ -53,11 +56,16 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
             campoHorarioInicio.setEnabled(false);
             campoManutencaoConcluida.setEnabled(false);
             campoManutencaoConcluida.setSelected(false);
+            agora = Calendar.getInstance();
+            campoDataInicio.setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            campoHorarioInicio.setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
     }
     
     public void atualizarManutencaoConcluida()
     {
+        Calendar agora;
+        
         if(campoManutencaoConcluida.isSelected())
         {
             campoManutencaoConcluida.setText("Manutenção concluída");
@@ -73,6 +81,9 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
             campoDataConclusao.setEnabled(false);
             labelHorarioConclusao.setEnabled(false);
             campoHorarioConclusao.setEnabled(false);
+            agora = Calendar.getInstance();
+            campoDataConclusao.setText(String.format("%02d/%02d/%d", agora.get(Calendar.DAY_OF_MONTH), agora.get(Calendar.MONTH) + 1, agora.get(Calendar.YEAR)));
+            campoHorarioConclusao.setText(String.format("%02d:%02d", agora.get(Calendar.HOUR_OF_DAY), agora.get(Calendar.MINUTE)));
         }
     }
     
@@ -378,19 +389,63 @@ public class TelaEditarManutencaoPreventiva extends javax.swing.JInternalFrame i
     }//GEN-LAST:event_campoHorarioAgendamentoActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if(campoEquipamento.getSelectedIndex() == -1 && campoResponsavel.getSelectedIndex() == -1)
-        {
-            JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento e funcionário cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(campoEquipamento.getSelectedIndex() == -1)
+        boolean formularioValido = true;
+        
+        if(campoEquipamento.getSelectedIndex() == -1)
         {
             JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = false;
         }
-        else if(campoResponsavel.getSelectedIndex() == -1)
+        
+        if(campoResponsavel.getSelectedIndex() == -1)
         {
             JOptionPane.showMessageDialog(this, "Erro! Não há nenhum funcionário cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = false;
         }
-        else
+        
+        if(campoDataAgendamento.getText() == null || campoDataAgendamento.getText().isEmpty() || campoDataAgendamento.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(this, "Erro! O campo Data de Agendamento precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = false;
+        }
+        
+        if(campoHorarioAgendamento.getText() == null || campoHorarioAgendamento.getText().isEmpty() || campoHorarioAgendamento.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(this, "Erro! O campo Horário de Agendamento precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = false;
+        }
+        
+        if(campoManutencaoIniciada.isSelected())
+        {
+            if(campoDataInicio.getText() == null || campoDataInicio.getText().isEmpty() || campoDataInicio.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(this, "Erro! Para registrar uma manutenção iniciada, o campo Data de Início precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+                formularioValido = false;
+            }
+
+            if(campoHorarioInicio.getText() == null || campoHorarioInicio.getText().isEmpty() || campoHorarioInicio.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(this, "Erro! Para registrar uma manutenção iniciada, campo Horário de Início precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+                formularioValido = false;
+            } 
+        }
+        
+        if(campoManutencaoConcluida.isSelected())
+        {
+            if(campoDataConclusao.getText() == null || campoDataConclusao.getText().isEmpty() || campoDataConclusao.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(this, "Erro! Para registrar uma manutenção concluída, o campo Data de Conclusão precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+                formularioValido = false;
+            }
+        
+            if(campoDataConclusao.getText() == null || campoHorarioConclusao.getText().isEmpty() || campoHorarioConclusao.getText().isBlank())
+            {
+                JOptionPane.showMessageDialog(this, "Erro! Para registrar uma manutenção concluída, o campo Horário de Conclusão precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        
+        if(formularioValido == true)
         {
             Manutencao manutencao = new ManutencaoPreventiva
             (

@@ -151,9 +151,21 @@ public class TelaPeca extends javax.swing.JInternalFrame implements Utils
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+        int formularioValido = 0;
+        
+        if(campoNome.getText() == null || campoNome.getText().isEmpty() || campoNome.getText().isBlank())
+        {
+            JOptionPane.showMessageDialog(this, "Erro! O campo Nome precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = -1;
+        }
+        
         if(campoEquipamento.getSelectedIndex() == -1)
+        {
             JOptionPane.showMessageDialog(this, "Erro! Não há nenhum equipamento cadastrado", "Erro!", JOptionPane.ERROR_MESSAGE);
-        else
+            return;
+        }      
+        
+        if(formularioValido == 0)
         {
             peca = new Peca(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), telaListaEquipamentos.getListaEquipamentos().get(campoEquipamento.getSelectedIndex()));
             telaListaPecas.adicionarPeca(peca);        

@@ -5,6 +5,7 @@ import classes.Manutencao;
 import classes.Peca;
 import classes.Utils;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class TelaEditarEquipamento extends javax.swing.JInternalFrame implements Utils
@@ -174,30 +175,47 @@ public class TelaEditarEquipamento extends javax.swing.JInternalFrame implements
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        Equipamento equipamento = new Equipamento(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), campoDataAquisicao.getText());
+        boolean formularioValido = true;
         
-        equipamento.setId(Integer.parseInt(labelId.getText()));
-        telaPrincipal.getTelaListaEquipamentos().editarEquipamento(equipamento, posicaoListaEquipamento);
-        
-        for(Manutencao item : telaPrincipal.getManutencoes())
+        if(campoNome.getText() == null || campoNome.getText().isEmpty() || campoNome.getText().isBlank())
         {
-            if(item.getEquipamento().getId() == equipamento.getId())
-            {
-                item.setEquipamento(equipamento);
-            }
+            JOptionPane.showMessageDialog(this, "Erro! O campo Nome precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            formularioValido = false;
         }
         
-        for(Peca item : telaPrincipal.getTelaListaPecas().getListaPecas())
+        if(campoDataAquisicao.getText() == null || campoDataAquisicao.getText().isEmpty() || campoDataAquisicao.getText().isBlank())
         {
-            if(item.getEquipamento().getId() == equipamento.getId())
-            {
-                item.setEquipamento(equipamento);
-            }
+            JOptionPane.showMessageDialog(this, "Erro! O campo Data de Aquisição precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
-        telaPrincipal.atualizarListaManutencoes();
-        telaPrincipal.getTelaListaPecas().atualizarListaPecas();
-        telaPrincipal.fecharLimparJanela(this);
+        if(formularioValido == true)
+        {
+            Equipamento equipamento = new Equipamento(campoNome.getText(), campoModelo.getText(), campoFabricante.getText(), campoDataAquisicao.getText());
+        
+            equipamento.setId(Integer.parseInt(labelId.getText()));
+            telaPrincipal.getTelaListaEquipamentos().editarEquipamento(equipamento, posicaoListaEquipamento);
+        
+            for(Manutencao item : telaPrincipal.getManutencoes())
+            {
+                if(item.getEquipamento().getId() == equipamento.getId())
+               {
+                   item.setEquipamento(equipamento);
+               }
+            }
+        
+            for(Peca item : telaPrincipal.getTelaListaPecas().getListaPecas())
+            {
+                if(item.getEquipamento().getId() == equipamento.getId())
+                {
+                    item.setEquipamento(equipamento);
+                }
+            }
+
+            telaPrincipal.atualizarListaManutencoes();
+            telaPrincipal.getTelaListaPecas().atualizarListaPecas();
+            telaPrincipal.fecharLimparJanela(this);
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed

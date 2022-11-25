@@ -4,6 +4,7 @@ import classes.Funcionario;
 import classes.Manutencao;
 import classes.Utils;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class TelaEditarFuncionario extends javax.swing.JInternalFrame implements Utils
@@ -125,22 +126,28 @@ public class TelaEditarFuncionario extends javax.swing.JInternalFrame implements
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
-        Funcionario funcionario = new Funcionario(campoNome.getText());
-        
-        funcionario.setId(Integer.parseInt(labelId.getText()));
-        telaPrincipal.getTelaListaFuncionarios().editarFuncionario(funcionario, posicaoListaFuncionario);
-        
-        for(Manutencao item : telaPrincipal.getManutencoes())
+        if(campoNome.getText() == null || campoNome.getText().isEmpty() || campoNome.getText().isBlank())
         {
-            if(item.getResponsavel().getId() == funcionario.getId())
-            {
-                item.setResponsavel(funcionario);
-            }
+            JOptionPane.showMessageDialog(this, "Erro! O campo Nome precisa estar preenchido", "Erro!", JOptionPane.ERROR_MESSAGE);
         }
+        else
+        {
+            Funcionario funcionario = new Funcionario(campoNome.getText());
         
-        telaPrincipal.atualizarListaManutencoes();
-        telaPrincipal.fecharLimparJanela(this);
+            funcionario.setId(Integer.parseInt(labelId.getText()));
+            telaPrincipal.getTelaListaFuncionarios().editarFuncionario(funcionario, posicaoListaFuncionario);
+        
+            for(Manutencao item : telaPrincipal.getManutencoes())
+            {
+               if(item.getResponsavel().getId() == funcionario.getId())
+               {
+                   item.setResponsavel(funcionario);
+               }
+            }
+        
+            telaPrincipal.atualizarListaManutencoes();
+            telaPrincipal.fecharLimparJanela(this);
+        }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
