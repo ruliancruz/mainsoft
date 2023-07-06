@@ -1,17 +1,17 @@
 # Mainsoft
 
-Sistema de controle de manutenção em fábricas.
+Factory maintenance control system.
 
-Feito em Java, com interface gráfica desenvolvida com Java Swing e com persistência de dados utilizando arquivos binários.
+Made in Java, with a graphical UI developed with Java Swing and data persistence using binary files.
 
-Projeto desenvolvido como requisito parcial de conclusão da disciplina de Linguagem de Programação Orientada a Objetos I do curso de Licenciatura em Computação do IFBA - Campus Jacobina.
+Project developed as a partial requirement for completion of the Object-Oriented Programming Language I subject of the Degree in Computing at IFBA - Campus Jacobina.
 
-Video de apresentação do software: https://www.youtube.com/watch?v=8kKjgfdknwU
+Software presentation video: https://www.youtube.com/watch?v=8kKjgfdknwU
 
-Executável em .jar: https://github.com/ruliancruz/Mainsoft/blob/main/dist/Mainsoft.jar
+Executable in .jar: https://github.com/ruliancruz/Mainsoft/blob/main/dist/Mainsoft.jar
 
-### Equipe:
-<a href="https://github.com/ruliancruz">Rulian Cruz</a>: Programação e Interface;
-<br><a href="https://github.com/gacav-lab">Gabriel Oliveira</a>: Programação;
-<br><a href="https://github.com/devdiegomiranda">Diego Miranda</a>: Imagens;
-<br><a href="https://github.com/gessecarneiro">Gessé Carneiro</a>: Suporte;
+### Team:
+<a href="https://github.com/ruliancruz">Rulian Cruz</a>: Programming and UI;
+<br><a href="https://github.com/gacav-lab">Gabriel Oliveira</a>: Programming;
+<br><a href="https://github.com/devdiegomiranda">Diego Miranda</a>: Images;
+<br><a href="https://github.com/gessecarneiro">Gessé Carneiro</a>: Support.
