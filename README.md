@@ -10,7 +10,7 @@ Software presentation video: https://www.youtube.com/watch?v=8kKjgfdknwU
 
 Executable in .jar: https://github.com/ruliancruz/Mainsoft/blob/main/dist/Mainsoft.jar
 
-### Team:
+### Team
 <a href="https://github.com/ruliancruz">Rulian Cruz</a>: Programming and UI;
 <br><a href="https://github.com/gacav-lab">Gabriel Oliveira</a>: Programming;
 <br><a href="https://github.com/devdiegomiranda">Diego Miranda</a>: Images;
